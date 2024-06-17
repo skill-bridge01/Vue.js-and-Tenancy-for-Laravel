@@ -1,0 +1,1005 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laundary App",
+        "description": "API for Customer",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/create-invoice": {
+            "post": {
+                "tags": [
+                    "Invoice"
+                ],
+                "summary": "Create invoice",
+                "description": "Create new invoice",
+                "operationId": "d2dbe2b9c05b47e3ea150721c1db7233",
+                "parameters": [
+                    {
+                        "name": "customer_name",
+                        "in": "query",
+                        "description": "Please enter customer name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "discount",
+                        "in": "query",
+                        "description": "Please enter discount",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "note",
+                        "in": "query",
+                        "description": "Please enter Note",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "payment_method",
+                        "in": "query",
+                        "description": "Please enter payment method",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "Service_Piece_ID",
+                        "in": "query",
+                        "description": "Please enter service piece ID(s)",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Invoice created successfully"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/signup": {
+            "post": {
+                "tags": [
+                    "Register"
+                ],
+                "summary": "Register",
+                "description": "Register",
+                "operationId": "445cfeb9b16b31a7dfa0e227a97a6cb4",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Please enter your email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Please enter your name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "description": "Please enter your Username",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "phone",
+                        "in": "query",
+                        "description": "Please enter your phone number",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Please enter your password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Register success"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/create-customer": {
+            "post": {
+                "tags": [
+                    "Customer"
+                ],
+                "summary": "Create Customer",
+                "description": "Create new Customer",
+                "operationId": "509987bfdffeacfce00bfb93ae642cf3",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Please enter full name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "mobile",
+                        "in": "query",
+                        "description": "Please enter mobile",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Customer created successfully"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/get-user-invoices": {
+            "post": {
+                "tags": [
+                    "Invoice"
+                ],
+                "summary": "Get list of invoice",
+                "description": "Returns list of invoice",
+                "operationId": "dc1d917de21771332c79befd4a6b63e3",
+                "responses": {
+                    "200": {
+                        "description": "Successfully get invoice list"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/pieces": {
+            "get": {
+                "tags": [
+                    "Piece"
+                ],
+                "summary": "Get list of Piece",
+                "description": "Returns list of piece",
+                "operationId": "e228e5e97aecf80a2e4b7aa9ee118e36",
+                "responses": {
+                    "200": {
+                        "description": "Successfully get piece list"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Piece"
+                ],
+                "summary": "Create Piece",
+                "description": "Create a new piece",
+                "operationId": "1321f5baeca1c5c6372e91105a41809b",
+                "parameters": [
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "Please enter a piece name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Piece created successfully"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/pieces/{id}": {
+            "put": {
+                "tags": [
+                    "Piece"
+                ],
+                "summary": "Edit piece",
+                "description": "Edit piece by ID",
+                "operationId": "2e985181ede7b70a017ec07e067d4f71",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter id piece",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "Please enter piece name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Piece successfully updated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Piece"
+                ],
+                "summary": "Delete piece",
+                "description": "Delete piece by ID",
+                "operationId": "a95493785175dcbd9a4dbea73a2decf4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter id piece",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Piece successfully removed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/prices": {
+            "get": {
+                "tags": [
+                    "Price"
+                ],
+                "summary": "Get list of price",
+                "description": "Returns list of price",
+                "operationId": "9285d536c817c98d5d8f4e511b49e5e7",
+                "responses": {
+                    "200": {
+                        "description": "Successfully get price list"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Price"
+                ],
+                "summary": "Create price",
+                "description": "Create new price",
+                "operationId": "de07b14a91a8e32939c0a9f4b0137c0d",
+                "parameters": [
+                    {
+                        "name": "service_id",
+                        "in": "query",
+                        "description": "Please enter serveice ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "piece_id",
+                        "in": "query",
+                        "description": "Please enter piece ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "price",
+                        "in": "query",
+                        "description": "Please enter price",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Price created successfully"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/prices/{id}": {
+            "put": {
+                "tags": [
+                    "Price"
+                ],
+                "summary": "Edit price",
+                "description": "Edit price by ID",
+                "operationId": "5ee706b1bd0522c176f58629f0dc58ba",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter id of price",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "service_id",
+                        "in": "query",
+                        "description": "Please enter serveice ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "piece_id",
+                        "in": "query",
+                        "description": "Please enter piece ID",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "price",
+                        "in": "query",
+                        "description": "Please enter price",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Price successfully updated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Price"
+                ],
+                "summary": "Delete price",
+                "description": "Delete price by ID",
+                "operationId": "8bac1df92660c8bbecd2117b38b3ec3b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter id price",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Price successfully removed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/search-customer": {
+            "post": {
+                "tags": [
+                    "Customer"
+                ],
+                "summary": "Search Customer",
+                "description": "Search Customer by keyword",
+                "operationId": "7ee6d8ba41720012ef0892a9c93c799f",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Please enter keyword",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Search successfully"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/services": {
+            "get": {
+                "tags": [
+                    "Service"
+                ],
+                "summary": "Get list of Service",
+                "description": "Returns list of service",
+                "operationId": "d252e5820b5dec63fa22aaa9da6928e0",
+                "responses": {
+                    "200": {
+                        "description": "Successfully get service list"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Service"
+                ],
+                "summary": "Create service",
+                "description": "Create a new service",
+                "operationId": "ed904a505c8c24c9ff4def21a64f5002",
+                "parameters": [
+                    {
+                        "name": "services_title",
+                        "in": "query",
+                        "description": "Please enter a service name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "is_checked",
+                        "in": "query",
+                        "description": "Please enter 1 or 0",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "is_shown",
+                        "in": "query",
+                        "description": "Please enter 1 or 0",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Service created successfully"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/services/{id}": {
+            "put": {
+                "tags": [
+                    "Service"
+                ],
+                "summary": "Edit service",
+                "description": "Edit service by ID",
+                "operationId": "06fade9abc1fd456588f64032e965267",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter id service",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "title",
+                        "in": "query",
+                        "description": "Please enter service name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "is_checked",
+                        "in": "query",
+                        "description": "Please enter 1 OR 0",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "is_shown",
+                        "in": "query",
+                        "description": "Please enter 1 OR 0",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Service successfully updated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Service"
+                ],
+                "summary": "Delete service",
+                "description": "Delete service by ID",
+                "operationId": "5740a4a310810e5c4b485e3da1034f38",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter ID of service",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Piece successfully removed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/signin": {
+            "post": {
+                "tags": [
+                    "Login"
+                ],
+                "summary": "Login",
+                "description": "Signin",
+                "operationId": "d06254572c7f259d1ab5cd937fbe52b1",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Please enter your email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Please enter your password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "device_name",
+                        "in": "query",
+                        "description": "Please enter your device name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Login success"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/update-invoice": {
+            "post": {
+                "tags": [
+                    "Invoice"
+                ],
+                "summary": "Edit invoice",
+                "description": "Edit invoice by ID",
+                "operationId": "f4617e7604de7c8e577caff1810f7daf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Please enter invoice id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Please enter Status",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Invoice successfully updated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/update-password": {
+            "post": {
+                "tags": [
+                    "Setting"
+                ],
+                "summary": "Change Password",
+                "description": "Change Password",
+                "operationId": "78a5e403d73c11b9a38a5599e228eea0",
+                "parameters": [
+                    {
+                        "name": "old_password",
+                        "in": "query",
+                        "description": "Please enter Old Password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "new_password",
+                        "in": "query",
+                        "description": "Please enter New Password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Password successfully changed"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get list of user",
+                "description": "Returns list of user",
+                "operationId": "57302d25716a268083ac10202db62d8a",
+                "responses": {
+                    "200": {
+                        "description": "Successfully get user list"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Create user",
+                "description": "Create new user",
+                "operationId": "30341c812dfefc8d18ed074ee97f59c6",
+                "parameters": [
+                    {
+                        "name": "username",
+                        "in": "query",
+                        "description": "Please enter your full name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Please enter your email",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Please enter your password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "User created successfully"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/users/{id}": {
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Edit user",
+                "description": "Edit user",
+                "operationId": "2eec94bb9d27cbe759ae061227763824",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter id user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "oldPassword",
+                        "in": "query",
+                        "description": "Please enter oldPassword",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Please enter new Password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User successfully updated"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Delete user",
+                "description": "Delete user by ID",
+                "operationId": "c0648f30d3b5c86cf8ca6a7a52c848f4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Please enter id user",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User successfully removed"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    }
+}

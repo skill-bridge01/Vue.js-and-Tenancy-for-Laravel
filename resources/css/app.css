@@ -1,0 +1,46 @@
+@import "tailwind/_base.css";
+@import "tailwind/_components.css";
+@import "tailwind/_utilities.css";
+
+@import "_checkbox-radio-switch.css";
+@import "_progress.css";
+@import "_scrollbars.css";
+@import "_table.css";
+
+@layer base {
+    h1 {
+        font-size: 2.0325rem;
+    }
+    h2 {
+        font-size: 1.626rem;
+    }
+    
+    h3 {
+        font-size: 1.42275rem;
+    }
+    h4 {
+        font-size: 1.2195rem;
+    }
+    h5 {
+        font-size: 1.01625rem;
+    }
+    h6 {
+        font-size: .813rem;
+    }
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+     -webkit-transition-delay: 9999s;
+     transition-delay: 9999s;
+     -webkit-box-shadow: 0 0 0 30px white inset !important;
+  }
+
+  input,
+  input:focus,
+  input:active {
+    box-shadow: none !important;
+    border: none !important;
+  }

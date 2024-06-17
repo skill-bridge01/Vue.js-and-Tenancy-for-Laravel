@@ -1,0 +1,216 @@
+{
+  "common": {
+    "appName": "Laundry",
+    "phoneNumber": "Phone number",
+    "save": "Save",
+    "cancel": "Cancel",
+    "update": "Update"
+  },
+  "sidebar": {
+    "name" : "Name",
+    "email" : "username@gmail.com",
+    "menu": {
+      "dashboard" : "Dashboard",
+      "invoices": "Invoices",
+      "analytics": "Analytics",
+      "account": "Account",
+      "signout": "Log out",
+      "register": "Register",
+      "prices": "Prices",
+      "pieces": "Pieces",
+      "services": "Services",
+      "users": "Users"
+    }
+  },
+  "modal": {
+    "logout": {
+      "title": "Logout",
+      "message": "Are you sure you want to log out?",
+      "back": "Back",
+      "signout": "Log out"
+    }
+  },
+  "auth": {
+    "login": {
+      "email_username": "Email or Username",
+      "username": "Username",
+      "email": "Email",
+      "password": "Password",
+      "signIn": "Login",
+      "register": "Register"
+    },
+    "signup": {
+      "username": "Username, ex: laundry20",
+      "phoneNumber": "Phone number",
+      "name": "Name",
+      "confirmPassword": "Confirm password",
+      "continue": "Continue" 
+    },
+    "phoneVerify": {
+      "phone": "Phone Verify Code",
+      "confirm": "Confirm"
+    }
+  },
+  "dashboard": {
+    "pieceType": "Piece type",
+    "discount": "Discount",
+    "note": "Note",
+    "discard": "Discard",
+    "pause": "Pause",
+    "addCustomer": "Add a customer",
+    "typeName": "Type name",
+    "pieceCount": "Piece count",
+    "createInvoice": "Create invoice",
+    "addDiscount": "Add discount",
+    "searchInvoice": "Search invoices or customers",
+    "chooseWidget": "Choose widget type",
+    "currency": "SAR",
+    "count": "Count",
+    "serviceType": "Services",
+    "companyName":"Company name"
+  },
+  "invoices": {
+    "search": "Search",
+    "toDate":"To Date",
+    "fromDate":"From Date",
+    "invoiceNumber": "Invoice number",
+    "table": {
+      "actions": "Actions",
+      "total": "Total",
+      "status": "Status",
+      "customer": "Customer",
+      "date": "Date",
+      "invoiceNumber": "Invoice Number"
+    },
+    "modal": {
+      "qrcode": {
+        "title": "QR code"
+      },
+      "edit": {
+        "title": "Edit invoice",
+        "update": "Update"
+      },
+      "delete": {
+        "title": "Delete invoice"
+      }
+    }
+  },
+  "prices": {
+    "create": "Create price",
+    "table": {
+      "actions": "Actions",
+      "priceNumber": "Number",
+      "date": "Date",
+      "service": "Service",
+      "piece": "Piece",
+      "price": "Price"
+    },
+    "modal": {
+      "create": {
+        "title": "Create a new price",
+        "placeholder": "Price"
+      },
+      "edit": {
+        "title": "Edit price"
+      },
+      "delete": {
+        "title": "Delete price"
+      }
+    }
+  },
+  "users": {
+    "create": "Create User",
+    "table": {
+      "Number": "Number",
+      "actions": "Actions",
+      "date": "Date",
+      "username": "Name",
+      "email": "Email"
+    },
+    "modal": {
+      "create": {
+        "title": "Create a New User"
+      },
+      "edit": {
+        "title": "Edit User"
+      },
+      "delete": {
+        "title": "Delete User"
+      }
+    }
+  },
+  "pieces": {
+    "create": "Create piece",
+    "table": {
+      "actions": "Actions",
+      "pieceNumber": "Number",
+      "date": "Date",
+      "piece": "Piece"
+    },
+    "modal": {
+      "create": {
+        "title": "Create a new piece",
+        "placeholder": "Piece Name"
+      },
+      "edit": {
+        "title": "Edit piece"
+      },
+      "delete": {
+        "title": "Delete piece"
+      }
+    }
+  },
+
+  "services": {
+    "create": "Create service",
+    "table": {
+      "actions": "Actions",
+      "serviceNumber": "Number",
+      "date": "Date",
+      "service": "Service",
+      "checked": "Checked",
+      "shown": "Shown"
+    },
+    "modal": {
+      "create": {
+        "title": "Create a new service",
+        "placeholder": "Service Name"
+      },
+      "edit": {
+        "title": "Edit service"
+      },
+      "delete": {
+        "title": "Delete service"
+      }
+    }
+  },
+  "analytics": {
+    "tabs": {
+      "allTime": "All time",
+      "thisMonth": "This month",
+      "today": "Today"
+    },
+    "chart": {
+      "bestSellingServices": "Best selling services",
+      "sales": "Sales",
+      "mostRequestedServices": "Most requested services",
+      "viewAll": "View all",
+      "mostPurchasedCustomers": "Most purchased customer",
+      "totalBills": "Total",
+      "customer": "Customer",
+      "value": "Value",
+      "bill": "Invoice"
+    }
+  },
+  
+  "account": {
+    "settings": "Settings",
+    "management": "Account management",
+    "oldPassword": "Old password",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm password",
+    "email": "Email",
+    "mobile": "Phone number",
+    "username": "Username"
+  }
+}

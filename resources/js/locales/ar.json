@@ -1,0 +1,195 @@
+{
+  "common": {
+    "appName": "مغسلة",
+    "phoneNumber": "رقم الهاتف",
+    "save": "حفظ وإغلاق",
+    "update": "تحديث"
+  },
+  "sidebar": {
+    "name" : "الاسم",
+    "email" : "اسم المستخدم@gmail.com",
+    "menu": {
+      "dashboard": "لوحة التحكم",
+      "invoices": "الفواتير",
+      "analytics": "التحليلات",
+      "account": "الحساب",
+      "signout": "تسجيل الخروج",
+      "register": "تسجيل",
+      "prices": "الأسعار",
+      "pieces": "القطع",
+      "services": "الخدمات",
+      "users": "المستخدمين"
+    }
+  },
+  "modal": {
+    "logout": {
+      "title": "تسجيل الخروج",
+      "message": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+      "back": "رجوع",
+      "signout": "تسجيل الخروج"
+    }
+  },
+  "auth": {
+    "login": {
+      "email_username": "البريد الإلكتروني أو اسم المستخدم",
+      "username": "اسم المستخدم",
+      "email": "البريد الإلكتروني",
+      "password": "كلمة المرور",
+      "signIn": "تسجيل الدخول",
+      "register": "تسجيل"
+    },
+    "signup": {
+      "username": "اسم المستخدم، مثال: laundry20",
+      "phoneNumber": "رقم الهاتف",
+      "name": "الاسم",
+      "confirmPassword": "تأكيد كلمة المرور",
+      "continue": "استمرار"
+    }
+  },
+  "dashboard": {
+    "pieceType": "نوع القطعة",
+    "discount": "خصم",
+    "note": "ملاحظة",
+    "discard": "تجاهل",
+    "pause": "توقف مؤقت",
+    "addCustomer": "إضافة عميل",
+    "typeName": "اسم النوع",
+    "pieceCount": "عدد القطع",
+    "createInvoice": "إنشاء فاتورة",
+    "addDiscount": "إضافة خصم",
+    "searchInvoice": "بحث في الفواتير أو العملاء",
+    "chooseWidget": "اختر نوع الويدجت",
+    "currency": "ر.س",
+    "count": "عدد",
+    "serviceType": "الخدمات",
+    "companyName":"اسم الشركة"
+  },
+  "invoices": {
+    "search": "بحث",
+    "toDate":"حتى تاريخه",
+    "fromDate":"من تاريخه",
+    "invoiceNumber": "رقم الفاتورة",
+    "table": {
+      "actions": "الإجراءات",
+      "total": "المجموع",
+      "status": "الحالة",
+      "customer": "العميل",
+      "date": "التاريخ",
+      "invoiceNumber": "رقم الفاتورة"
+    }
+  },
+  "prices": {
+    "create": "إنشاء سعر",
+    "table": {
+      "actions": "الإجراءات",
+      "priceNumber": "الرقم",
+      "date": "التاريخ",
+      "service": "الخدمة",
+      "piece": "القطعة",
+      "price": "السعر"
+    },
+    "modal": {
+      "create": {
+        "title": "إنشاء سعر جديد",
+        "placeholder": "السعر"
+      },
+      "edit": {
+        "title": "تعديل السعر"
+      },
+      "delete": {
+        "title": "حذف السعر"
+      }
+    }
+  },
+  "users": {
+    "create": "إنشاء مستخدم",
+    "table": {
+      "Number": "الرقم",
+      "actions": "الإجراءات",
+      "date": "التاريخ",
+      "username": "الاسم",
+      "email": "البريد الإلكتروني"
+    },
+    "modal": {
+      "create": {
+        "title": "إنشاء مستخدم جديد"
+      },
+      "edit": {
+        "title": "تعديل المستخدم"
+      },
+      "delete": {
+        "title": "حذف المستخدم"
+      }
+    }
+  },
+  "pieces": {
+    "create": "إنشاء قطعة",
+    "table": {
+      "actions": "الإجراءات",
+      "pieceNumber": "الرقم",
+      "date": "التاريخ",
+      "piece": "القطعة"
+    },
+    "modal": {
+      "create": {
+        "title": "إنشاء قطعة جديدة",
+        "placeholder": "اسم القطعة"
+      },
+      "edit": {
+        "title": "تعديل القطعة"
+      },
+      "delete": {
+        "title": "حذف القطعة"
+      }
+    }
+  },
+  "services": {
+    "create": "إنشاء خدمة",
+    "table": {
+      "actions": "الإجراءات",
+      "serviceNumber": "الرقم",
+      "date": "التاريخ",
+      "service": "الخدمة",
+      "checked": "تم التحقق",
+      "shown": "ظاهر"
+    },
+    "modal": {
+      "create": {
+        "title": "إنشاء خدمة جديدة",
+        "placeholder": "اسم الخدمة"
+      },
+      "edit": {
+        "title": "تعديل الخدمة"
+      },
+      "delete": {
+        "title": "حذف الخدمة"
+      }
+    }
+  },
+  "analytics": {
+    "tabs": {
+      "allTime": "كل الوقت",
+      "thisMonth": "هذا الشهر",
+      "today": "اليوم"
+    },
+    "chart": {
+      "bestSellingServices": "أفضل الخدمات مبيعًا",
+      "sales": "المبيعات",
+      "mostRequestedServices": "أكثر الخدمات طلبًا",
+      "viewAll": "عرض الكل",
+      "mostPurchasedCustomers": "أكثر العملاء شراءً",
+      "totalBills": "الإجمالي",
+      "customer": "العميل",
+      "value": "القيمة",
+      "bill": "فاتورة"
+    }
+  },
+  "account": {
+    "settings": "الإعدادات",
+    "management": "إدارة الحساب",
+    "oldPassword": "كلمة المرور القديمة",
+    "newPassword": "كلمة المرور الجديدة",
+    "confirmPassword": "تأكيد كلمة المرور",
+    "email": "البريد الإلكتروني"
+  }
+}

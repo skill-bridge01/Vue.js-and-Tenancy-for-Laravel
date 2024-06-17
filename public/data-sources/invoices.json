@@ -1,0 +1,1856 @@
+{
+  "invoices": [
+      {
+          "id": 1,
+          "customer_name": "khalil",
+          "customer_id": 2,
+          "user_id": 1,
+          "status": "2",
+          "created_at": "2023-04-11T21:48:58.000000Z",
+          "updated_at": "2023-04-15T19:10:26.000000Z",
+          "services": [
+              {
+                  "id": 8,
+                  "service_id": 2,
+                  "piece_id": 2,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 1,
+                      "service_piece_id": 8,
+                      "number_of_piece": 3,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 2,
+                      "services_title": "غسيل عادي",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:51:46.000000Z",
+                      "updated_at": "2023-02-24T20:51:46.000000Z"
+                  }
+              },
+              {
+                  "id": 14,
+                  "service_id": 3,
+                  "piece_id": 2,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 1,
+                      "service_piece_id": 14,
+                      "number_of_piece": 3,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 3,
+                      "services_title": "ازالة بقع",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:51:59.000000Z",
+                      "updated_at": "2023-02-24T20:51:59.000000Z"
+                  }
+              },
+              {
+                  "id": 15,
+                  "service_id": 8,
+                  "piece_id": 1,
+                  "price": 0,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 1,
+                      "service_piece_id": 15,
+                      "number_of_piece": 2,
+                      "total_price": 10.5,
+                      "dtl": "٢ ثوب غسيل وكوي مستعجل ١ ثوب كوي"
+                  },
+                  "serviceinfo": {
+                      "id": 8,
+                      "services_title": "مخصصة",
+                      "is_checked": 0,
+                      "is_shown": 1,
+                      "created_at": "2023-04-11T17:57:39.000000Z",
+                      "updated_at": "2023-04-11T17:57:39.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 2,
+              "name": "khalil",
+              "mobile": "966503682689",
+              "email": null,
+              "created_at": "2023-04-11T21:48:58.000000Z",
+              "updated_at": "2023-04-11T21:48:58.000000Z"
+          }
+      },
+      {
+          "id": 2,
+          "customer_name": "mmmm",
+          "customer_id": 3,
+          "user_id": 1,
+          "status": "2",
+          "created_at": "2023-04-12T18:57:50.000000Z",
+          "updated_at": "2023-04-13T11:15:05.000000Z",
+          "services": [
+              {
+                  "id": 1,
+                  "service_id": 1,
+                  "piece_id": 1,
+                  "price": 4,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 2,
+                      "service_piece_id": 1,
+                      "number_of_piece": 1,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 1,
+                      "services_title": "غسيل مستعجل",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T18:41:28.000000Z",
+                      "updated_at": "2023-02-24T18:41:28.000000Z"
+                  }
+              },
+              {
+                  "id": 6,
+                  "service_id": 4,
+                  "piece_id": 1,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 2,
+                      "service_piece_id": 6,
+                      "number_of_piece": 1,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 4,
+                      "services_title": "كوي",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:52:17.000000Z",
+                      "updated_at": "2023-02-24T20:52:17.000000Z"
+                  }
+              },
+              {
+                  "id": 18,
+                  "service_id": 8,
+                  "piece_id": 4,
+                  "price": 0,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 2,
+                      "service_piece_id": 18,
+                      "number_of_piece": 1,
+                      "total_price": 3.9,
+                      "dtl": "dwfwf"
+                  },
+                  "serviceinfo": {
+                      "id": 8,
+                      "services_title": "مخصصة",
+                      "is_checked": 0,
+                      "is_shown": 1,
+                      "created_at": "2023-04-11T17:57:39.000000Z",
+                      "updated_at": "2023-04-11T17:57:39.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 3,
+              "name": "mmmm",
+              "mobile": "0809808",
+              "email": null,
+              "created_at": "2023-04-12T18:57:50.000000Z",
+              "updated_at": "2023-04-12T18:57:50.000000Z"
+          }
+      },
+      {
+          "id": 3,
+          "customer_name": "راكان",
+          "customer_id": 1,
+          "user_id": 1,
+          "status": "3",
+          "created_at": "2023-04-13T22:00:05.000000Z",
+          "updated_at": "2023-06-18T19:30:51.000000Z",
+          "services": [
+              {
+                  "id": 1,
+                  "service_id": 1,
+                  "piece_id": 1,
+                  "price": 4,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 3,
+                      "service_piece_id": 1,
+                      "number_of_piece": 1,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 1,
+                      "services_title": "غسيل مستعجل",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T18:41:28.000000Z",
+                      "updated_at": "2023-02-24T18:41:28.000000Z"
+                  }
+              },
+              {
+                  "id": 9,
+                  "service_id": 1,
+                  "piece_id": 2,
+                  "price": 3,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 3,
+                      "service_piece_id": 9,
+                      "number_of_piece": 1,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 1,
+                      "services_title": "غسيل مستعجل",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T18:41:28.000000Z",
+                      "updated_at": "2023-02-24T18:41:28.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 1,
+              "name": "kk",
+              "mobile": "0502682689",
+              "email": "kh@gmail.com",
+              "created_at": null,
+              "updated_at": "2023-06-17T11:50:38.000000Z"
+          }
+      },
+      {
+          "id": 4,
+          "customer_name": "فهد",
+          "customer_id": 4,
+          "user_id": 1,
+          "status": "2",
+          "created_at": "2023-04-14T17:28:55.000000Z",
+          "updated_at": "2023-04-16T03:37:48.000000Z",
+          "services": [
+              {
+                  "id": 9,
+                  "service_id": 1,
+                  "piece_id": 2,
+                  "price": 3,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 4,
+                      "service_piece_id": 9,
+                      "number_of_piece": 1,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 1,
+                      "services_title": "غسيل مستعجل",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T18:41:28.000000Z",
+                      "updated_at": "2023-02-24T18:41:28.000000Z"
+                  }
+              },
+              {
+                  "id": 15,
+                  "service_id": 8,
+                  "piece_id": 1,
+                  "price": 0,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 4,
+                      "service_piece_id": 15,
+                      "number_of_piece": 2,
+                      "total_price": 10,
+                      "dtl": "غسيل 2 ، كوي 1"
+                  },
+                  "serviceinfo": {
+                      "id": 8,
+                      "services_title": "مخصصة",
+                      "is_checked": 0,
+                      "is_shown": 1,
+                      "created_at": "2023-04-11T17:57:39.000000Z",
+                      "updated_at": "2023-04-11T17:57:39.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 4,
+              "name": "فهد",
+              "mobile": "0502682683",
+              "email": null,
+              "created_at": "2023-04-14T17:28:55.000000Z",
+              "updated_at": "2023-04-14T17:28:55.000000Z"
+          }
+      },
+      {
+          "id": 5,
+          "customer_name": "زاا",
+          "customer_id": 5,
+          "user_id": 1,
+          "status": "3",
+          "created_at": "2023-04-14T17:40:11.000000Z",
+          "updated_at": "2023-06-18T19:30:34.000000Z",
+          "services": [
+              {
+                  "id": 15,
+                  "service_id": 8,
+                  "piece_id": 1,
+                  "price": 0,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 5,
+                      "service_piece_id": 15,
+                      "number_of_piece": 2,
+                      "total_price": 1,
+                      "dtl": "تجربة"
+                  },
+                  "serviceinfo": {
+                      "id": 8,
+                      "services_title": "مخصصة",
+                      "is_checked": 0,
+                      "is_shown": 1,
+                      "created_at": "2023-04-11T17:57:39.000000Z",
+                      "updated_at": "2023-04-11T17:57:39.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 5,
+              "name": "زاا",
+              "mobile": "22552888888",
+              "email": null,
+              "created_at": "2023-04-14T17:40:10.000000Z",
+              "updated_at": "2023-04-14T17:40:10.000000Z"
+          }
+      },
+      {
+          "id": 6,
+          "customer_name": "dddd",
+          "customer_id": 6,
+          "user_id": 1,
+          "status": "2",
+          "created_at": "2023-04-14T20:48:03.000000Z",
+          "updated_at": "2023-06-19T21:41:35.000000Z",
+          "services": [
+              {
+                  "id": 15,
+                  "service_id": 8,
+                  "piece_id": 1,
+                  "price": 0,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 6,
+                      "service_piece_id": 15,
+                      "number_of_piece": 1,
+                      "total_price": 10,
+                      "dtl": "tttt"
+                  },
+                  "serviceinfo": {
+                      "id": 8,
+                      "services_title": "مخصصة",
+                      "is_checked": 0,
+                      "is_shown": 1,
+                      "created_at": "2023-04-11T17:57:39.000000Z",
+                      "updated_at": "2023-04-11T17:57:39.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 6,
+              "name": "خليل",
+              "mobile": "05026826",
+              "email": null,
+              "created_at": "2023-04-14T20:48:03.000000Z",
+              "updated_at": "2023-04-15T19:02:50.000000Z"
+          }
+      },
+      {
+          "id": 7,
+          "customer_name": "دىدوبن",
+          "customer_id": 7,
+          "user_id": 1,
+          "status": "2",
+          "created_at": "2023-04-15T05:08:18.000000Z",
+          "updated_at": "2023-06-20T05:46:21.000000Z",
+          "services": [
+              {
+                  "id": 15,
+                  "service_id": 8,
+                  "piece_id": 1,
+                  "price": 0,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 7,
+                      "service_piece_id": 15,
+                      "number_of_piece": 1,
+                      "total_price": 10,
+                      "dtl": "بمبنذ"
+                  },
+                  "serviceinfo": {
+                      "id": 8,
+                      "services_title": "مخصصة",
+                      "is_checked": 0,
+                      "is_shown": 1,
+                      "created_at": "2023-04-11T17:57:39.000000Z",
+                      "updated_at": "2023-04-11T17:57:39.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 7,
+              "name": "دىدوبن",
+              "mobile": "0508123456",
+              "email": null,
+              "created_at": "2023-04-15T05:08:18.000000Z",
+              "updated_at": "2023-04-15T05:08:18.000000Z"
+          }
+      },
+      {
+          "id": 8,
+          "customer_name": "jjlkj",
+          "customer_id": 8,
+          "user_id": 1,
+          "status": "3",
+          "created_at": "2023-04-15T07:49:26.000000Z",
+          "updated_at": "2023-06-20T05:46:16.000000Z",
+          "services": [
+              {
+                  "id": 5,
+                  "service_id": 6,
+                  "piece_id": 1,
+                  "price": 10,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 8,
+                      "service_piece_id": 5,
+                      "number_of_piece": 1,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 6,
+                      "services_title": "غسيل وكوي مستعجل",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:52:30.000000Z",
+                      "updated_at": "2023-02-24T20:52:30.000000Z"
+                  }
+              },
+              {
+                  "id": 6,
+                  "service_id": 4,
+                  "piece_id": 1,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 8,
+                      "service_piece_id": 6,
+                      "number_of_piece": 1,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 4,
+                      "services_title": "كوي",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:52:17.000000Z",
+                      "updated_at": "2023-02-24T20:52:17.000000Z"
+                  }
+              },
+              {
+                  "id": 7,
+                  "service_id": 5,
+                  "piece_id": 1,
+                  "price": 5,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 8,
+                      "service_piece_id": 7,
+                      "number_of_piece": 1,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 5,
+                      "services_title": "كوي مستعجل",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:52:23.000000Z",
+                      "updated_at": "2023-02-24T20:52:23.000000Z"
+                  }
+              },
+              {
+                  "id": 16,
+                  "service_id": 8,
+                  "piece_id": 2,
+                  "price": 0,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 8,
+                      "service_piece_id": 16,
+                      "number_of_piece": 1,
+                      "total_price": 89,
+                      "dtl": "no,"
+                  },
+                  "serviceinfo": {
+                      "id": 8,
+                      "services_title": "مخصصة",
+                      "is_checked": 0,
+                      "is_shown": 1,
+                      "created_at": "2023-04-11T17:57:39.000000Z",
+                      "updated_at": "2023-04-11T17:57:39.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 8,
+              "name": "jjlkj",
+              "mobile": "098090",
+              "email": null,
+              "created_at": "2023-04-15T07:49:26.000000Z",
+              "updated_at": "2023-04-15T07:49:26.000000Z"
+          }
+      },
+      {
+          "id": 9,
+          "customer_name": "m,m",
+          "customer_id": 9,
+          "user_id": 1,
+          "status": "3",
+          "created_at": "2023-04-15T07:53:35.000000Z",
+          "updated_at": "2023-06-20T20:33:04.000000Z",
+          "services": [
+              {
+                  "id": 5,
+                  "service_id": 6,
+                  "piece_id": 1,
+                  "price": 10,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 9,
+                      "service_piece_id": 5,
+                      "number_of_piece": 1,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 6,
+                      "services_title": "غسيل وكوي مستعجل",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:52:30.000000Z",
+                      "updated_at": "2023-02-24T20:52:30.000000Z"
+                  }
+              },
+              {
+                  "id": 6,
+                  "service_id": 4,
+                  "piece_id": 1,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 9,
+                      "service_piece_id": 6,
+                      "number_of_piece": 1,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 4,
+                      "services_title": "كوي",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:52:17.000000Z",
+                      "updated_at": "2023-02-24T20:52:17.000000Z"
+                  }
+              },
+              {
+                  "id": 7,
+                  "service_id": 5,
+                  "piece_id": 1,
+                  "price": 5,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 9,
+                      "service_piece_id": 7,
+                      "number_of_piece": 1,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 5,
+                      "services_title": "كوي مستعجل",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:52:23.000000Z",
+                      "updated_at": "2023-02-24T20:52:23.000000Z"
+                  }
+              },
+              {
+                  "id": 16,
+                  "service_id": 8,
+                  "piece_id": 2,
+                  "price": 0,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 9,
+                      "service_piece_id": 16,
+                      "number_of_piece": 1,
+                      "total_price": 999,
+                      "dtl": "knk"
+                  },
+                  "serviceinfo": {
+                      "id": 8,
+                      "services_title": "مخصصة",
+                      "is_checked": 0,
+                      "is_shown": 1,
+                      "created_at": "2023-04-11T17:57:39.000000Z",
+                      "updated_at": "2023-04-11T17:57:39.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 9,
+              "name": "m,m",
+              "mobile": "9090",
+              "email": null,
+              "created_at": "2023-04-15T07:53:35.000000Z",
+              "updated_at": "2023-04-15T07:53:35.000000Z"
+          }
+      },
+      {
+          "id": 10,
+          "customer_name": "gkkhk",
+          "customer_id": 6,
+          "user_id": 1,
+          "status": "2",
+          "created_at": "2023-04-15T14:46:46.000000Z",
+          "updated_at": "2023-04-15T19:10:37.000000Z",
+          "services": [
+              {
+                  "id": 15,
+                  "service_id": 8,
+                  "piece_id": 1,
+                  "price": 0,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 10,
+                      "service_piece_id": 15,
+                      "number_of_piece": 3,
+                      "total_price": 20,
+                      "dtl": "ghgg"
+                  },
+                  "serviceinfo": {
+                      "id": 8,
+                      "services_title": "مخصصة",
+                      "is_checked": 0,
+                      "is_shown": 1,
+                      "created_at": "2023-04-11T17:57:39.000000Z",
+                      "updated_at": "2023-04-11T17:57:39.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 6,
+              "name": "خليل",
+              "mobile": "05026826",
+              "email": null,
+              "created_at": "2023-04-14T20:48:03.000000Z",
+              "updated_at": "2023-04-15T19:02:50.000000Z"
+          }
+      },
+      {
+          "id": 11,
+          "customer_name": "khalil",
+          "customer_id": 1,
+          "user_id": 1,
+          "status": "3",
+          "created_at": "2023-04-15T19:01:12.000000Z",
+          "updated_at": "2023-06-17T12:30:11.000000Z",
+          "services": [
+              {
+                  "id": 9,
+                  "service_id": 1,
+                  "piece_id": 2,
+                  "price": 3,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 11,
+                      "service_piece_id": 9,
+                      "number_of_piece": 1,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 1,
+                      "services_title": "غسيل مستعجل",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T18:41:28.000000Z",
+                      "updated_at": "2023-02-24T18:41:28.000000Z"
+                  }
+              },
+              {
+                  "id": 15,
+                  "service_id": 8,
+                  "piece_id": 1,
+                  "price": 0,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 11,
+                      "service_piece_id": 15,
+                      "number_of_piece": 3,
+                      "total_price": 15,
+                      "dtl": "غسيل شماغ غسيل وكوي ثوب"
+                  },
+                  "serviceinfo": {
+                      "id": 8,
+                      "services_title": "مخصصة",
+                      "is_checked": 0,
+                      "is_shown": 1,
+                      "created_at": "2023-04-11T17:57:39.000000Z",
+                      "updated_at": "2023-04-11T17:57:39.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 1,
+              "name": "kk",
+              "mobile": "0502682689",
+              "email": "kh@gmail.com",
+              "created_at": null,
+              "updated_at": "2023-06-17T11:50:38.000000Z"
+          }
+      },
+      {
+          "id": 12,
+          "customer_name": "خليل",
+          "customer_id": 6,
+          "user_id": 1,
+          "status": "1",
+          "created_at": "2023-04-15T19:02:50.000000Z",
+          "updated_at": "2023-04-15T19:02:50.000000Z",
+          "services": [
+              {
+                  "id": 15,
+                  "service_id": 8,
+                  "piece_id": 1,
+                  "price": 0,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 12,
+                      "service_piece_id": 15,
+                      "number_of_piece": 3,
+                      "total_price": 10,
+                      "dtl": "ثوبين غسيل وثوب كوي"
+                  },
+                  "serviceinfo": {
+                      "id": 8,
+                      "services_title": "مخصصة",
+                      "is_checked": 0,
+                      "is_shown": 1,
+                      "created_at": "2023-04-11T17:57:39.000000Z",
+                      "updated_at": "2023-04-11T17:57:39.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 6,
+              "name": "خليل",
+              "mobile": "05026826",
+              "email": null,
+              "created_at": "2023-04-14T20:48:03.000000Z",
+              "updated_at": "2023-04-15T19:02:50.000000Z"
+          }
+      },
+      {
+          "id": 13,
+          "customer_name": "خالد",
+          "customer_id": 10,
+          "user_id": 1,
+          "status": "1",
+          "created_at": "2023-04-16T03:38:56.000000Z",
+          "updated_at": "2023-04-16T03:38:56.000000Z",
+          "services": [
+              {
+                  "id": 1,
+                  "service_id": 1,
+                  "piece_id": 1,
+                  "price": 4,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 13,
+                      "service_piece_id": 1,
+                      "number_of_piece": 2,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 1,
+                      "services_title": "غسيل مستعجل",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T18:41:28.000000Z",
+                      "updated_at": "2023-02-24T18:41:28.000000Z"
+                  }
+              },
+              {
+                  "id": 6,
+                  "service_id": 4,
+                  "piece_id": 1,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 13,
+                      "service_piece_id": 6,
+                      "number_of_piece": 2,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 4,
+                      "services_title": "كوي",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:52:17.000000Z",
+                      "updated_at": "2023-02-24T20:52:17.000000Z"
+                  }
+              },
+              {
+                  "id": 16,
+                  "service_id": 8,
+                  "piece_id": 2,
+                  "price": 0,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 13,
+                      "service_piece_id": 16,
+                      "number_of_piece": 1,
+                      "total_price": 10,
+                      "dtl": "تح"
+                  },
+                  "serviceinfo": {
+                      "id": 8,
+                      "services_title": "مخصصة",
+                      "is_checked": 0,
+                      "is_shown": 1,
+                      "created_at": "2023-04-11T17:57:39.000000Z",
+                      "updated_at": "2023-04-11T17:57:39.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 10,
+              "name": "خالد",
+              "mobile": "0502689122",
+              "email": null,
+              "created_at": "2023-04-16T03:38:56.000000Z",
+              "updated_at": "2023-04-16T03:38:56.000000Z"
+          }
+      },
+      {
+          "id": 14,
+          "customer_name": "طارق",
+          "customer_id": 11,
+          "user_id": 1,
+          "status": "1",
+          "created_at": "2023-04-16T15:12:21.000000Z",
+          "updated_at": "2023-04-16T15:12:21.000000Z",
+          "services": [
+              {
+                  "id": 1,
+                  "service_id": 1,
+                  "piece_id": 1,
+                  "price": 4,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 14,
+                      "service_piece_id": 1,
+                      "number_of_piece": 2,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 1,
+                      "services_title": "غسيل مستعجل",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T18:41:28.000000Z",
+                      "updated_at": "2023-02-24T18:41:28.000000Z"
+                  }
+              },
+              {
+                  "id": 2,
+                  "service_id": 3,
+                  "piece_id": 1,
+                  "price": 5,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 14,
+                      "service_piece_id": 2,
+                      "number_of_piece": 2,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 3,
+                      "services_title": "ازالة بقع",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:51:59.000000Z",
+                      "updated_at": "2023-02-24T20:51:59.000000Z"
+                  }
+              },
+              {
+                  "id": 12,
+                  "service_id": 4,
+                  "piece_id": 2,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 14,
+                      "service_piece_id": 12,
+                      "number_of_piece": 1,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 4,
+                      "services_title": "كوي",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:52:17.000000Z",
+                      "updated_at": "2023-02-24T20:52:17.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 11,
+              "name": "طارق",
+              "mobile": "0502682228",
+              "email": null,
+              "created_at": "2023-04-16T15:12:21.000000Z",
+              "updated_at": "2023-04-16T15:12:21.000000Z"
+          }
+      },
+      {
+          "id": 15,
+          "customer_name": "gdfg",
+          "customer_id": 1,
+          "user_id": 1,
+          "status": "1",
+          "created_at": "2023-04-18T11:52:06.000000Z",
+          "updated_at": "2023-04-18T11:52:06.000000Z",
+          "services": [
+              {
+                  "id": 1,
+                  "service_id": 1,
+                  "piece_id": 1,
+                  "price": 4,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 15,
+                      "service_piece_id": 1,
+                      "number_of_piece": 2,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 1,
+                      "services_title": "غسيل مستعجل",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T18:41:28.000000Z",
+                      "updated_at": "2023-02-24T18:41:28.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 1,
+              "name": "kk",
+              "mobile": "0502682689",
+              "email": "kh@gmail.com",
+              "created_at": null,
+              "updated_at": "2023-06-17T11:50:38.000000Z"
+          }
+      },
+      {
+          "id": 16,
+          "customer_name": "khalil",
+          "customer_id": 2,
+          "user_id": 1,
+          "status": "1",
+          "created_at": "2023-06-02T13:26:34.000000Z",
+          "updated_at": "2023-06-02T13:26:34.000000Z",
+          "services": [
+              {
+                  "id": 8,
+                  "service_id": 2,
+                  "piece_id": 2,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 16,
+                      "service_piece_id": 8,
+                      "number_of_piece": 3,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 2,
+                      "services_title": "غسيل عادي",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:51:46.000000Z",
+                      "updated_at": "2023-02-24T20:51:46.000000Z"
+                  }
+              },
+              {
+                  "id": 14,
+                  "service_id": 3,
+                  "piece_id": 2,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 16,
+                      "service_piece_id": 14,
+                      "number_of_piece": 3,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 3,
+                      "services_title": "ازالة بقع",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:51:59.000000Z",
+                      "updated_at": "2023-02-24T20:51:59.000000Z"
+                  }
+              },
+              {
+                  "id": 15,
+                  "service_id": 8,
+                  "piece_id": 1,
+                  "price": 0,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 16,
+                      "service_piece_id": 15,
+                      "number_of_piece": 2,
+                      "total_price": 10.5,
+                      "dtl": "٢ ثوب غسيل وكوي مستعجل ١ ثوب كوي"
+                  },
+                  "serviceinfo": {
+                      "id": 8,
+                      "services_title": "مخصصة",
+                      "is_checked": 0,
+                      "is_shown": 1,
+                      "created_at": "2023-04-11T17:57:39.000000Z",
+                      "updated_at": "2023-04-11T17:57:39.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 2,
+              "name": "khalil",
+              "mobile": "966503682689",
+              "email": null,
+              "created_at": "2023-04-11T21:48:58.000000Z",
+              "updated_at": "2023-04-11T21:48:58.000000Z"
+          }
+      },
+      {
+          "id": 17,
+          "customer_name": "khalil",
+          "customer_id": 2,
+          "user_id": 1,
+          "status": "1",
+          "created_at": "2023-06-02T13:26:52.000000Z",
+          "updated_at": "2023-06-02T13:26:52.000000Z",
+          "services": [
+              {
+                  "id": 8,
+                  "service_id": 2,
+                  "piece_id": 2,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 17,
+                      "service_piece_id": 8,
+                      "number_of_piece": 3,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 2,
+                      "services_title": "غسيل عادي",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:51:46.000000Z",
+                      "updated_at": "2023-02-24T20:51:46.000000Z"
+                  }
+              },
+              {
+                  "id": 14,
+                  "service_id": 3,
+                  "piece_id": 2,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 17,
+                      "service_piece_id": 14,
+                      "number_of_piece": 3,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 3,
+                      "services_title": "ازالة بقع",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:51:59.000000Z",
+                      "updated_at": "2023-02-24T20:51:59.000000Z"
+                  }
+              },
+              {
+                  "id": 15,
+                  "service_id": 8,
+                  "piece_id": 1,
+                  "price": 0,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 17,
+                      "service_piece_id": 15,
+                      "number_of_piece": 2,
+                      "total_price": 10.5,
+                      "dtl": "٢ ثوب غسيل وكوي مستعجل ١ ثوب كوي"
+                  },
+                  "serviceinfo": {
+                      "id": 8,
+                      "services_title": "مخصصة",
+                      "is_checked": 0,
+                      "is_shown": 1,
+                      "created_at": "2023-04-11T17:57:39.000000Z",
+                      "updated_at": "2023-04-11T17:57:39.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 2,
+              "name": "khalil",
+              "mobile": "966503682689",
+              "email": null,
+              "created_at": "2023-04-11T21:48:58.000000Z",
+              "updated_at": "2023-04-11T21:48:58.000000Z"
+          }
+      },
+      {
+          "id": 18,
+          "customer_name": "khalil",
+          "customer_id": 2,
+          "user_id": 1,
+          "status": "1",
+          "created_at": "2023-06-02T13:27:17.000000Z",
+          "updated_at": "2023-06-02T13:27:17.000000Z",
+          "services": [
+              {
+                  "id": 8,
+                  "service_id": 2,
+                  "piece_id": 2,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 18,
+                      "service_piece_id": 8,
+                      "number_of_piece": 3,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 2,
+                      "services_title": "غسيل عادي",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:51:46.000000Z",
+                      "updated_at": "2023-02-24T20:51:46.000000Z"
+                  }
+              },
+              {
+                  "id": 14,
+                  "service_id": 3,
+                  "piece_id": 2,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 18,
+                      "service_piece_id": 14,
+                      "number_of_piece": 3,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 3,
+                      "services_title": "ازالة بقع",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:51:59.000000Z",
+                      "updated_at": "2023-02-24T20:51:59.000000Z"
+                  }
+              },
+              {
+                  "id": 15,
+                  "service_id": 8,
+                  "piece_id": 1,
+                  "price": 0,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 18,
+                      "service_piece_id": 15,
+                      "number_of_piece": 2,
+                      "total_price": 10.5,
+                      "dtl": "٢ ثوب غسيل وكوي مستعجل ١ ثوب كوي"
+                  },
+                  "serviceinfo": {
+                      "id": 8,
+                      "services_title": "مخصصة",
+                      "is_checked": 0,
+                      "is_shown": 1,
+                      "created_at": "2023-04-11T17:57:39.000000Z",
+                      "updated_at": "2023-04-11T17:57:39.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 2,
+              "name": "khalil",
+              "mobile": "966503682689",
+              "email": null,
+              "created_at": "2023-04-11T21:48:58.000000Z",
+              "updated_at": "2023-04-11T21:48:58.000000Z"
+          }
+      },
+      {
+          "id": 19,
+          "customer_name": "khalil",
+          "customer_id": 2,
+          "user_id": 1,
+          "status": "1",
+          "created_at": "2023-06-02T13:28:41.000000Z",
+          "updated_at": "2023-06-02T13:28:41.000000Z",
+          "services": [
+              {
+                  "id": 8,
+                  "service_id": 2,
+                  "piece_id": 2,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 19,
+                      "service_piece_id": 8,
+                      "number_of_piece": 3,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 2,
+                      "services_title": "غسيل عادي",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:51:46.000000Z",
+                      "updated_at": "2023-02-24T20:51:46.000000Z"
+                  }
+              },
+              {
+                  "id": 14,
+                  "service_id": 3,
+                  "piece_id": 2,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 19,
+                      "service_piece_id": 14,
+                      "number_of_piece": 3,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 3,
+                      "services_title": "ازالة بقع",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:51:59.000000Z",
+                      "updated_at": "2023-02-24T20:51:59.000000Z"
+                  }
+              },
+              {
+                  "id": 15,
+                  "service_id": 8,
+                  "piece_id": 1,
+                  "price": 0,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 19,
+                      "service_piece_id": 15,
+                      "number_of_piece": 2,
+                      "total_price": 10.5,
+                      "dtl": "٢ ثوب غسيل وكوي مستعجل ١ ثوب كوي"
+                  },
+                  "serviceinfo": {
+                      "id": 8,
+                      "services_title": "مخصصة",
+                      "is_checked": 0,
+                      "is_shown": 1,
+                      "created_at": "2023-04-11T17:57:39.000000Z",
+                      "updated_at": "2023-04-11T17:57:39.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 2,
+              "name": "khalil",
+              "mobile": "966503682689",
+              "email": null,
+              "created_at": "2023-04-11T21:48:58.000000Z",
+              "updated_at": "2023-04-11T21:48:58.000000Z"
+          }
+      },
+      {
+          "id": 20,
+          "customer_name": "khalil",
+          "customer_id": 2,
+          "user_id": 1,
+          "status": "1",
+          "created_at": "2023-06-17T01:59:33.000000Z",
+          "updated_at": "2023-06-17T01:59:33.000000Z",
+          "services": [
+              {
+                  "id": 8,
+                  "service_id": 2,
+                  "piece_id": 2,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 20,
+                      "service_piece_id": 8,
+                      "number_of_piece": 3,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 2,
+                      "services_title": "غسيل عادي",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:51:46.000000Z",
+                      "updated_at": "2023-02-24T20:51:46.000000Z"
+                  }
+              },
+              {
+                  "id": 14,
+                  "service_id": 3,
+                  "piece_id": 2,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 20,
+                      "service_piece_id": 14,
+                      "number_of_piece": 3,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 3,
+                      "services_title": "ازالة بقع",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:51:59.000000Z",
+                      "updated_at": "2023-02-24T20:51:59.000000Z"
+                  }
+              },
+              {
+                  "id": 15,
+                  "service_id": 8,
+                  "piece_id": 1,
+                  "price": 0,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 20,
+                      "service_piece_id": 15,
+                      "number_of_piece": 2,
+                      "total_price": 10.5,
+                      "dtl": "٢ ثوب غسيل وكوي مستعجل ١ ثوب كوي"
+                  },
+                  "serviceinfo": {
+                      "id": 8,
+                      "services_title": "مخصصة",
+                      "is_checked": 0,
+                      "is_shown": 1,
+                      "created_at": "2023-04-11T17:57:39.000000Z",
+                      "updated_at": "2023-04-11T17:57:39.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 2,
+              "name": "khalil",
+              "mobile": "966503682689",
+              "email": null,
+              "created_at": "2023-04-11T21:48:58.000000Z",
+              "updated_at": "2023-04-11T21:48:58.000000Z"
+          }
+      },
+      {
+          "id": 21,
+          "customer_name": "kk",
+          "customer_id": 1,
+          "user_id": 1,
+          "status": "1",
+          "created_at": "2023-06-17T11:50:39.000000Z",
+          "updated_at": "2023-06-17T11:50:39.000000Z",
+          "services": [
+              {
+                  "id": 1,
+                  "service_id": 1,
+                  "piece_id": 1,
+                  "price": 4,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 21,
+                      "service_piece_id": 1,
+                      "number_of_piece": 1,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 1,
+                      "services_title": "غسيل مستعجل",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T18:41:28.000000Z",
+                      "updated_at": "2023-02-24T18:41:28.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 1,
+              "name": "kk",
+              "mobile": "0502682689",
+              "email": "kh@gmail.com",
+              "created_at": null,
+              "updated_at": "2023-06-17T11:50:38.000000Z"
+          }
+      },
+      {
+          "id": 22,
+          "customer_name": "خالد",
+          "customer_id": 12,
+          "user_id": 1,
+          "status": "3",
+          "created_at": "2023-06-17T12:32:11.000000Z",
+          "updated_at": "2023-06-17T12:33:12.000000Z",
+          "services": [
+              {
+                  "id": 1,
+                  "service_id": 1,
+                  "piece_id": 1,
+                  "price": 4,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 22,
+                      "service_piece_id": 1,
+                      "number_of_piece": 2,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 1,
+                      "services_title": "غسيل مستعجل",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T18:41:28.000000Z",
+                      "updated_at": "2023-02-24T18:41:28.000000Z"
+                  }
+              },
+              {
+                  "id": 3,
+                  "service_id": 2,
+                  "piece_id": 1,
+                  "price": 5,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 22,
+                      "service_piece_id": 3,
+                      "number_of_piece": 2,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 2,
+                      "services_title": "غسيل عادي",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:51:46.000000Z",
+                      "updated_at": "2023-02-24T20:51:46.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 12,
+              "name": "خالد",
+              "mobile": "05032682689",
+              "email": null,
+              "created_at": "2023-06-17T12:32:11.000000Z",
+              "updated_at": "2023-06-17T12:32:11.000000Z"
+          }
+      },
+      {
+          "id": 23,
+          "customer_name": "ورز",
+          "customer_id": 13,
+          "user_id": 1,
+          "status": "1",
+          "created_at": "2023-06-18T19:25:03.000000Z",
+          "updated_at": "2023-06-18T19:25:03.000000Z",
+          "services": [
+              {
+                  "id": 1,
+                  "service_id": 1,
+                  "piece_id": 1,
+                  "price": 4,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 23,
+                      "service_piece_id": 1,
+                      "number_of_piece": 1,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 1,
+                      "services_title": "غسيل مستعجل",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T18:41:28.000000Z",
+                      "updated_at": "2023-02-24T18:41:28.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 13,
+              "name": "ورز",
+              "mobile": "0508100523",
+              "email": null,
+              "created_at": "2023-06-18T19:25:03.000000Z",
+              "updated_at": "2023-06-18T19:25:03.000000Z"
+          }
+      },
+      {
+          "id": 24,
+          "customer_name": "khalil",
+          "customer_id": 2,
+          "user_id": 1,
+          "status": "1",
+          "created_at": "2023-06-20T02:06:45.000000Z",
+          "updated_at": "2023-06-20T02:06:45.000000Z",
+          "services": [
+              {
+                  "id": 8,
+                  "service_id": 2,
+                  "piece_id": 2,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 24,
+                      "service_piece_id": 8,
+                      "number_of_piece": 3,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 2,
+                      "services_title": "غسيل عادي",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:51:46.000000Z",
+                      "updated_at": "2023-02-24T20:51:46.000000Z"
+                  }
+              },
+              {
+                  "id": 14,
+                  "service_id": 3,
+                  "piece_id": 2,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 24,
+                      "service_piece_id": 14,
+                      "number_of_piece": 3,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 3,
+                      "services_title": "ازالة بقع",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:51:59.000000Z",
+                      "updated_at": "2023-02-24T20:51:59.000000Z"
+                  }
+              },
+              {
+                  "id": 15,
+                  "service_id": 8,
+                  "piece_id": 1,
+                  "price": 0,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 24,
+                      "service_piece_id": 15,
+                      "number_of_piece": 2,
+                      "total_price": 10.5,
+                      "dtl": "٢ ثوب غسيل وكوي مستعجل ١ ثوب كوي"
+                  },
+                  "serviceinfo": {
+                      "id": 8,
+                      "services_title": "مخصصة",
+                      "is_checked": 0,
+                      "is_shown": 1,
+                      "created_at": "2023-04-11T17:57:39.000000Z",
+                      "updated_at": "2023-04-11T17:57:39.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 2,
+              "name": "khalil",
+              "mobile": "966503682689",
+              "email": null,
+              "created_at": "2023-04-11T21:48:58.000000Z",
+              "updated_at": "2023-04-11T21:48:58.000000Z"
+          }
+      },
+      {
+          "id": 25,
+          "customer_name": "معاذ",
+          "customer_id": 14,
+          "user_id": 1,
+          "status": "3",
+          "created_at": "2023-06-20T05:17:57.000000Z",
+          "updated_at": "2023-06-20T05:19:07.000000Z",
+          "services": [
+              {
+                  "id": 1,
+                  "service_id": 1,
+                  "piece_id": 1,
+                  "price": 4,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 25,
+                      "service_piece_id": 1,
+                      "number_of_piece": 4,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 1,
+                      "services_title": "غسيل مستعجل",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T18:41:28.000000Z",
+                      "updated_at": "2023-02-24T18:41:28.000000Z"
+                  }
+              },
+              {
+                  "id": 6,
+                  "service_id": 4,
+                  "piece_id": 1,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 25,
+                      "service_piece_id": 6,
+                      "number_of_piece": 4,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 4,
+                      "services_title": "كوي",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:52:17.000000Z",
+                      "updated_at": "2023-02-24T20:52:17.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 14,
+              "name": "معاذ",
+              "mobile": "0508100755",
+              "email": null,
+              "created_at": "2023-06-20T05:17:57.000000Z",
+              "updated_at": "2023-06-20T05:17:57.000000Z"
+          }
+      },
+      {
+          "id": 26,
+          "customer_name": "khalil",
+          "customer_id": 2,
+          "user_id": 1,
+          "status": "1",
+          "created_at": "2023-06-30T15:43:58.000000Z",
+          "updated_at": "2023-06-30T15:43:58.000000Z",
+          "services": [
+              {
+                  "id": 8,
+                  "service_id": 2,
+                  "piece_id": 2,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 26,
+                      "service_piece_id": 8,
+                      "number_of_piece": 3,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 2,
+                      "services_title": "غسيل عادي",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:51:46.000000Z",
+                      "updated_at": "2023-02-24T20:51:46.000000Z"
+                  }
+              },
+              {
+                  "id": 14,
+                  "service_id": 3,
+                  "piece_id": 2,
+                  "price": 2,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 26,
+                      "service_piece_id": 14,
+                      "number_of_piece": 3,
+                      "total_price": null,
+                      "dtl": null
+                  },
+                  "serviceinfo": {
+                      "id": 3,
+                      "services_title": "ازالة بقع",
+                      "is_checked": 1,
+                      "is_shown": 1,
+                      "created_at": "2023-02-24T20:51:59.000000Z",
+                      "updated_at": "2023-02-24T20:51:59.000000Z"
+                  }
+              },
+              {
+                  "id": 15,
+                  "service_id": 8,
+                  "piece_id": 1,
+                  "price": 0,
+                  "created_at": null,
+                  "updated_at": null,
+                  "pivot": {
+                      "invoice_id": 26,
+                      "service_piece_id": 15,
+                      "number_of_piece": 2,
+                      "total_price": 10.5,
+                      "dtl": "٢ ثوب غسيل وكوي مستعجل ١ ثوب كوي"
+                  },
+                  "serviceinfo": {
+                      "id": 8,
+                      "services_title": "مخصصة",
+                      "is_checked": 0,
+                      "is_shown": 1,
+                      "created_at": "2023-04-11T17:57:39.000000Z",
+                      "updated_at": "2023-04-11T17:57:39.000000Z"
+                  }
+              }
+          ],
+          "customr": {
+              "id": 2,
+              "name": "khalil",
+              "mobile": "966503682689",
+              "email": null,
+              "created_at": "2023-04-11T21:48:58.000000Z",
+              "updated_at": "2023-04-11T21:48:58.000000Z"
+          }
+      }
+  ],
+  "status": true
+}
