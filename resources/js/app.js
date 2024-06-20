@@ -5,7 +5,7 @@ import router from './router'
 import store from './store'
 import en from './locales/en.json'
 import ar from './locales/ar.json'
-
+import { useI18n } from "vue-i18n";
 import { createPinia } from "pinia";
 import { useMainStore } from "@/store/pinia/main.js";
 
@@ -37,6 +37,7 @@ import VOtpInput from "vue3-otp-input";
 
 /* Init Pinia */
 const pinia = createPinia();
+// const { t } = useI18n();
 
 const globalOptions = {
     mode: 'national',
@@ -54,7 +55,8 @@ const globalOptions = {
     inputOptions: {
         // numericOnly: true,
         // showDialCode: true,
-        placeholder: 'رقم الهاتف',
+        placeholder: '123456789',
+        // placeholder:"t('common.phoneNumber')",
         styleClasses: [
             'focus:outline-none',
             'text-right'

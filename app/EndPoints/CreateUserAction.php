@@ -98,12 +98,12 @@ class CreateUserAction
      *     ),
      * )
      */
-    
+
     public function handle($invoceinfo = null)
     {
         try{
             $data=$invoceinfo?:request();
-            
+
             // Tenant create
             $tenant = Tenant::create(['id' => $data['username']]);
             $tenant->domains()->create(['domain' => $data['username'].'.'.env('APP_DOMAIN_NAME')]);
@@ -120,6 +120,7 @@ class CreateUserAction
                 $user->password = Hash::make($data['password']);
                 $user->username=$data['username'];
                 $user->role='admin';
+                // $user->phone_verified_at=now(); // this line should be removed after integrate with sms service provider
 
                 $user->save();
 
@@ -171,12 +172,12 @@ class CreateUserAction
 
     }
 
- 
+
     public function jsonResponse($user)
     {
-    
+
         return ["user"=>$user,"status"=>true];
-    
+
     }
 
     public function asController(ActionRequest $request)

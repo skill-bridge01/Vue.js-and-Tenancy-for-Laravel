@@ -84,6 +84,8 @@ const handleClickCreateInvoice = () => {
                 selectedOption.value
             )
             .then((res) => {
+                console.log('RES', res)
+                console.log('CARTS', carts.value)
                 invoiceData.value = res;
                 invoiceModalActive.value = true;
                 cartsStore.clear()

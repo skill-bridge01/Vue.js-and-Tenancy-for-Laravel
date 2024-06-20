@@ -15,11 +15,16 @@ class UserAction {
         return http.get(this.apiUrl + "/");
     }
 
-    edit(pieceId,newUsername, oldPassword, password) {
+    edit(pieceId, newUsername, oldPassword, password) {
         return http.put(this.apiUrl + "/" + pieceId, {
             newUsername,
             oldPassword,
             password,
+        });
+    }
+    edit1(pieceId, newUsername) {
+        return http.put(this.apiUrl + "/" + pieceId, {
+            newUsername,
         });
     }
 

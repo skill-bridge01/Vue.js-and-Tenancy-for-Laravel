@@ -9,7 +9,7 @@ import {
 } from "vue";
 import { useI18n } from "vue-i18n";
 import * as Yup from "yup";
-import { Form } from "vee-validate";
+import { Form, Field } from "vee-validate";
 import { mdiPlus, mdiTrashCan, mdiPencil } from "@mdi/js";
 import CardBoxModal from "@/components/CardBoxModal.vue";
 import TableCheckboxCell from "@/components/TableCheckboxCell.vue";
@@ -116,16 +116,35 @@ watchEffect(() => {
     });
 });
 
-const schema = Yup.object().shape({
-    email: Yup.string()
+// const schema = Yup.object().shape({
+//     email: Yup.string()
 
-        .matches(/^[A-Z0-9._%+-]+@gmail\.com$/i, "Email must be @gmail.com")
-        .required(),
+//         .matches(/^[A-Z0-9._%+-]+@gmail\.com$/i, "Email must be @gmail.com")
+//         .required(),
+//     username: Yup.string().min(6).required(),
+//     password: Yup.string().min(8).required(),
+//     password_confirmation: Yup.string()
+//         .required()
+//         .oneOf([Yup.ref("password")], "Passwords do not match"),
+// });
+
+const schema = Yup.object().shape({
+    email: Yup.string().email(),
     username: Yup.string().min(6).required(),
     password: Yup.string().min(8).required(),
     password_confirmation: Yup.string()
         .required()
         .oneOf([Yup.ref("password")], "Passwords do not match"),
+});
+
+const schema1 = Yup.object().shape({
+    username: Yup.string().min(6).required(),
+    old_password: Yup.string().min(8),
+    password: Yup.string().min(8),
+    password_confirmation: Yup.string().oneOf(
+        [Yup.ref("password")],
+        "Passwords do not match"
+    ),
 });
 
 const tableData = computed(() => {
@@ -200,7 +219,15 @@ const change = (pageState) => {
 // ** Actions
 const handleClickEdit = (service) => {
     document.getElementById("EditForm").reset();
-    console.log("kk", service.email, service, "service.name",service.name,"selectedService.value.username",service.username);
+    console.log(
+        "kk",
+        service.email,
+        service,
+        "service.name",
+        service.name,
+        "selectedService.value.username",
+        service.username
+    );
     usersStore.setSelectedService(service);
     oldPassword.value = "";
     newPassword.value = "";
@@ -226,7 +253,7 @@ const handleChangeUsername = (event) => {
     newUsername.value = event.target.value;
 };
 const handleChangeOldPassword = (event) => {
-    console.log('oldPwd')
+    console.log("oldPwd");
     oldPassword.value = event.target.value;
 };
 const handleChangePassword = (event) => {
@@ -242,60 +269,131 @@ const isValidGmailAddress = (address) => {
     return /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(address);
 };
 
-const confirm = () => {
-    console.log("verifyEmail", isValidGmailAddress("example@gmail.com"));
-    showAnimator.value = true;
-    console.log("newTitile", newEmail.value, newUsername.value);
-    if (newPassword.value == newRepassword.value) {
-        if (
-            (newEmail.value != "" && isValidGmailAddress(newEmail.value)) ||
-            newEmail.value == ""
-        ) {
-            usersStore
-                .create(newEmail.value, newUsername.value, newPassword.value)
-                .then((res) => {
-                    if (res.error) {
-                        console.log("errorExcution", res.error, res);
+// const confirm = () => {
+//     errorMessage.value = null;
+//     console.log("verifyEmail", isValidGmailAddress("example@gmail.com"));
+//     // showAnimator.value = true;
+//     console.log("newTitile", newEmail.value, newUsername.value);
+//     if (newPassword.value.length > 7 && newRepassword.value.length > 7) {
+//         if (newPassword.value == newRepassword.value) {
+//             if (newEmail.value != "" || newEmail.value == "") {
+//                 showAnimator.value = true;
+//                 usersStore
+//                     .create(
+//                         newEmail.value,
+//                         newUsername.value,
+//                         newPassword.value
+//                     )
+//                     .then((res) => {
+//                         if (res.error) {
+//                             console.log("errorExcution", res.error, res);
 
-                        showAnimator.value = false;
-                        errorMessage.value = res.error;
-                        document.getElementById("NewForm").reset();
-                        setTimeout(() => {
-                            errorMessage.value = null;
-                            newEmail.value = "";
-                            newUsername.value = "";
-                            newPassword.value = "";
-                        }, 500);
-                    } else if (res.success) {
-                        newEmail.value = "";
-                        newUsername.value = "";
-                        newPassword.value = "";
-                        document.getElementById("NewForm").reset();
-                        showAnimator.value = false;
-                        successMessage.value = res.message;
-                        setTimeout(() => {
-                            successMessage.value = null;
-                            isNewModalActive.value = false;
-                        }, 500);
-                    }
-                })
-                .catch((err) => {
+//                             showAnimator.value = false;
+//                             errorMessage.value = res.error;
+//                             document.getElementById("NewForm").reset();
+//                             setTimeout(() => {
+//                                 errorMessage.value = null;
+//                                 newEmail.value = "";
+//                                 newUsername.value = "";
+//                                 newPassword.value = "";
+//                             }, 1000);
+//                         } else if (res.success) {
+//                             newEmail.value = "";
+//                             newUsername.value = "";
+//                             newPassword.value = "";
+//                             document.getElementById("NewForm").reset();
+//                             showAnimator.value = false;
+//                             successMessage.value = res.message;
+//                             setTimeout(() => {
+//                                 successMessage.value = null;
+//                                 isNewModalActive.value = false;
+//                             }, 1000);
+//                         }
+//                     })
+//                     .catch((err) => {
+//                         newEmail.value = "";
+//                         newUsername.value = "";
+//                         newPassword.value = "";
+//                         showAnimator.value = false;
+//                     })
+//                     .finally(() => {
+//                         newEmail.value = "";
+//                         newUsername.value = "";
+//                         newPassword.value = "";
+//                         showAnimator.value = false;
+//                     });
+//             } else {
+//                 errorMessage.value = "Please input correct Email";
+//                 setTimeout(() => {
+//                     errorMessage.value = null;
+//                 }, 1000);
+//             }
+//         } else {
+//             errorMessage.value = "Passwords do not match";
+//             setTimeout(() => {
+//                 errorMessage.value = null;
+//             }, 1000);
+//         }
+//     } else {
+//         console.log("Invalid");
+//         errorMessage.value = "Please input correct value";
+//         setTimeout(() => {
+//             errorMessage.value = null;
+//         }, 1000);
+//     }
+// };
+
+const confirm = () => {
+    errorMessage.value = null;
+    console.log("verifyEmail", isValidGmailAddress("example@gmail.com"));
+    // showAnimator.value = true;
+    console.log("newTitile", newEmail.value, newUsername.value);
+
+    showAnimator.value = true;
+    usersStore
+        .create(newEmail.value, newUsername.value, newPassword.value)
+        .then((res) => {
+            if (res.error) {
+                console.log("errorExcution", res.error, res);
+
+                showAnimator.value = false;
+                errorMessage.value = res.error;
+                document.getElementById("NewForm").reset();
+                setTimeout(() => {
+                    errorMessage.value = null;
                     newEmail.value = "";
                     newUsername.value = "";
                     newPassword.value = "";
-                    showAnimator.value = false;
-                })
-                .finally(() => {
-                    newEmail.value = "";
-                    newUsername.value = "";
-                    newPassword.value = "";
-                    showAnimator.value = false;
-                });
-        }
-    }
+                }, 1000);
+            } else if (res.success) {
+                newEmail.value = "";
+                newUsername.value = "";
+                newPassword.value = "";
+                document.getElementById("NewForm").reset();
+                showAnimator.value = false;
+                successMessage.value = res.message;
+                setTimeout(() => {
+                    successMessage.value = null;
+                    isNewModalActive.value = false;
+                }, 1000);
+            }
+        })
+        .catch((err) => {
+            newEmail.value = "";
+            newUsername.value = "";
+            newPassword.value = "";
+            showAnimator.value = false;
+        })
+        .finally(() => {
+            newEmail.value = "";
+            newUsername.value = "";
+            newPassword.value = "";
+            showAnimator.value = false;
+        });
 };
 
 const confirmEdit = () => {
+    console.log("ID");
     errorMessage.value = null;
     console.log(
         "ID",
@@ -305,60 +403,167 @@ const confirmEdit = () => {
         "Passwords",
         oldPassword.value,
         newPassword.value,
-        newRepassword.value,
+        newRepassword.value
     );
-    if (newPassword.value.length > 7 && newRepassword.value.length  > 7) {
-        if (newPassword.value == newRepassword.value) {
-            usersStore
-                .edit(
-                    selectedService.value.id,
-                    updatedUsername.value,
-                    oldPassword.value,
-                    newPassword.value
-                )
-                .then((res) => {
-                    console.log("res", res);
-                    if (res.error) {
-                        console.log("errorExcution", res.error, res);
-                        errorMessage.value = res.error;
-                        setTimeout(() => {
-                            errorMessage.value = null;
-                        }, 500);
-                    } else if (res.success) {
-                        oldPassword.value = "";
-                        updatedUsername.value = "";
-                        newPassword.value = "";
-                        newRepassword.value = "";
-
-                        successMessage.value = res.message;
-                        setTimeout(() => {
-                            successMessage.value = null;
-                            editModalActive.value = false;
-                        }, 500);
-                    }
-                })
-                .catch((err) => {
-                    console.log("err",err);
-                })
-                .finally(() => {
+    if (oldPassword.value != "") {
+        usersStore
+            .edit(
+                selectedService.value.id,
+                updatedUsername.value,
+                oldPassword.value,
+                newPassword.value
+            )
+            .then((res) => {
+                console.log("res", res);
+                if (res.error) {
+                    console.log("errorExcution", res.error, res);
+                    errorMessage.value = res.error;
+                    setTimeout(() => {
+                        errorMessage.value = null;
+                    }, 1000);
+                } else if (res.success) {
                     oldPassword.value = "";
-                    // updatedUsername.value = "";
+                    updatedUsername.value = "";
                     newPassword.value = "";
                     newRepassword.value = "";
-                });
-        } else {
-            errorMessage.value = "Passwords do not match";
-            setTimeout(() => {
-                errorMessage.value = null;
-            }, 500);
-        }
+
+                    successMessage.value = res.message;
+                    setTimeout(() => {
+                        successMessage.value = null;
+                        editModalActive.value = false;
+                    }, 1000);
+                }
+            })
+            .catch((err) => {
+                console.log("err", err);
+            })
+            .finally(() => {
+                oldPassword.value = "";
+                // updatedUsername.value = "";
+                newPassword.value = "";
+                newRepassword.value = "";
+            });
     } else {
-        errorMessage.value = "Password must be at least 8 characters";
-        setTimeout(() => {
-            errorMessage.value = null;
-        }, 500);
+        usersStore
+            .edit1(selectedService.value.id, updatedUsername.value)
+            .then((res) => {
+                console.log("res", res);
+                if (res.error) {
+                    console.log("errorExcution", res.error, res);
+                    errorMessage.value = res.error;
+                    setTimeout(() => {
+                        errorMessage.value = null;
+                    }, 1000);
+                } else if (res.success) {
+                    updatedUsername.value = "";
+                    successMessage.value = res.message;
+                    setTimeout(() => {
+                        successMessage.value = null;
+                        editModalActive.value = false;
+                    }, 1000);
+                }
+            })
+            .catch((err) => {
+                console.log("err", err);
+            })
+            .finally(() => {
+                updatedUsername.value = "";
+            });
     }
 };
+
+// const confirmEdit = () => {
+//     errorMessage.value = null;
+//     console.log(
+//         "ID",
+//         selectedService.value.username,
+//         selectedService.value.id,
+//         updatedUsername.value,
+//         "Passwords",
+//         oldPassword.value,
+//         newPassword.value,
+//         newRepassword.value
+//     );
+//     if (oldPassword.value != "") {
+//         if (newPassword.value.length > 7 && newRepassword.value.length > 7) {
+//             if (newPassword.value == newRepassword.value) {
+//                 usersStore
+//                     .edit(
+//                         selectedService.value.id,
+//                         updatedUsername.value,
+//                         oldPassword.value,
+//                         newPassword.value
+//                     )
+//                     .then((res) => {
+//                         console.log("res", res);
+//                         if (res.error) {
+//                             console.log("errorExcution", res.error, res);
+//                             errorMessage.value = res.error;
+//                             setTimeout(() => {
+//                                 errorMessage.value = null;
+//                             }, 1000);
+//                         } else if (res.success) {
+//                             oldPassword.value = "";
+//                             updatedUsername.value = "";
+//                             newPassword.value = "";
+//                             newRepassword.value = "";
+
+//                             successMessage.value = res.message;
+//                             setTimeout(() => {
+//                                 successMessage.value = null;
+//                                 editModalActive.value = false;
+//                             }, 1000);
+//                         }
+//                     })
+//                     .catch((err) => {
+//                         console.log("err", err);
+//                     })
+//                     .finally(() => {
+//                         oldPassword.value = "";
+//                         // updatedUsername.value = "";
+//                         newPassword.value = "";
+//                         newRepassword.value = "";
+//                     });
+//             } else {
+//                 errorMessage.value = "Passwords do not match";
+//                 setTimeout(() => {
+//                     errorMessage.value = null;
+//                 }, 1000);
+//             }
+//         } else {
+//             errorMessage.value = "Password must be at least 8 characters";
+//             setTimeout(() => {
+//                 errorMessage.value = null;
+//             }, 1000);
+//         }
+//     } else {
+//         usersStore
+//             .edit1(selectedService.value.id, updatedUsername.value)
+//             .then((res) => {
+//                 console.log("res", res);
+//                 if (res.error) {
+//                     console.log("errorExcution", res.error, res);
+//                     errorMessage.value = res.error;
+//                     setTimeout(() => {
+//                         errorMessage.value = null;
+//                     }, 1000);
+//                 } else if (res.success) {
+//                     updatedUsername.value = "";
+//                     successMessage.value = res.message;
+//                     setTimeout(() => {
+//                         successMessage.value = null;
+//                         editModalActive.value = false;
+//                     }, 1000);
+//                 }
+//             })
+//             .catch((err) => {
+//                 console.log("err", err);
+//             })
+//             .finally(() => {
+//                 updatedUsername.value = "";
+//             });
+//     }
+// };
 
 const confirmDelete = () => {
     usersStore
@@ -371,6 +576,12 @@ const confirmDelete = () => {
         })
         .finally(() => {});
 };
+
+// submit
+const onSubmit = (values) => {
+    console.log("values => ");
+    console.log(values);
+};
 </script>
 
 <template>
@@ -380,10 +591,11 @@ const confirmDelete = () => {
         :button-label="t('common.save')"
         button="bg-main"
         has-cancel
-        @confirm="confirm"
+        :has-buttons="false"
+        @confirm=""
         :showModal="true"
     >
-        <Form :validation-schema="schema" id="NewForm">
+        <Form id="NewForm" :validation-schema="schema" @submit="confirm">
             <base-input
                 input-type="email"
                 name="email"
@@ -426,6 +638,20 @@ const confirmDelete = () => {
             <div v-if="successMessage">
                 <p class="text-green-400 text-sm">{{ successMessage }}</p>
             </div>
+            <div class="mt-4">
+                <BaseButtons type="justify-start">
+                    <BaseButton
+                        :label="t('common.save')"
+                        color="bg-main"
+                        type="submit"
+                    />
+                    <BaseButton
+                        :label="t('modal.logout.back')"
+                        color="bg-main"
+                        @click="isNewModalActive = !isNewModalActive"
+                    />
+                </BaseButtons>
+            </div>
         </Form>
     </card-box-modal>
 
@@ -435,20 +661,21 @@ const confirmDelete = () => {
         button="bg-main"
         :button-label="t('common.update')"
         has-cancel
-        @confirm="confirmEdit"
+        :has-buttons="false"
+        @confirm=""
         :showModal="true"
     >
-        <Form :validation-schema="schema" id="EditForm">
+        <Form :validation-schema="schema1" id="EditForm" @submit="confirmEdit">
             <div
                 class="flex items-center h-10 bg-white rounded-lg border pr-4 mb-5 mt-10"
             >
                 <div class="relative text-gray-600 search-bar mx-3 flex w-full">
-                    <input
+                    <Field
+                        name="username"
                         class="text-sm border-none focus:outline-none text-right w-full pr-0"
-                        type="text"
                         :placeholder="t('account.username')"
                         v-model="updatedUsername"
-                        @blur="handleBlur"
+                        @input="handleUpdateUsername"
                     />
                 </div>
                 <div>
@@ -456,47 +683,45 @@ const confirmDelete = () => {
                 </div>
             </div>
 
-
             <!-- <base-input
                 input-type="text"
-                name="name"
+                name="username"
                 :icon-src="`/images/home/placeholder_user.svg`"
                 :placeholder="t('account.username')"
-                :value="selectedUser"
+                value="updatedUsername"
                 @input="handleUpdateUsername"
                 class="w-full mb-6 font-readex text-base font-light"
             /> -->
 
-            <div
+            <!-- <div
                 class="flex items-center h-10 bg-white rounded-lg border pr-4 mb-5 mt-3"
             >
                 <div class="relative text-gray-600 search-bar mx-3 flex w-full">
                     <input
                         class="text-sm border-none focus:outline-none text-right w-full pr-0"
                         type="password"
-                        name="oldPassword"
+                        name="password"
                         :placeholder="t('account.oldPassword')"
                         v-model="oldPassword"
                         @blur="handleBlur"
-                       
                     />
                 </div>
                 <div>
                     <img :src="`/images/login/password_grey.svg`" />
                 </div>
-            </div>
-            
-            <!-- <base-input
+            </div> -->
+
+            <base-input
                 input-type="password"
-                name="oldPassword"
-               :input="handleChangeOldPassword"
+                name="old_password"
+                @input="handleChangeOldPassword"
                 :value="oldPassword"
                 :icon-src="`/images/login/password_grey.svg`"
                 :placeholder="t('account.oldPassword')"
                 class="w-full font-readex text-base font-light mb-6"
-            /> -->
+            />
 
-            <div
+            <!-- <div
                 class="flex items-center h-10 bg-white rounded-lg border pr-4 mb-5 mt-3"
             >
                 <div class="relative text-gray-600 search-bar mx-3 flex w-full">
@@ -512,8 +737,8 @@ const confirmDelete = () => {
                 <div>
                     <img :src="`/images/login/password_grey.svg`" />
                 </div>
-            </div>
-            <!-- <base-input
+            </div> -->
+            <base-input
                 input-type="password"
                 name="password"
                 @input="handleChangePassword"
@@ -521,8 +746,8 @@ const confirmDelete = () => {
                 :icon-src="`/images/login/password_grey.svg`"
                 :placeholder="t('account.newPassword')"
                 class="w-full font-readex text-base font-light mb-6"
-            /> -->
-            <div
+            />
+            <!-- <div
                 class="flex items-center h-10 bg-white rounded-lg border pr-4 mb-5 mt-3"
             >
                 <div class="relative text-gray-600 search-bar mx-3 flex w-full">
@@ -538,8 +763,8 @@ const confirmDelete = () => {
                 <div>
                     <img :src="`/images/login/password_grey.svg`" />
                 </div>
-            </div>
-            <!-- <base-input
+            </div> -->
+            <base-input
                 input-type="password"
                 name="password_confirmation"
                 @input="handleChangeRePassword"
@@ -547,12 +772,26 @@ const confirmDelete = () => {
                 :icon-src="`/images/login/password_grey.svg`"
                 :placeholder="t('account.confirmPassword')"
                 class="w-full font-readex text-base font-light"
-            /> -->
+            />
             <div v-if="errorMessage">
                 <p class="text-red-500 text-sm">{{ errorMessage }}</p>
             </div>
             <div v-if="successMessage">
                 <p class="text-green-400 text-sm">{{ successMessage }}</p>
+            </div>
+            <div class="mt-4">
+                <BaseButtons type="justify-start">
+                    <BaseButton
+                        :label="t('common.update')"
+                        color="bg-main"
+                        type="submit"
+                    />
+                    <BaseButton
+                        :label="t('modal.logout.back')"
+                        color="bg-main"
+                        @click="editModalActive = !editModalActive"
+                    />
+                </BaseButtons>
             </div>
         </Form>
     </card-box-modal>

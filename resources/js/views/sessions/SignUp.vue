@@ -102,7 +102,7 @@ const onSubmit = (values) => {
                                         >
                                             <CompanyLogoIcon />
                                             <h1 class="logo-text ml-2">
-                                                {{ t("common.appName") }}
+
                                             </h1>
                                         </div>
                                         <div>

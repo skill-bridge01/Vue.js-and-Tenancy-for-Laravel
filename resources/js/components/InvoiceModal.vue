@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from "vue";
+import { computed, onMounted } from "vue";
 import OverlayLayer from "@/components/OverlayLayer.vue";
 import { useCartsStore } from '@/store/pinia/carts'
 import { useCustomersStore } from '@/store/pinia/customers'
@@ -32,6 +32,11 @@ const active = computed( {
     emits('toggleModalActive', val)
   }
 })
+
+onMounted(() => {
+   console.log('kk', carts.value)
+   
+});
 
 const totalPrice = computed(() => {
   let total = 0
@@ -87,6 +92,8 @@ const printPdf = () => {
 }
 
 const downloadPdf  = () => {
+  console.log('CARTSAFTER', carts.value)
+  console.log("invoiceData", props.invoiceData)
   invoicesStore.downloadInvoice(props.invoiceData.id, window.location.origin).then((res) => {
     const url = window.URL.createObjectURL(new Blob([res], {type: 'application/pdf'}));
     const link = document.createElement('a');
@@ -98,6 +105,8 @@ const downloadPdf  = () => {
     console.log(err)
   })
 }
+
+// 
 
 </script>
 <template>

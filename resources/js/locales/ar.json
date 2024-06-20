@@ -3,6 +3,7 @@
     "appName": "مغسلة",
     "phoneNumber": "رقم الهاتف",
     "save": "حفظ وإغلاق",
+    "cancel": "Cancel",
     "update": "تحديث"
   },
   "sidebar": {
@@ -44,12 +45,17 @@
       "name": "الاسم",
       "confirmPassword": "تأكيد كلمة المرور",
       "continue": "استمرار"
+    },
+    "phoneVerify": {
+      "phone": "Phone Verify Code",
+      "confirm": "Confirm"
     }
   },
   "dashboard": {
     "pieceType": "نوع القطعة",
     "discount": "خصم",
     "note": "ملاحظة",
+    "placeholder":"أحمد أحمد",
     "discard": "تجاهل",
     "pause": "توقف مؤقت",
     "addCustomer": "إضافة عميل",
@@ -76,6 +82,18 @@
       "customer": "العميل",
       "date": "التاريخ",
       "invoiceNumber": "رقم الفاتورة"
+    },
+    "modal": {
+      "qrcode": {
+        "title": "QR code"
+      },
+      "edit": {
+        "title": "Edit invoice",
+        "update": "Update"
+      },
+      "delete": {
+        "title": "Delete invoice"
+      }
     }
   },
   "prices": {
@@ -190,6 +208,8 @@
     "oldPassword": "كلمة المرور القديمة",
     "newPassword": "كلمة المرور الجديدة",
     "confirmPassword": "تأكيد كلمة المرور",
-    "email": "البريد الإلكتروني"
+    "email": "البريد الإلكتروني",
+    "mobile": "Phone number",
+    "username": "Username"
   }
 }

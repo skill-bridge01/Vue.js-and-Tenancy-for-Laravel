@@ -78,17 +78,42 @@ class UpdateUsersAction {
       $data = $userInfo ? : request();
       $user = User::find($id);
       // dd($data['oldPassword']);
-      if (!Hash::check($data['oldPassword'], $user->password)) {
-          return ['error' => 'The provided password does not match our records.'];
-      }
+      $existingUser = User::where('username', $data['newUsername'])->first();
 
-      // Update the password
-      $user->password = Hash::make($data['password']);
-      $user->name=$data['newUsername'];
-      $user->username=$data['newUsername'];
-      $user->save();
-      event(new Registered($user));
-      return ['user' => $user,'success' => 1, 'message' => 'Password updated successfully.'];
+      
+      // if ($existingUser) {
+
+      //   // dd($data['newUsername']);
+      //   return ['error' => 'Provided User exist.'];
+      // } else {
+        if($data['oldPassword']){
+            if (!Hash::check($data['oldPassword'], $user->password)) {
+            return ['error' => 'The provided password does not match our records.'];
+            }
+              // Update the password
+              $user->password = Hash::make($data['password']);
+              $user->name=$data['newUsername'];
+              $user->username=$data['newUsername'];
+              $user->save();
+              event(new Registered($user));
+              return ['user' => $user,'success' => 1, 'message' => 'User updated successfully.'];
+            
+        } else {
+          if ($existingUser) {
+
+            // dd($data['newUsername']);
+            return ['error' => 'Provided User exist.'];
+          } else {
+            $user->name=$data['newUsername'];
+            $user->username=$data['newUsername'];
+            $user->save();
+            event(new Registered($user));
+            return ['user' => $user,'success' => 1, 'message' => 'User updated successfully.'];
+          }
+        }
+      // }
+      
+      
      
     } catch (\Throwable $ex) {
       //throw $th;

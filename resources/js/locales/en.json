@@ -44,7 +44,7 @@
       "phoneNumber": "Phone number",
       "name": "Name",
       "confirmPassword": "Confirm password",
-      "continue": "Continue" 
+      "continue": "Continue"
     },
     "phoneVerify": {
       "phone": "Phone Verify Code",
@@ -55,6 +55,7 @@
     "pieceType": "Piece type",
     "discount": "Discount",
     "note": "Note",
+    "placeholder":"Ahmed Ahmed",
     "discard": "Discard",
     "pause": "Pause",
     "addCustomer": "Add a customer",
@@ -160,7 +161,6 @@
       }
     }
   },
-
   "services": {
     "create": "Create service",
     "table": {
@@ -202,7 +202,6 @@
       "bill": "Invoice"
     }
   },
-  
   "account": {
     "settings": "Settings",
     "management": "Account management",

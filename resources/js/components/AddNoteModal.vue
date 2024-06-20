@@ -67,7 +67,7 @@ const confirm = () => {
           text-right
         "
         :value="_note"
-        placeholder="أحمد أحمد"
+        :placeholder="t('dashboard.placeholder')"
         @input="handleChangeNote"
       >
       </textarea>

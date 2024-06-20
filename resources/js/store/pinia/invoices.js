@@ -72,7 +72,6 @@ export const useInvoicesStore = defineStore("invoices", {
                 customer,
                 paymentMethod,
             });
-            console.log("payload");
             const res = await invoiceService.create(payload);
             if (res.data.status) {
                 return res.data.invoice;

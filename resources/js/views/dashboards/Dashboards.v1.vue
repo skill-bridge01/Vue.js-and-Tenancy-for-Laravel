@@ -157,7 +157,7 @@ const sanitizeInput = () => {
             <input
                 class="w-full focus:outline-none text-right"
                 type="text"
-                placeholder="أحمد أحمد"
+                :placeholder="t('dashboard.placeholder')"
                 v-model="username"
             />
             <UserIcon class="ml-2" />
@@ -165,7 +165,7 @@ const sanitizeInput = () => {
         <div
             class="w-full px-4 py-3 border border-gray-100 flex justify-end items-center"
         >
-            <vue-tel-input v-model="phone" @input="sanitizeInput"></vue-tel-input>
+            <vue-tel-input v-model="phone" @input="sanitizeInput" placeholder="ee"></vue-tel-input>
             <PhoneIcon class="ml-2" />
         </div>
     </card-box-modal>

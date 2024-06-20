@@ -91,6 +91,36 @@ export const useUsersStore = defineStore("user", {
             }
         },
 
+        async edit1(serviceId, newUsername) {
+            console.log(
+                "eeew",
+                this.services,
+                serviceId,
+                newUsername,
+               
+            );
+            this.loading = true;
+            try {
+                const res = await userAction.edit1(
+                    serviceId,
+                    newUsername,
+                    
+                );
+                if (res.data.success) {
+                    const serviceIndex = this.services.findIndex(
+                        (s) => s.id === serviceId
+                    );
+                    this.services[serviceIndex] = res.data.user;
+                }
+                return res.data;
+            } catch (error) {
+                this.fetchError = error;
+                return error;
+            } finally {
+                this.loading = false;
+            }
+        },
+
         async delete(serviceId) {
             this.loading = true;
             try {

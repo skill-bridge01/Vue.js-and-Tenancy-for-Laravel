@@ -74,7 +74,7 @@ const onSubmit = (values) => {
                                 <div class="flex items-center justify-center">
                                     <CompanyLogoIcon />
                                     <h1 class="logo-text ml-2">
-                                        {{ t("common.appName") }}
+
                                     </h1>
                                 </div>
 

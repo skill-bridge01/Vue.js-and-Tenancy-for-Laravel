@@ -83,7 +83,7 @@ window.addEventListener("keydown", (e) => {
       :class="value ? '' : 'hidden'"
       is-modal
     >
-      <CardBoxComponentTitle :title="title" v-if="hasButtons">
+      <CardBoxComponentTitle :title="title">
         <!-- <BaseButton
           v-if="hasCancel"
           :icon="mdiClose"
