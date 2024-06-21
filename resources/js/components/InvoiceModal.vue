@@ -13,6 +13,8 @@ import {
 const props = defineProps({
   modalActive: Boolean,
   invoiceData: Object,
+  newCarts: Array,
+  newCartss: String,
 })
 
 const emits = defineEmits([
@@ -40,7 +42,7 @@ onMounted(() => {
 
 const totalPrice = computed(() => {
   let total = 0
-  carts.value.forEach(cart => {
+  props.newCarts.forEach(cart => {
     total += cart.service.pivot.price * cart.count
   });
 
@@ -48,7 +50,7 @@ const totalPrice = computed(() => {
 })
 const totalDiscount = computed(() => {
   let total = 0
-  carts.value.forEach(cart => {
+  props.newCarts.forEach(cart => {
     total += cart.discount
   });
 
@@ -58,7 +60,7 @@ const totalDiscount = computed(() => {
 const calculatedDiscount = () => {
   console.log(discount.value);
   let total = 0
-  carts.value.forEach(cart => {
+  props.newCarts.forEach(cart => {
     total += cart.service.pivot.price * cart.count
   });
   const calculatedPrice = total * ((parseFloat(discount.value) || 0) / 100);
@@ -92,7 +94,8 @@ const printPdf = () => {
 }
 
 const downloadPdf  = () => {
-  console.log('CARTSAFTER', carts.value)
+  console.log('CARTSAFTER', props.newCarts)
+  console.log('CARTSssAFTER', props.newCartss)
   console.log("invoiceData", props.invoiceData)
   invoicesStore.downloadInvoice(props.invoiceData.id, window.location.origin).then((res) => {
     const url = window.URL.createObjectURL(new Blob([res], {type: 'application/pdf'}));
@@ -151,7 +154,7 @@ const downloadPdf  = () => {
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(cart, index) in carts" :key="index">
+              <tr v-for="(cart, index) in props.newCarts" :key="index">
                 <td><span>ر.س</span> <span>{{ cart.service.pivot.price }}</span></td>
                 <td>{{ cart.service.services_title }}</td>
                 <td>{{ cart.count }}</td>

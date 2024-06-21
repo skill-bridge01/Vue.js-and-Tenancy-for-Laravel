@@ -189,7 +189,7 @@ Route::middleware([
         $service_data=Service::where('id',$service_piece_data[0]->service_id)->get();
         $piece_data=Piece::where('id',$service_piece_data[0]->piece_id)->get();
         $invoice_data=Invoice::where('id',$this->invocieid)->first();
-        $service_piece_info_data=array("service_piece"=>$service_piece_data,'serviceinfo'=>$service_data,'customerinfo'=>$invoice_data);
+        $service_piece_info_data=array("service_piece"=>$service_piece_data,'pieceinfo'=>$piece_data,'serviceinfo'=>$service_data,'customerinfo'=>$invoice_data);
         $piece_data[0]->invoiceservicelist=$service_piece_invoice_data;
         $piece_data[0]->invoiceData = $invoice_data;
         return view('invoice', ['invoice' => $piece_data]);

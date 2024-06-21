@@ -138,7 +138,7 @@ const schema = Yup.object().shape({
 });
 
 const schema1 = Yup.object().shape({
-    username: Yup.string().min(6).required(),
+    // username: Yup.string().min(6).required(),
     old_password: Yup.string().min(8),
     password: Yup.string().min(8),
     password_confirmation: Yup.string().oneOf(
@@ -670,7 +670,7 @@ const onSubmit = (values) => {
                 class="flex items-center h-10 bg-white rounded-lg border pr-4 mb-5 mt-10"
             >
                 <div class="relative text-gray-600 search-bar mx-3 flex w-full">
-                    <Field
+                    <input
                         name="username"
                         class="text-sm border-none focus:outline-none text-right w-full pr-0"
                         :placeholder="t('account.username')"
@@ -682,6 +682,22 @@ const onSubmit = (values) => {
                     <img :src="`/images/home/placeholder_user.svg`" />
                 </div>
             </div>
+            <!-- <div
+                class="flex items-center h-10 bg-white rounded-lg border pr-4 mb-5 mt-10"
+            >
+                <div class="relative text-gray-600 search-bar mx-3 flex w-full">
+                    <Field
+                        name="username"
+                        class="text-sm border-none focus:outline-none text-right w-full pr-0"
+                        :placeholder="t('account.username')"
+                        v-model="updatedUsername"
+                        @input="handleUpdateUsername"
+                    />
+                </div>
+                <div>
+                    <img :src="`/images/home/placeholder_user.svg`" />
+                </div>
+            </div> -->
 
             <!-- <base-input
                 input-type="text"

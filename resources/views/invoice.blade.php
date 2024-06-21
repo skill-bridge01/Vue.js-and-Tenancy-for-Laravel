@@ -287,7 +287,8 @@
                                 <td><span>ر.س</span><span>{{ $total }}</span></td>
                                 <td>{{ $service->service_piece->serviceinfo->services_title }}</td>
                                 <td>{{ $service->number_of_piece }}</td>
-                                <td>{{ $piece->piece_title }}</td>
+                                <!-- <td>{{ $piece->piece_title }}</td> -->
+                                <td>{{ $service->service_piece->pieceinfo->piece_title }}</td>
                                 @php $alltotal = $alltotal + $total; $total = 0; @endphp
                             </tr>
                         @endforeach
@@ -328,7 +329,7 @@
             <div class="line"></div>
             <div class="sign-wrapper">
                 <div class="note-wrapper">
-                    <span>{{date('d-m-Y h:m:s:', strtotime($invoice[0]->created_at));}}</span>
+                    <span>{{date('d-m-Y h:m:s:', strtotime($invoice[0]->invoiceData->created_at));}}</span>
                     <span>التاريخ</span>
                 </div>
                 <div class="note-wrapper">

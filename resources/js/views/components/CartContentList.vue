@@ -40,6 +40,8 @@ const route = useRoute();
 const router = useRouter();
 const invoiceModalActive = ref(false);
 const invoiceData = ref(null);
+const newCarts = ref([]);
+const newCartss = ref('');
 
 const handleSelectedOption = (option) => {
     selectedOption.value = option;
@@ -87,6 +89,8 @@ const handleClickCreateInvoice = () => {
                 console.log('RES', res)
                 console.log('CARTS', carts.value)
                 invoiceData.value = res;
+                newCarts.value = carts.value;
+                newCartss.value = 'THKNKS';
                 invoiceModalActive.value = true;
                 cartsStore.clear()
                 customersStore.clear()
@@ -143,6 +147,8 @@ const options = ref([
     <InvoiceModal
         title=""
         :modal-active="invoiceModalActive"
+        :new-carts="newCarts"
+        :new-cartss="newCartss"
         :invoice-data="invoiceData"
         @toggle-modal-active="toggleModalActive"
         @view-invoices="viewInvoices"
@@ -191,7 +197,7 @@ const options = ref([
             <!-- Cart Form-->
             <div
                 v-if="carts.length > 0"
-                class="overflow-x-hidden overflow-y-scroll max-h-[40vh] hide-scrollbar"
+                class="scroll-py-96 overflow-x-hidden overflow-y-scroll max-h-[40vh] hide-scrollbar"
             >
                 <cart-item
                     v-for="(cart, index) in carts"
