@@ -412,7 +412,7 @@ const clearData = () => {
             </div> -->
 
             <base-input
-                input-type="text"
+                input-type="number"
                 name="price"
                 @input="handleChangePieceTitle"
                 :value="newTitle"

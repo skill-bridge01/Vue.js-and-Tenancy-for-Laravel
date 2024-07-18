@@ -116,18 +116,6 @@ watchEffect(() => {
     });
 });
 
-// const schema = Yup.object().shape({
-//     email: Yup.string()
-
-//         .matches(/^[A-Z0-9._%+-]+@gmail\.com$/i, "Email must be @gmail.com")
-//         .required(),
-//     username: Yup.string().min(6).required(),
-//     password: Yup.string().min(8).required(),
-//     password_confirmation: Yup.string()
-//         .required()
-//         .oneOf([Yup.ref("password")], "Passwords do not match"),
-// });
-
 const schema = Yup.object().shape({
     email: Yup.string().email(),
     username: Yup.string().min(6).required(),
@@ -269,80 +257,6 @@ const isValidGmailAddress = (address) => {
     return /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(address);
 };
 
-// const confirm = () => {
-//     errorMessage.value = null;
-//     console.log("verifyEmail", isValidGmailAddress("example@gmail.com"));
-//     // showAnimator.value = true;
-//     console.log("newTitile", newEmail.value, newUsername.value);
-//     if (newPassword.value.length > 7 && newRepassword.value.length > 7) {
-//         if (newPassword.value == newRepassword.value) {
-//             if (newEmail.value != "" || newEmail.value == "") {
-//                 showAnimator.value = true;
-//                 usersStore
-//                     .create(
-//                         newEmail.value,
-//                         newUsername.value,
-//                         newPassword.value
-//                     )
-//                     .then((res) => {
-//                         if (res.error) {
-//                             console.log("errorExcution", res.error, res);
-
-//                             showAnimator.value = false;
-//                             errorMessage.value = res.error;
-//                             document.getElementById("NewForm").reset();
-//                             setTimeout(() => {
-//                                 errorMessage.value = null;
-//                                 newEmail.value = "";
-//                                 newUsername.value = "";
-//                                 newPassword.value = "";
-//                             }, 1000);
-//                         } else if (res.success) {
-//                             newEmail.value = "";
-//                             newUsername.value = "";
-//                             newPassword.value = "";
-//                             document.getElementById("NewForm").reset();
-//                             showAnimator.value = false;
-//                             successMessage.value = res.message;
-//                             setTimeout(() => {
-//                                 successMessage.value = null;
-//                                 isNewModalActive.value = false;
-//                             }, 1000);
-//                         }
-//                     })
-//                     .catch((err) => {
-//                         newEmail.value = "";
-//                         newUsername.value = "";
-//                         newPassword.value = "";
-//                         showAnimator.value = false;
-//                     })
-//                     .finally(() => {
-//                         newEmail.value = "";
-//                         newUsername.value = "";
-//                         newPassword.value = "";
-//                         showAnimator.value = false;
-//                     });
-//             } else {
-//                 errorMessage.value = "Please input correct Email";
-//                 setTimeout(() => {
-//                     errorMessage.value = null;
-//                 }, 1000);
-//             }
-//         } else {
-//             errorMessage.value = "Passwords do not match";
-//             setTimeout(() => {
-//                 errorMessage.value = null;
-//             }, 1000);
-//         }
-//     } else {
-//         console.log("Invalid");
-//         errorMessage.value = "Please input correct value";
-//         setTimeout(() => {
-//             errorMessage.value = null;
-//         }, 1000);
-//     }
-// };
-
 const confirm = () => {
     errorMessage.value = null;
     console.log("verifyEmail", isValidGmailAddress("example@gmail.com"));
@@ -472,99 +386,6 @@ const confirmEdit = () => {
     }
 };
 
-// const confirmEdit = () => {
-//     errorMessage.value = null;
-//     console.log(
-//         "ID",
-//         selectedService.value.username,
-//         selectedService.value.id,
-//         updatedUsername.value,
-//         "Passwords",
-//         oldPassword.value,
-//         newPassword.value,
-//         newRepassword.value
-//     );
-//     if (oldPassword.value != "") {
-//         if (newPassword.value.length > 7 && newRepassword.value.length > 7) {
-//             if (newPassword.value == newRepassword.value) {
-//                 usersStore
-//                     .edit(
-//                         selectedService.value.id,
-//                         updatedUsername.value,
-//                         oldPassword.value,
-//                         newPassword.value
-//                     )
-//                     .then((res) => {
-//                         console.log("res", res);
-//                         if (res.error) {
-//                             console.log("errorExcution", res.error, res);
-//                             errorMessage.value = res.error;
-//                             setTimeout(() => {
-//                                 errorMessage.value = null;
-//                             }, 1000);
-//                         } else if (res.success) {
-//                             oldPassword.value = "";
-//                             updatedUsername.value = "";
-//                             newPassword.value = "";
-//                             newRepassword.value = "";
-
-//                             successMessage.value = res.message;
-//                             setTimeout(() => {
-//                                 successMessage.value = null;
-//                                 editModalActive.value = false;
-//                             }, 1000);
-//                         }
-//                     })
-//                     .catch((err) => {
-//                         console.log("err", err);
-//                     })
-//                     .finally(() => {
-//                         oldPassword.value = "";
-//                         // updatedUsername.value = "";
-//                         newPassword.value = "";
-//                         newRepassword.value = "";
-//                     });
-//             } else {
-//                 errorMessage.value = "Passwords do not match";
-//                 setTimeout(() => {
-//                     errorMessage.value = null;
-//                 }, 1000);
-//             }
-//         } else {
-//             errorMessage.value = "Password must be at least 8 characters";
-//             setTimeout(() => {
-//                 errorMessage.value = null;
-//             }, 1000);
-//         }
-//     } else {
-//         usersStore
-//             .edit1(selectedService.value.id, updatedUsername.value)
-//             .then((res) => {
-//                 console.log("res", res);
-//                 if (res.error) {
-//                     console.log("errorExcution", res.error, res);
-//                     errorMessage.value = res.error;
-//                     setTimeout(() => {
-//                         errorMessage.value = null;
-//                     }, 1000);
-//                 } else if (res.success) {
-//                     updatedUsername.value = "";
-//                     successMessage.value = res.message;
-//                     setTimeout(() => {
-//                         successMessage.value = null;
-//                         editModalActive.value = false;
-//                     }, 1000);
-//                 }
-//             })
-//             .catch((err) => {
-//                 console.log("err", err);
-//             })
-//             .finally(() => {
-//                 updatedUsername.value = "";
-//             });
-//     }
-// };
-
 const confirmDelete = () => {
     usersStore
         .delete(selectedService.value.id)
@@ -682,50 +503,6 @@ const onSubmit = (values) => {
                     <img :src="`/images/home/placeholder_user.svg`" />
                 </div>
             </div>
-            <!-- <div
-                class="flex items-center h-10 bg-white rounded-lg border pr-4 mb-5 mt-10"
-            >
-                <div class="relative text-gray-600 search-bar mx-3 flex w-full">
-                    <Field
-                        name="username"
-                        class="text-sm border-none focus:outline-none text-right w-full pr-0"
-                        :placeholder="t('account.username')"
-                        v-model="updatedUsername"
-                        @input="handleUpdateUsername"
-                    />
-                </div>
-                <div>
-                    <img :src="`/images/home/placeholder_user.svg`" />
-                </div>
-            </div> -->
-
-            <!-- <base-input
-                input-type="text"
-                name="username"
-                :icon-src="`/images/home/placeholder_user.svg`"
-                :placeholder="t('account.username')"
-                value="updatedUsername"
-                @input="handleUpdateUsername"
-                class="w-full mb-6 font-readex text-base font-light"
-            /> -->
-
-            <!-- <div
-                class="flex items-center h-10 bg-white rounded-lg border pr-4 mb-5 mt-3"
-            >
-                <div class="relative text-gray-600 search-bar mx-3 flex w-full">
-                    <input
-                        class="text-sm border-none focus:outline-none text-right w-full pr-0"
-                        type="password"
-                        name="password"
-                        :placeholder="t('account.oldPassword')"
-                        v-model="oldPassword"
-                        @blur="handleBlur"
-                    />
-                </div>
-                <div>
-                    <img :src="`/images/login/password_grey.svg`" />
-                </div>
-            </div> -->
 
             <base-input
                 input-type="password"
@@ -737,23 +514,6 @@ const onSubmit = (values) => {
                 class="w-full font-readex text-base font-light mb-6"
             />
 
-            <!-- <div
-                class="flex items-center h-10 bg-white rounded-lg border pr-4 mb-5 mt-3"
-            >
-                <div class="relative text-gray-600 search-bar mx-3 flex w-full">
-                    <input
-                        class="text-sm border-none focus:outline-none text-right w-full pr-0"
-                        type="password"
-                        name="password"
-                        :placeholder="t('account.newPassword')"
-                        v-model="newPassword"
-                        @blur="handleBlur"
-                    />
-                </div>
-                <div>
-                    <img :src="`/images/login/password_grey.svg`" />
-                </div>
-            </div> -->
             <base-input
                 input-type="password"
                 name="password"
@@ -763,23 +523,7 @@ const onSubmit = (values) => {
                 :placeholder="t('account.newPassword')"
                 class="w-full font-readex text-base font-light mb-6"
             />
-            <!-- <div
-                class="flex items-center h-10 bg-white rounded-lg border pr-4 mb-5 mt-3"
-            >
-                <div class="relative text-gray-600 search-bar mx-3 flex w-full">
-                    <input
-                        class="text-sm border-none focus:outline-none text-right w-full pr-0"
-                        type="password"
-                        name="password_confirmation"
-                        :placeholder="t('account.confirmPassword')"
-                        v-model="newRepassword"
-                        @blur="handleBlur"
-                    />
-                </div>
-                <div>
-                    <img :src="`/images/login/password_grey.svg`" />
-                </div>
-            </div> -->
+            
             <base-input
                 input-type="password"
                 name="password_confirmation"

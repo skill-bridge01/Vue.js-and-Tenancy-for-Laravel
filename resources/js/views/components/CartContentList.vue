@@ -197,7 +197,7 @@ const options = ref([
             <!-- Cart Form-->
             <div
                 v-if="carts.length > 0"
-                class="scroll-py-96 overflow-x-hidden overflow-y-scroll max-h-[40vh] hide-scrollbar"
+                class="overflow-x-hidden overflow-y-scroll max-h-[40vh]"
             >
                 <cart-item
                     v-for="(cart, index) in carts"

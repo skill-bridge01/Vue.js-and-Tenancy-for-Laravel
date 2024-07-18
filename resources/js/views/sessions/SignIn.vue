@@ -97,7 +97,7 @@ const onSubmit = (values) => {
                                     />
                                 </div>
                                 <div v-if="errorMessage">
-                                    <p class="text-red-500 text-sm">
+                                    <p class="text-red-500 text-sm ">
                                         {{ errorMessage }}
                                     </p>
                                 </div>
