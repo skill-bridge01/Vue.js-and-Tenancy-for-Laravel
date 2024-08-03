@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Service_piece_invoices extends Model
 {
     use HasFactory;
-    
+    use SoftDeletes;
     protected $table = 'service_piece_invoices';
     protected $guarded = [];
 
@@ -17,6 +18,9 @@ class Service_piece_invoices extends Model
         return $this->belongsTo(Invoice::class);
     }
 
+    protected $casts = [
+        'deleted_at' => 'datetime',
+    ];
 
     public function service_piece()
     {

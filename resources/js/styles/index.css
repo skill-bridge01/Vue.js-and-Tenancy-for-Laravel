@@ -57,6 +57,14 @@ textarea:active {
     box-shadow: 0 0 0 30px white inset !important;
 }
 
+select:not([data-type="home"]),
+select:not([type="home"]):focus,
+select:not([type="home"]):active {
+    /* border: none; */
+    -webkit-transition-delay: 9999s;
+    transition-delay: 9999s;
+}
+
 .otp-input {
     width: 40px;
     height: 40px;
@@ -80,4 +88,12 @@ textarea:active {
     font-size: 15px;
     text-align: center;
     font-weight: 600;
+}
+
+.scroll-smooth {
+    scroll-behavior: smooth;
+}
+
+html{
+    scroll-behavior: smooth;
 }

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->bigInteger('discount')->unsigned();
             $table->string("note")->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -35,5 +36,8 @@ return new class extends Migration
     {
         //
         Schema::dropIfExists('service_piece_invoices');
+        Schema::table('service_piece_invoices', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

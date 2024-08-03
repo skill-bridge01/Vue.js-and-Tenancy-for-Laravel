@@ -7,7 +7,11 @@ import { Menu, MenuButton, MenuItems, MenuItem } from '@headlessui/vue'
 import { useStore } from 'vuex'
 import { useFullscreen } from '@vueuse/core'
 import { useRoute } from 'vue-router'
+import { storeToRefs } from "pinia";
+import { useAuthStore } from "@/store/pinia/auth";
 
+const authStore = useAuthStore();
+const { company, selectedCompany } = storeToRefs(useAuthStore());
 const LOCALES = [
     {
         label: 'EN',
@@ -76,7 +80,8 @@ const sideBarToggle = () => {
                 </select>
             </div>
             <div class="flex items-center">
-                <div>{{ t('dashboard.companyName') }}</div>
+                <!-- <div>{{ t('dashboard.companyName') }}</div> -->
+                 <div v-if="company">{{ company[0]?.name }}</div>
                 <div class="mx-0 sm:mx-3">
                     <button @click="sideBarToggle" class="
                             menu-toggle

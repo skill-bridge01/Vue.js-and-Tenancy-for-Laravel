@@ -85,11 +85,6 @@ class CreateUserAction {
 
       // $data = $user ? : request()->only('username', 'password');
       $data = $user ? : request();
-
-      // if (!isset($data['username'], $data['password'])) {
-      //   // abort(400, "Missing required fields: service_id, piece_id, and/or price.");
-      //   return ['error' => 'Please input correct values'];
-      // }
       
       if($data['email']){
         $existingUser = User::where('email', $data['email'])
@@ -100,7 +95,6 @@ class CreateUserAction {
         $existingUser = User::where('username', $data['username'])->first();
       }
       
-
       if ($existingUser) {
           return ['error' => 'Provided User exist.'];
       } else {

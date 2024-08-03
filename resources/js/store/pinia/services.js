@@ -74,8 +74,9 @@ export const useServicesStore = defineStore("service", {
                 const serviceIndex = this.services.findIndex(
                     (s) => s.id === serviceId
                 );
-                this.services[serviceIndex] = res.data;
-                return true;
+                // console.log('resss', res.data);
+                this.services[serviceIndex] = res.data.service;
+                return res;
             } catch (error) {
                 this.fetchError = error;
                 return error;

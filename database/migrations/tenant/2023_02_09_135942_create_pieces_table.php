@@ -16,7 +16,9 @@ class CreatePiecesTable extends Migration
         Schema::create('pieces', function (Blueprint $table) {
             $table->id();
             $table->string('piece_title', 255)->comment('piece title')->unique();
+            $table->string('image', 255)->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -28,5 +30,8 @@ class CreatePiecesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('pieces');
+        Schema::table('pieces', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 }

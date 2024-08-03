@@ -31,7 +31,8 @@ export const useCartsStore = defineStore('carts', {
     },
 
     addNewCart(payload) {
-      const _carts = this.carts.filter((c) => c.service.id === payload.service.id)
+      console.log('payload', payload)
+      const _carts = this.carts.filter((c) => c.service.id === payload.service.id && c.pieceId===payload.pieceId)
       if (_carts.length) {
         console.log('already exist')
       } else {

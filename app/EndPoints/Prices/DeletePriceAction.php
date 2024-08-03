@@ -3,7 +3,8 @@ namespace App\EndPoints\Prices;
 
 use App\Actions\Api;
 use App\Models\Service_piece;
-
+use App\Models\Invoice;
+use App\Models\Service_piece_invoices;
 use Throwable;
 
 use Lorisleiva\Actions\Concerns\AsAction;
@@ -49,6 +50,16 @@ class DeletePriceAction {
     try {
       //code...
       $service = Service_piece::find($id);
+      $service_piece_invoices=Service_piece_invoices::where('service_piece_id', $id)->get();
+      foreach ($service_piece_invoices as $service_piece_invoice) {
+        $service_piece_invoice->delete();
+      }
+      foreach ($service_piece_invoices as $service_piece_invoice) {
+        $invoice = Invoice::find($service_piece_invoice->invoice_id);
+        if ($invoice) {
+            $invoice->delete();
+        }
+      }
       $service->delete();
       return $service;
      

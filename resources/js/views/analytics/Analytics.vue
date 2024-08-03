@@ -43,6 +43,7 @@ onMounted(() => {
   statisticStore.fetch(getQueryByIndex(currentTabIndex.value));
 });
 const handleChangeTabIndex = (index) => {
+  console.log('index', getQueryByIndex(index))
   currentIndex.value = index;
   statisticStore.setCurrentTabIndex(index);
   statisticStore.fetch(getQueryByIndex(index));

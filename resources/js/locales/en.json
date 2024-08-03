@@ -1,215 +1,373 @@
 {
-  "common": {
-    "appName": "Laundry",
-    "phoneNumber": "Phone number",
-    "save": "Save",
-    "cancel": "Cancel",
-    "update": "Update"
-  },
-  "sidebar": {
-    "name" : "Name",
-    "email" : "username@gmail.com",
-    "menu": {
-      "dashboard" : "Dashboard",
-      "invoices": "Invoices",
-      "analytics": "Analytics",
-      "account": "Account",
-      "signout": "Log out",
-      "register": "Register",
-      "prices": "Prices",
-      "pieces": "Pieces",
-      "services": "Services",
-      "users": "Users"
-    }
-  },
-  "modal": {
-    "logout": {
-      "title": "Logout",
-      "message": "Are you sure you want to log out?",
-      "back": "Back",
-      "signout": "Log out"
-    }
-  },
-  "auth": {
-    "login": {
-      "email_username": "Email or Username",
-      "username": "Username",
-      "email": "Email",
-      "password": "Password",
-      "signIn": "Login",
-      "register": "Register"
+    "common": {
+        "appName": "Laundry",
+        "phoneNumber": "Phone number",
+        "save": "Save",
+        "edit": "Edit",
+        "cancel": "Cancel",
+        "update": "Update",
+        "delete": "Delete",
+        "check": "Check",
+        "show": "Show",
+        "chooseImage": "Choose Image"
     },
-    "signup": {
-      "username": "Username, ex: laundry20",
-      "phoneNumber": "Phone number",
-      "name": "Name",
-      "confirmPassword": "Confirm password",
-      "continue": "Continue"
-    },
-    "phoneVerify": {
-      "phone": "Phone Verify Code",
-      "confirm": "Confirm"
-    }
-  },
-  "dashboard": {
-    "pieceType": "Piece type",
-    "discount": "Discount",
-    "note": "Note",
-    "placeholder":"Ahmed Ahmed",
-    "discard": "Discard",
-    "pause": "Pause",
-    "addCustomer": "Add a customer",
-    "typeName": "Type name",
-    "pieceCount": "Piece count",
-    "createInvoice": "Create invoice",
-    "addDiscount": "Add discount",
-    "searchInvoice": "Search invoices or customers",
-    "chooseWidget": "Choose widget type",
-    "currency": "SAR",
-    "count": "Count",
-    "serviceType": "Services",
-    "companyName":"Company name"
-  },
-  "invoices": {
-    "search": "Search",
-    "toDate":"To Date",
-    "fromDate":"From Date",
-    "invoiceNumber": "Invoice number",
-    "table": {
-      "actions": "Actions",
-      "total": "Total",
-      "status": "Status",
-      "customer": "Customer",
-      "date": "Date",
-      "invoiceNumber": "Invoice Number"
+    "sidebar": {
+        "name": "Name",
+        "email": "username@gmail.com",
+        "menu": {
+            "dashboard": "Dashboard",
+            "invoices": "Invoices",
+            "analytics": "Analytics",
+            "account": "Account",
+            "signout": "Log out",
+            "register": "Register",
+            "prices": "Prices",
+            "pieces": "Pieces",
+            "services": "Services",
+            "users": "Users"
+        }
     },
     "modal": {
-      "qrcode": {
-        "title": "QR code"
-      },
-      "edit": {
-        "title": "Edit invoice",
-        "update": "Update"
-      },
-      "delete": {
-        "title": "Delete invoice"
-      }
-    }
-  },
-  "prices": {
-    "create": "Create price",
-    "table": {
-      "actions": "Actions",
-      "priceNumber": "Number",
-      "date": "Date",
-      "service": "Service",
-      "piece": "Piece",
-      "price": "Price"
+        "logout": {
+            "title": "Logout",
+            "message": "Are you sure you want to log out?",
+            "back": "Back",
+            "signout": "Log out"
+        }
     },
-    "modal": {
-      "create": {
-        "title": "Create a new price",
-        "placeholder": "Price"
-      },
-      "edit": {
-        "title": "Edit price"
-      },
-      "delete": {
-        "title": "Delete price"
-      }
-    }
-  },
-  "users": {
-    "create": "Create User",
-    "table": {
-      "Number": "Number",
-      "actions": "Actions",
-      "date": "Date",
-      "username": "Name",
-      "email": "Email"
+    "auth": {
+        "login": {
+            "email_username": "Email or Username",
+            "username": "Username",
+            "email": "Email",
+            "password": "Password",
+            "signIn": "Login",
+            "register": "Register",
+            "error": "The provided credentials are incorrect.",
+            "domainError": "Please input correct domain"
+        },
+        "signup": {
+            "username": "Username, ex: laundry20",
+            "phoneNumber": "Phone number",
+            "name": "Name",
+            "confirmPassword": "Confirm password",
+            "continue": "Continue"
+        },
+        "phoneVerify": {
+            "phone": "Phone Verify Code",
+            "confirm": "Confirm"
+        }
     },
-    "modal": {
-      "create": {
-        "title": "Create a New User"
-      },
-      "edit": {
-        "title": "Edit User"
-      },
-      "delete": {
-        "title": "Delete User"
-      }
-    }
-  },
-  "pieces": {
-    "create": "Create piece",
-    "table": {
-      "actions": "Actions",
-      "pieceNumber": "Number",
-      "date": "Date",
-      "piece": "Piece"
+    "dashboard": {
+        "pieceType": "Piece type",
+        "discount": "Discount",
+        "note": "Note",
+        "placeholder": "Customer Name",
+        "discard": "Discard",
+        "pause": "Pause",
+        "addCustomer": "Add a customer",
+        "typeName": "Type name",
+        "pieceCount": "Piece count",
+        "createInvoice": "Create invoice",
+        "addDiscount": "Add discount",
+        "searchInvoice": "Search invoices or customers",
+        "chooseWidget": "Choose widget type",
+        "currency": "SAR",
+        "count": "Count",
+        "serviceType": "Services",
+        "companyName": "Company name",
+        "selectPayment": "Select a payment method",
+        "card": "Card",
+        "cash": "Cash"
     },
-    "modal": {
-      "create": {
-        "title": "Create a new piece",
-        "placeholder": "Piece Name"
-      },
-      "edit": {
-        "title": "Edit piece"
-      },
-      "delete": {
-        "title": "Delete piece"
-      }
-    }
-  },
-  "services": {
-    "create": "Create service",
-    "table": {
-      "actions": "Actions",
-      "serviceNumber": "Number",
-      "date": "Date",
-      "service": "Service",
-      "checked": "Checked",
-      "shown": "Shown"
+    "invoices": {
+        "search": "Search",
+        "toDate": "To Date",
+        "fromDate": "From Date",
+        "invoiceNumber": "Invoice number",
+        "table": {
+            "actions": "Actions",
+            "total": "Total",
+            "status": "Status",
+            "customer": "Customer",
+            "date": "Created",
+            "invoiceNumber": "Invoice ID"
+        },
+        "modal": {
+            "qrcode": {
+                "title": "QR code"
+            },
+            "edit": {
+                "title": "Edit invoice",
+                "update": "Update",
+                "inProgress": "In Progress",
+                "readyPickup": "Ready To Pick up",
+                "delivered": "Delivered",
+                "select": "Please select one"
+            },
+            "delete": {
+                "title": "Delete invoice"
+            }
+        }
     },
-    "modal": {
-      "create": {
-        "title": "Create a new service",
-        "placeholder": "Service Name"
-      },
-      "edit": {
-        "title": "Edit service"
-      },
-      "delete": {
-        "title": "Delete service"
-      }
-    }
-  },
-  "analytics": {
-    "tabs": {
-      "allTime": "All time",
-      "thisMonth": "This month",
-      "today": "Today"
+    "prices": {
+        "create": "Create price",
+        "table": {
+            "actions": "Actions",
+            "priceNumber": "Number",
+            "date": "Date",
+            "service": "Service",
+            "piece": "Piece",
+            "price": "Price"
+        },
+        "modal": {
+            "existError": "The pieces and service pair provided are in use.",
+            "valueError": "Please input correct values",
+            "create": {
+                "title": "Create a new price",
+                "placeholder": "Price",
+                "success": "The pieces and service pair created successfully."
+            },
+            "edit": {
+                "title": "Edit price",
+                "success": "The pieces and service pair updated successfully."
+            },
+            "delete": {
+                "title": "Delete price"
+            }
+        }
     },
-    "chart": {
-      "bestSellingServices": "Best selling services",
-      "sales": "Sales",
-      "mostRequestedServices": "Most requested services",
-      "viewAll": "View all",
-      "mostPurchasedCustomers": "Most purchased customer",
-      "totalBills": "Total",
-      "customer": "Customer",
-      "value": "Value",
-      "bill": "Invoice"
+    "users": {
+        "create": "Create User",
+        "table": {
+            "Number": "Number",
+            "userId": "User ID",
+            "created": "Created",
+            "actions": "Actions",
+            "date": "Date",
+            "username": "Name",
+            "email": "Email"
+        },
+        "modal": {
+            "create": {
+                "title": "Create a New User"
+            },
+            "edit": {
+                "title": "Edit User"
+            },
+            "delete": {
+                "title": "Delete User",
+                "confirm": "Are you sure?"
+            }
+        },
+        "api": {
+            "create": {
+                "success": "User created successfully.",
+                "error": "Provided User exist."
+            },
+            "update": {
+                "success": "User updated successfully.",
+                "pwdError": "The provided password does not match our records.",
+                "userError": "Provided User exist."
+            }
+        }
+    },
+    "pieces": {
+        "create": "Create piece",
+        "table": {
+            "actions": "Actions",
+            "pieceNumber": "Number",
+            "date": "Date",
+            "piece": "Piece",
+            "image": "Image"
+        },
+        "modal": {
+            "existError": "Provided Piece is already in use.",
+            "create": {
+                "title": "Create a new piece",
+                "placeholder": "Piece Name",
+                "success": "Piece created successfully."
+            },
+            "edit": {
+                "title": "Edit piece",
+                "success": "Piece updated successfully."
+            },
+            "delete": {
+                "title": "Delete piece"
+            }
+        }
+    },
+    "services": {
+        "create": "Create service",
+        "table": {
+            "actions": "Actions",
+            "serviceNumber": "Number",
+            "date": "Date",
+            "service": "Service",
+            "checked": "Checked",
+            "shown": "Shown"
+        },
+        "modal": {
+            "existError": "Provided Service is already in use.",
+            "create": {
+                "title": "Create a new service",
+                "placeholder": "Service Name",
+                "success": "Service created successfully."
+            },
+            "edit": {
+                "title": "Edit service",
+                "success": "Service updated successfully."
+            },
+            "delete": {
+                "title": "Delete service"
+            }
+        }
+    },
+    "analytics": {
+        "tabs": {
+            "allTime": "All time",
+            "thisMonth": "This month",
+            "today": "Today"
+        },
+        "chart": {
+            "bestSellingServices": "Best selling services",
+            "sales": "Sales",
+            "mostRequestedServices": "Most requested services",
+            "viewAll": "View all",
+            "mostPurchasedCustomers": "Most purchased customer",
+            "totalBills": "Total",
+            "customer": "Customer",
+            "value": "Value",
+            "bill": "Invoice",
+            "service": "Service",
+            "unit": "Rs",
+            "viewLess": "View Less"
+        }
+    },
+    "account": {
+        "settings": "Settings",
+        "management": "Account management",
+        "oldPassword": "Old password",
+        "newPassword": "New password",
+        "confirmPassword": "Confirm password",
+        "email": "Email",
+        "mobile": "Phone number",
+        "username": "Username",
+        "save": "Save",
+        "company": {
+            "panelTitle": "Information",
+            "edit": "Edit Company",
+            "companyName": "Company Name",
+            "companyAddress": "Company Address",
+            "companyLogo": "Company Logo",
+            "commercialNumber": "Commercial Registration Number",
+            "taxNumber": "Tax Number",
+            "api": {
+                "create": "Company created successfully.",
+                "edit": "Company updated successfully."
+            }
+        }
+    },
+    "validation": {
+        "companyName": {
+            "required": "Company Name is a required field"
+        },
+        "companyLogo": {
+            "required": "Company Logo is a required field"
+        },
+        "companyAddress": {
+            "required": "Company Address is a required field"
+        },
+        "username": {
+            "required": "Username is a required field",
+            "min": "The username must not be less than 6 characters"
+        },
+        "nameOrEmail": {
+            "required": "Username or Email is a required field",
+            "min": "Username or Email must be at least 6 characters"
+        },
+        "name": {
+            "required": "Name is a required field",
+            "min": "The name must not be less than 6 characters"
+        },
+        "phone": {
+            "required": "Phone is a required field",
+            "min": "The phone must not be less than 10 characters"
+        },
+        "old_password": {
+            "required": "Old password is a required field",
+            "min": "Old password must be at least 8 characters"
+        },
+        "password": {
+            "required": "Password is a required field",
+            "min": "Password must be at least 8 characters"
+        },
+        "password_confirmation": {
+            "required": "Confirm password is a required field",
+            "notMatch": "Passwords do not match"
+        },
+        "email": "Email must be a valid email",
+        "emailRequired": "Email is a required field"
+    },
+    "home": {
+        "nav": {
+            "logo": "Logo",
+            "main": "Home",
+            "about": "About the System",
+            "priceAndPackage": "Prices and Packages",
+            "contact": "Contact Us"
+        },
+        "intro": {
+            "title_easy": "Laundry System Easiest",
+            "title_fast": "and Fastest",
+            "content": "We offer you a point of sale software for laundries that saves your data and processes it with ease, along with an integrated tech system that supports electronic invoicing and provides statistics to help you in your business.",
+            "tryBtn": "Try For Free With Us"
+        },
+        "about": {
+            "aboutSystem": "About the System",
+            "title": "What Makes Our System Special",
+            "card-one": {
+                "title": "Free Technical Support",
+                "content": "Get free technical support from a dedicated team ready to answer your queries and assist you in case you encounter any issues; through phone or email communication throughout the day, ensuring you have an ideal experience using Daftera system."
+            },
+            "card-two": {
+                "title": "User-Friendly Interface",
+                "content": "Run your business easily with various features and tools included in a user-friendly interface with simple steps, as you do not need to have deep knowledge of Enterprise Resource Planning systems or complicated accounting methods to work on any of the system's applications."
+            },
+            "card-three": {
+                "title": "Regular Free Updates",
+                "content": "Daftera continuously works on developing the entire system and updating its applications and features to keep up with business requirements including adding new properties and tools that facilitate efficient business management, and you will receive all these updates for free."
+            },
+            "card-four": {
+                "title": "Security and Protection",
+                "content": "With SSL 256 bit and multiple layers of protection, along with servers located on two different continents with additional safety precautions for their sites and strong restrictions on data access rights, in addition to regular backup operations."
+            },
+            "card-five": {
+                "title": "Complete System Updates for Delivery",
+                "content": "Supports opening and closing cash registers at the user level with detailed and summary reports through which the daily closure with the cashier is done."
+            },
+            "card-six": {
+                "title": "Unlimited Reports",
+                "content": "Our reporting system creates comprehensive reports based on existing data for making appropriate decisions."
+            }
+        },
+        "package": {
+            "year": "Year",
+            "package": "Packages",
+            "title": "Plans and Prices",
+            "basicPlan": "Basic Plan",
+            "description": "Here is a brief description of the plan.",
+            "feature": "Feature",
+            "chooseBtn": "Choose professional"
+        },
+        "contact": {
+            "contact": "Contact Us",
+            "title": "Get in Touch with Us Today!",
+            "name": "Name",
+            "email": "Email",
+            "message": "Message",
+            "btn": "Send"
+        },
+        "footer": "All rights reserved"
     }
-  },
-  "account": {
-    "settings": "Settings",
-    "management": "Account management",
-    "oldPassword": "Old password",
-    "newPassword": "New password",
-    "confirmPassword": "Confirm password",
-    "email": "Email",
-    "mobile": "Phone number",
-    "username": "Username"
-  }
 }

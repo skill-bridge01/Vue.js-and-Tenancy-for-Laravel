@@ -1,5 +1,6 @@
 <script setup>
 import { reactive, watch, ref } from 'vue';
+import { useI18n } from "vue-i18n";
 import { onClickOutside, useDebounceFn } from '@vueuse/core'
 import UserBlackIcon from '@/assets/icons/sidebar/user_black.svg'
 import { useCustomersStore } from '@/store/pinia/customers'
@@ -34,6 +35,7 @@ let data = reactive({
   results:[],
 });
 
+const { t } = useI18n();
 const emits = defineEmits(['clickCustomerRow'])
 
 // watch(
@@ -138,7 +140,7 @@ onClickOutside(target, (event) => {
         h-12
         search-input
       "
-      placeholder="Type name"
+      :placeholder="t('dashboard.typeName')"
       :name="props.name"
       v-model="data.search"
       @input="onChange"

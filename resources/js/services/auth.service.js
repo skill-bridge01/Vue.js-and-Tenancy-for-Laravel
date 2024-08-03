@@ -24,13 +24,13 @@ class AuthService {
 
     async phoneVerify1(phone) {
         const response = await http.post("/phone-verify", phone);
-        console.log('Verify111',response);
+        console.log("Verify111", response);
         return response.data;
     }
 
     phoneVerify2(phone) {
         return http.post("/phone-verify", {
-            phone
+            phone,
         });
     }
 
@@ -42,6 +42,11 @@ class AuthService {
 
     async getMe() {
         const response = await http.post("/me");
+        return response.data;
+    }
+
+    async getCompany() {
+        const response = await http.get("/company");
         return response.data;
     }
 
@@ -58,6 +63,18 @@ class AuthService {
     async updatePassword(payload) {
         const response = await http.post("/update-password", payload);
         return response.data;
+    }
+
+    // async createCompany(payload) {
+    //     const response = await http.post("/update-password", payload);
+    //     return response.data;
+    // }
+
+    createCompany(payload) {
+        console.log('payload', payload)
+        return http.post("/company", {
+            payload,
+        });
     }
 }
 

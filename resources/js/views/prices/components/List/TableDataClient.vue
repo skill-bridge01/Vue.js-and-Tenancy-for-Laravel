@@ -1,11 +1,5 @@
 <script setup>
-import {
-    computed,
-    ref,
-    onBeforeMount,
-    onUnmounted,
-    watchEffect,
-} from "vue";
+import { computed, ref, onBeforeMount, onUnmounted, watchEffect } from "vue";
 import { useI18n } from "vue-i18n";
 import * as Yup from "yup";
 import { Form } from "vee-validate";
@@ -15,13 +9,11 @@ import TableCheckboxCell from "@/components/TableCheckboxCell.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
 import BaseButtons from "@/components/BaseButtons.vue";
 import BaseButton from "@/components/BaseButton.vue";
-import BaseSelect from "@/components/BaseSelect.vue";
 import BaseInput from "@/components/BaseInput.vue";
 import { format } from "date-fns";
 import { Page } from "v-page";
 // Importing the lodash library
 import { mdiSortAscending, mdiSortDescending } from "@mdi/js";
-
 import { usePricesStore } from "@/store/pinia/prices";
 import { usePiecesStore } from "@/store/pinia/pieces";
 import { useServicesStore } from "@/store/pinia/services";
@@ -89,17 +81,6 @@ onUnmounted(() => {
     pricesStore.clear();
 });
 
-const piece_options = ref([
-    {
-        label: "Card",
-        value: "card",
-    },
-    {
-        label: "Cash",
-        value: "cash",
-    },
-]);
-
 const FIELDS = ref([
     { label: t("prices.table.actions"), id: "actions" },
     { label: t("prices.table.date"), id: "createdAt" },
@@ -145,7 +126,7 @@ const tableData = computed(() => {
             title: price["price"],
             id: price["id"],
             serviceId: price.serviceinfo.id,
-            pieceId: price.pieceinfo.id
+            pieceId: price.pieceinfo.id,
         };
         return data;
     });
@@ -214,12 +195,12 @@ const handleClickEdit = (price) => {
     selectedService.value = price.serviceId;
     selectedPiece.value = price.pieceId;
     newTitle.value = String(price.title);
-    document.getElementById("EditForm").reset(); 
+    document.getElementById("EditForm").reset();
     editModalActive.value = true;
 };
 
 const handleClickDelete = (price) => {
-    console.log('price', price)
+    console.log("price", price);
     pricesStore.setSelectedPrice(price);
     isModalDangerActive.value = true;
 };
@@ -228,40 +209,40 @@ const handleChangePieceTitle = (event) => {
     newTitle.value = event.target.value;
 };
 
-const handleSelectedOption = (option) => {
-    selectedOption.value = option;
-};
-
 const confirm = () => {
     pricesStore
         .create(selectedService.value, selectedPiece.value, newTitle.value)
         .then((res) => {
-            // console.log(res);
-            // if (res) {
-            //     selectedService.value = "";
-            //     selectedPiece.value = "";
-            //     newTitle.value = "";
-            // }
             if (res.error) {
                 console.log("PriceCreateError", res.error);
-                errorMessage.value = res.error;
-                selectedService.value = "";
-                selectedPiece.value = "";
-                document.getElementById("NewForm").reset();
-                newTitle.value = "";
+                errorMessage.value = t("prices.modal.existError");
                 setTimeout(() => {
+                    selectedService.value = "";
+                    selectedPiece.value = "";
+                    document.getElementById("NewForm").reset();
+                    newTitle.value = "";
                     errorMessage.value = null;
-                }, 500);
+                }, 1500);
+            } else if (res.valueError) {
+                console.log("PriceCreateError", res.error);
+                errorMessage.value = t("prices.modal.valueError");
+                setTimeout(() => {
+                    selectedService.value = "";
+                    selectedPiece.value = "";
+                    document.getElementById("NewForm").reset();
+                    newTitle.value = "";
+                    errorMessage.value = null;
+                }, 1500);
             } else if (res.success) {
                 newTitle.value = "";
                 selectedService.value = "";
                 selectedPiece.value = "";
                 document.getElementById("NewForm").reset();
-                successMessage.value = res.message;
+                successMessage.value = t("prices.modal.create.success");
                 setTimeout(() => {
                     successMessage.value = null;
                     isNewModalActive.value = false;
-                }, 500);
+                }, 1500);
             }
         })
         .catch((err) => {
@@ -284,33 +265,38 @@ const confirmEdit = () => {
             newTitle.value
         )
         .then((res) => {
-            // console.log(res);
-            // if (res) {
-            //     selectedService.value = "";
-            //     selectedPiece.value = "";
-            //     newTitle.value = "";
-            // }
             if (res.error) {
                 console.log("PriceCreateError", res.error);
-                errorMessage.value = res.error;
+                errorMessage.value = t("prices.modal.existError");
                 selectedService.value = "";
                 selectedPiece.value = "";
                 document.getElementById("EditForm").reset();
                 newTitle.value = "";
                 setTimeout(() => {
                     errorMessage.value = null;
-                }, 500);
+                }, 1500);
+            } else if (res.valueError) {
+                console.log("PriceCreateError", res.error);
+                errorMessage.value = t("prices.modal.valueError");
+                selectedService.value = "";
+                selectedPiece.value = "";
+                document.getElementById("EditForm").reset();
+                newTitle.value = "";
+                setTimeout(() => {
+                    errorMessage.value = null;
+                }, 1500);
             } else if (res.success) {
                 // newTitle.value = "";
                 selectedService.value = "";
                 selectedPiece.value = "";
                 document.getElementById("EditForm").reset();
-                successMessage.value = res.message;
-                editModalActive.value = false;
+                successMessage.value = t("prices.modal.edit.success");
+                
                 setTimeout(() => {
+                    editModalActive.value = false;
                     successMessage.value = null;
                     editModalActive.value = false;
-                }, 500);
+                }, 1500);
             }
         })
         .catch((err) => {
@@ -324,7 +310,7 @@ const confirmEdit = () => {
 };
 
 const confirmDelete = () => {
-console.log("deleteId", selectedPrice.value.id)
+    console.log("deleteId", selectedPrice.value.id);
     pricesStore
         .delete(selectedPrice.value.id)
         .then((res) => {
@@ -341,7 +327,7 @@ const clearData = () => {
     selectedService.value = "";
     selectedPrice.value = null;
     newTitle.value = "";
-}
+};
 </script>
 
 <template>
@@ -355,17 +341,11 @@ const clearData = () => {
         :showModal="true"
     >
         <Form :validation-schema="schema" id="NewForm">
-            <!-- <base-select
-                label="Select a Piece"
-                name="piece"
-                :options="services"
-                @update:selected="handleSelectedOption"
-            /> -->
             <div>
                 <label
                     for="countries"
-                    class="block mt-10 mb-2 text-xs font-semibold text-gray-600 dark:text-white"
-                    >Service</label
+                    class="block mt-10 mb-1 text-xs font-semibold text-gray-600 dark:text-white"
+                    >{{ t("prices.table.service") }}</label
                 >
                 <select
                     id="countries"
@@ -382,8 +362,8 @@ const clearData = () => {
             <div>
                 <label
                     for="countries"
-                    class="block mb-2 text-xs font-semibold text-gray-600 dark:text-white"
-                    >Piece</label
+                    class="block mt-3 mb-1 text-xs font-semibold text-gray-600 dark:text-white"
+                    >{{ t("prices.table.piece") }}</label
                 >
                 <select
                     id="countries"
@@ -397,33 +377,24 @@ const clearData = () => {
                     </option>
                 </select>
             </div>
-            <!-- <label
-                class="block mb-2 text-xs font-semibold text-gray-600 dark:text-white"
-                >Price</label
+            <label
+                for="countries"
+                class="block mt-3 mb-1 text-xs font-semibold text-gray-600 dark:text-white"
+                >{{ t("prices.table.price") }}</label
             >
-            <div class="border border-gray-400 rounded-lg">
-                <input
-                    type="text"
-                    placeholder=""
-                    class="w-full px-1 py-1 rounded-lg text-right focus:outline-none h-9"
-                    :value="newTitle"
-                    @input="handleChangePieceTitle"
-                />
-            </div> -->
-
             <base-input
                 input-type="number"
                 name="price"
                 @input="handleChangePieceTitle"
                 :value="newTitle"
                 :placeholder="t('prices.modal.create.placeholder')"
-                class="w-full mt-5 mb-6 font-readex text-base font-light focus:outline-none"
+                class="border border-gray-300 rounded-lg w-full mb-3 font-readex text-base font-light focus:outline-none"
             />
-            <div v-if="errorMessage">
+            <div v-if="errorMessage" class="text-right">
                 <p class="text-red-500 text-sm">{{ errorMessage }}</p>
             </div>
-            <div v-if="successMessage">
-                <p class="text-green-400 text-sm">{{ successMessage }}</p>
+            <div v-if="successMessage" class="text-right">
+                <p class="text-green-500 text-sm">{{ successMessage }}</p>
             </div>
         </Form>
     </card-box-modal>
@@ -441,8 +412,8 @@ const clearData = () => {
             <div>
                 <label
                     for="countries"
-                    class="block mb-2 text-xs font-semibold text-gray-600 dark:text-white"
-                    >Service</label
+                    class="block mt-10 mb-1 text-xs font-semibold text-gray-600 dark:text-white"
+                    >{{ t("prices.table.service") }}</label
                 >
                 <select
                     id="countries"
@@ -459,8 +430,8 @@ const clearData = () => {
             <div>
                 <label
                     for="countries"
-                    class="block mb-2 text-xs font-semibold text-gray-600 dark:text-white"
-                    >Piece</label
+                    class="block mt-3 mb-1 text-xs font-semibold text-gray-600 dark:text-white"
+                    >{{ t("prices.table.piece") }}</label
                 >
                 <select
                     id="countries"
@@ -474,12 +445,12 @@ const clearData = () => {
                 </select>
             </div>
             <label
-                class="block mb-2 text-xs font-semibold text-gray-600 dark:text-white"
-                >Price</label
+                class="block mb-1 mt-3 text-xs font-semibold text-gray-600 dark:text-white"
+                >{{ t("prices.table.price") }}</label
             >
-            <div class="border border-gray-400 rounded-lg">
+            <div class="border border-gray-300 rounded-lg mb-3">
                 <input
-                    type="text"
+                    type="number"
                     name="price"
                     placeholder="Price"
                     class="w-full px-1 py-1 rounded-lg text-right focus:outline-none h-9"
@@ -487,22 +458,23 @@ const clearData = () => {
                     @input="handleChangePieceTitle"
                 />
             </div>
-            <div v-if="errorMessage">
+            <div v-if="errorMessage" class="text-right">
                 <p class="text-red-500 text-sm">{{ errorMessage }}</p>
             </div>
-            <div v-if="successMessage">
-                <p class="text-green-400 text-sm">{{ successMessage }}</p>
+            <div v-if="successMessage" class="text-right">
+                <p class="text-green-500 text-sm">{{ successMessage }}</p>
             </div>
         </Form>
     </card-box-modal>
     <card-box-modal
         v-model="isModalDangerActive"
         :title="t('prices.modal.delete.title')"
+        :button-label="t('common.delete')"
         button="bg-main"
         has-cancel
         @confirm="confirmDelete"
     >
-        <p>Are you sure?</p>
+        <p>{{ t("users.modal.delete.confirm") }}</p>
     </card-box-modal>
     <div v-if="checkedRows.length" class="p-3 bg-gray-100/50 dark:bg-slate-800">
         <span
@@ -566,29 +538,23 @@ const clearData = () => {
                         />
                     </BaseButtons>
                 </td>
-                <td data-label="Created" class="whitespace-nowrap">
+                <td :data-label="t('prices.table.date')" class="whitespace-nowrap">
                     <small class="text-gray-500 dark:text-slate-400">{{
                         format(new Date(piece.createdAt), "dd-MM-yyyy HH:mm")
                     }}</small>
                 </td>
-                <td data-label="Service">
+                <td :data-label="t('prices.table.service')">
                     {{ piece.service }}
                 </td>
-                <td data-label="Piece">
+                <td :data-label="t('prices.table.piece')">
                     {{ piece.piece }}
                 </td>
-                <td data-label="Title">
+                <td :data-label="t('prices.table.price')">
                     {{ piece.title }}
                 </td>
-                <td data-label="PieceId">
+                <td :data-label="t('prices.table.priceNumber')">
                     {{ piece.id }}
                 </td>
-                <!-- <td class="border-b-0 lg:w-6 before:hidden">
-          <UserAvatar
-            :username="client.name"
-            class="w-24 h-24 mx-auto lg:w-6 lg:h-6"
-          />
-        </td> -->
                 <TableCheckboxCell
                     v-if="checkable"
                     @checked="checked($event, client)"

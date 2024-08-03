@@ -8,6 +8,7 @@ import ar from './locales/ar.json'
 import { useI18n } from "vue-i18n";
 import { createPinia } from "pinia";
 import { useMainStore } from "@/store/pinia/main.js";
+import "aos/dist/aos.css";
 
 import VueTelInput from 'vue-tel-input';
 import 'vue-tel-input/vue-tel-input.css';
@@ -55,7 +56,7 @@ const globalOptions = {
     inputOptions: {
         // numericOnly: true,
         // showDialCode: true,
-        placeholder: '123456789',
+        placeholder: 'Phone Number',
         // placeholder:"t('common.phoneNumber')",
         styleClasses: [
             'focus:outline-none',

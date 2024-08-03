@@ -3,14 +3,15 @@ import {
     computed,
     ref,
     onBeforeMount,
+    onMounted,
     onUnmounted,
     watchEffect,
-    watch,
 } from "vue";
+import BaseChooseButton from "@/components/BaseChooseButton.vue";
 import { useI18n } from "vue-i18n";
 import * as Yup from "yup";
 import { Form } from "vee-validate";
-import { mdiPlus, mdiTrashCan, mdiPencil, mdiFileEyeOutline } from "@mdi/js";
+import { mdiTrashCan, mdiPencil } from "@mdi/js";
 import CardBoxModal from "@/components/CardBoxModal.vue";
 import TableCheckboxCell from "@/components/TableCheckboxCell.vue";
 import BaseIcon from "@/components/BaseIcon.vue";
@@ -19,11 +20,8 @@ import BaseButtons from "@/components/BaseButtons.vue";
 import BaseButton from "@/components/BaseButton.vue";
 import { format } from "date-fns";
 import { Page } from "v-page";
-// Importing the lodash library
 import { mdiSortAscending, mdiSortDescending } from "@mdi/js";
-
 import { usePiecesStore } from "@/store/pinia/pieces";
-
 import { storeToRefs } from "pinia";
 import { AtomSpinner } from "epic-spinners";
 
@@ -39,42 +37,39 @@ const emits = defineEmits({});
 const isNewModalActive = ref(false);
 const showNewModal = () => {
     document.getElementById("NewForm").reset();
+    document.getElementById("profile-picture").value = "";
+
+    previewImage.value = "";
+    pieceImage.value = "";
     isNewModalActive.value = true;
 };
 
 defineExpose({
     showNewModal,
 });
-
 const { t } = useI18n();
-
 const editModalActive = ref(false);
-
 const piecesStore = usePiecesStore();
 const { pieces, selectedPiece, loading } = storeToRefs(usePiecesStore());
-
 const isModalDangerActive = ref(false);
-
 const perPage = ref(5);
-
 const currentPage = ref(1);
-
 const checkedRows = ref([]);
-// a value to check for sort
 const sort = ref(false);
 const ascending = ref(false);
 const sortColumn = ref("");
-const updatedList = ref([]);
 const errorMessage = ref(null);
 const successMessage = ref(null);
-
-// new piece
 const newTitle = ref("");
+const previewImage = ref("");
+const pieceImage = ref("");
+const editPieceImage = ref("");
+const subDomain = ref("");
+const previewEditImage = ref("");
 
 onBeforeMount(() => {
-    // invoicesStore.fetchLocalData()
     piecesStore.fetch();
-    console.log("pieces", pieces);
+    subDomain.value = window.location.hostname.split(".")[0];
 });
 
 onUnmounted(() => {
@@ -84,6 +79,7 @@ onUnmounted(() => {
 const FIELDS = ref([
     { label: t("pieces.table.actions"), id: "actions" },
     { label: t("pieces.table.date"), id: "createdAt" },
+    { label: t("pieces.table.image"), id: "image" },
     { label: t("pieces.table.piece"), id: "title" },
     { label: t("pieces.table.pieceNumber"), id: "id" },
 ]);
@@ -99,6 +95,9 @@ watchEffect(() => {
                 break;
             case "title":
                 item.label = t("pieces.table.piece");
+                break;
+            case "image":
+                item.label = t("pieces.table.image");
                 break;
             case "id":
                 item.label = t("pieces.table.pieceNumber");
@@ -123,6 +122,7 @@ const tableData = computed(() => {
         let data = {
             createdAt: piece["created_at"],
             title: piece["piece_title"],
+            image: piece["image"],
             services: piece["services"],
             id: piece["id"],
         };
@@ -149,13 +149,11 @@ const itemsPaginated = computed(() =>
 
 const remove = (arr, cb) => {
     const newArr = [];
-
     arr.forEach((item) => {
         if (!cb(item)) {
             newArr.push(item);
         }
     });
-
     return newArr;
 };
 
@@ -180,19 +178,38 @@ const sortTable = (field) => {
     }
 };
 
-// page change
 const change = (pageState) => {
     console.log(pageState);
     currentPage.value = pageState.pageNumber;
     perPage.value = pageState.pageSize;
 };
 
+const handleFileChange = (event) => {
+    pieceImage.value = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(pieceImage.value);
+    reader.onload = (e) => {
+        previewImage.value = e.target.result;
+    };
+};
+
+const handleFileEditChange = (event) => {
+    editPieceImage.value = event.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(editPieceImage.value);
+    reader.onload = (e) => {
+        previewEditImage.value = e.target.result;
+    };
+};
+
 // ** Actions
 const handleClickEdit = (piece) => {
     document.getElementById("EditForm").reset();
+    previewEditImage.value = "";
     piecesStore.setSelectedPiece(piece);
     newTitle.value = piece.title;
     editModalActive.value = true;
+    console.log("selected piece", piece);
 };
 
 const handleClickDelete = (piece) => {
@@ -205,29 +222,28 @@ const handleChangePieceTitle = (event) => {
 };
 
 const confirm = () => {
+    const formData = new FormData();
+    formData.append("image", pieceImage.value);
+    formData.append("title", newTitle.value);
+    console.log("FormData", formData);
     piecesStore
-        .create(newTitle.value)
+        .create(formData)
         .then((res) => {
-            // if (res) {
-            //     newTitle.value = "";
-            // }
             if (res.error) {
-                console.log("PieceCreateError", res.error);
-                errorMessage.value = res.error;
-                document.getElementById("NewForm").reset();
-                newTitle.value = "";
+                errorMessage.value = t("pieces.modal.existError");
                 setTimeout(() => {
+                    document.getElementById("NewForm").reset();
+                    newTitle.value = "";
                     errorMessage.value = null;
-                    
-                }, 500);
+                }, 1500);
             } else if (res.success) {
-                newTitle.value = "";
-                successMessage.value = res.message;
-                document.getElementById("NewForm").reset();
+                successMessage.value = t("pieces.modal.create.success");
                 setTimeout(() => {
+                    document.getElementById("NewForm").reset();
+                    newTitle.value = "";
                     successMessage.value = null;
                     isNewModalActive.value = false;
-                }, 500);
+                }, 1500);
             }
         })
         .catch((err) => {
@@ -239,31 +255,34 @@ const confirm = () => {
 };
 
 const confirmEdit = () => {
-    console.log(selectedPiece.value);
+    errorMessage.value = null;
+    successMessage.value = null;
+    const formData = new FormData();
+    formData.append("image", editPieceImage.value);
+    formData.append("title", newTitle.value);
+    console.log("FormData", formData);
+
     piecesStore
-        .edit(selectedPiece.value.id, newTitle.value)
+        .edit(selectedPiece.value.id, formData)
         .then((res) => {
-            console.log("res", res)
-            if (res.error) {
-                console.log("errorExcution", res.error, res);
-                errorMessage.value = res.error;
-                document.getElementById("EditForm").reset();
+            console.log("res", res.data);
+            if (res.data.success) {
+                successMessage.value = t("pieces.modal.edit.success");
                 setTimeout(() => {
-                    errorMessage.value = null;
-                    newTitle.value = "";
-                }, 3000);
-            } else if (res.success) {
-                newTitle.value = "";
-                successMessage.value = res.message;
-                editModalActive.value = false;
-                document.getElementById("EditForm").reset();
-                setTimeout(() => {
+                    document.getElementById("EditForm").reset();
                     successMessage.value = null;
-                }, 3000);
+                    newTitle.value = "";
+                    editModalActive.value = false;
+                }, 1500);
             }
         })
         .catch((err) => {
-            console.log(err);
+            console.log("efef", err);
+            errorMessage.value = t("pieces.modal.existError");
+            setTimeout(() => {
+                errorMessage.value = null;
+                newTitle.value = "";
+            }, 1500);
         })
         .finally(() => {
             newTitle.value = "";
@@ -294,29 +313,39 @@ const confirmDelete = () => {
         :showModal="true"
     >
         <Form :validation-schema="schema" id="NewForm">
-            <!-- <div class="border border-gray-400 rounded-lg mx-10">
+            <div class="mb-3 pt-8 text-center flex justify-center">
+                <base-choose-button for="profile-picture" />
                 <input
-                    type="text"
-                    name="piece"
-                    placeholder=""
-                    class="w-full px-1 py-1 rounded-lg text-right focus:outline-none h-9"
-                    :value="newTitle"
-                    @input="handleChangePieceTitle"
+                    type="file"
+                    name="logo"
+                    id="profile-picture"
+                    ref="profilePicture"
+                    class="hidden"
+                    @change="handleFileChange"
+                    accept="image/*"
                 />
-            </div> -->
+            </div>
+            <div class="mb-3 pt-0 text-center mx-auto">
+                <img
+                    v-if="previewImage"
+                    :src="previewImage"
+                    class="w-1/4 h-2/4 mx-auto"
+                    alt="Profile Picture"
+                />
+            </div>
             <base-input
                 input-type="text"
                 name="piece"
                 @input="handleChangePieceTitle"
                 :value="newTitle"
                 :placeholder="t('pieces.modal.create.placeholder')"
-                class="w-full mb-6 font-readex text-base font-light focus:outline-none"
+                class="w-full mb-1 font-readex text-base font-light focus:outline-none"
             />
-            <div v-if="errorMessage">
+            <div v-if="errorMessage" class="text-right">
                 <p class="text-red-500 text-sm">{{ errorMessage }}</p>
             </div>
-            <div v-if="successMessage">
-                <p class="text-green-400 text-sm">{{ successMessage }}</p>
+            <div v-if="successMessage" class="text-right">
+                <p class="text-green-500 text-sm">{{ successMessage }}</p>
             </div>
         </Form>
     </card-box-modal>
@@ -324,43 +353,82 @@ const confirmDelete = () => {
     <card-box-modal
         v-model="editModalActive"
         :title="t('pieces.modal.edit.title')"
+        :button-label="t('common.update')"
         button="bg-main"
         has-cancel
         @confirm="confirmEdit"
+        :showModal="true"
     >
-        <Form :validation-schema="schema"  id="EditForm">
-            <div class="border border-gray-400 rounded-lg mx-10">
+        <Form :validation-schema="schema" id="EditForm">
+            <div class="mb-3 pt-5 text-center flex justify-center">
+                <base-choose-button for="profile-picture-edit" />
+                <!-- <input id="file-upload" type="file" style="display: none" /> -->
+                <input
+                    type="file"
+                    name="logo"
+                    id="profile-picture-edit"
+                    ref="profilePictureEdit"
+                    class="hidden"
+                    @change="handleFileEditChange"
+                    accept="image/*"
+                />
+            </div>
+            <div class="mb-3 pt-0 text-center mx-auto">
+                <img
+                    v-if="previewEditImage"
+                    :src="previewEditImage"
+                    class="w-1/4 h-2/4 mx-auto"
+                    alt="Profile Picture"
+                />
+                <div v-else>
+                    <div v-if="selectedPiece">
+                        <img
+                            v-if="selectedPiece.image!=null"
+                            :src="
+                                `/storage/tenant` +
+                                subDomain +
+                                `/app/public/` +
+                                selectedPiece.image
+                            "
+                            class="w-1/4 h-2/4 mx-auto"
+                            alt="Profile Picture"
+                        />
+                        <img
+                            v-else
+                            src="/images/home/default-piece.png"
+                            class="w-1/4 h-2/4 mx-auto"
+                            alt="Profile Picture"
+                        />
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="border border-gray-400 rounded-lg mx-5">
                 <input
                     type="text"
                     placeholder=""
                     class="w-full px-1 py-1 rounded-lg text-right focus:outline-none h-9"
                     :value="selectedPiece?.title"
                     @input="handleChangePieceTitle"
-                /></div>
-            <!-- <base-input
-                input-type="text"
-                name="piece"
-                @input="handleChangePieceTitle"
-                :value="selectedPiece?.title"
-                :placeholder="t('pieces.modal.create.placeholder')"
-                class="w-full mb-6 font-readex text-base font-light focus:outline-none"
-            /> -->
-            <div v-if="errorMessage">
+                />
+            </div>
+            <div v-if="errorMessage" class="text-right mx-5">
                 <p class="text-red-500 text-sm">{{ errorMessage }}</p>
             </div>
-            <div v-if="successMessage">
-                <p class="text-green-400 text-sm">{{ successMessage }}</p>
+            <div v-if="successMessage" class="text-right mx-5">
+                <p class="text-green-500 text-sm">{{ successMessage }}</p>
             </div>
         </Form>
     </card-box-modal>
     <card-box-modal
         v-model="isModalDangerActive"
         :title="t('pieces.modal.delete.title')"
+        :button-label="t('common.delete')"
         button="bg-main"
         has-cancel
         @confirm="confirmDelete"
     >
-        <p>Are you sure?</p>
+        <p>{{ t("users.modal.delete.confirm") }}</p>
     </card-box-modal>
     <div v-if="checkedRows.length" class="p-3 bg-gray-100/50 dark:bg-slate-800">
         <span
@@ -424,23 +492,41 @@ const confirmDelete = () => {
                         />
                     </BaseButtons>
                 </td>
-                <td data-label="Created" class="whitespace-nowrap">
+                <td
+                    :data-label="t('pieces.table.date')"
+                    class="whitespace-nowrap"
+                >
                     <small class="text-gray-500 dark:text-slate-400">{{
                         format(new Date(piece.createdAt), "dd-MM-yyyy HH:mm")
                     }}</small>
                 </td>
-                <td data-label="Title">
+                <td :data-label="t('pieces.table.image')">
+                    <div class="flex justify-end">
+                        <img
+                            v-if="piece.image"
+                            :src="
+                                `/storage/tenant` +
+                                subDomain +
+                                `/app/public/` +
+                                piece.image
+                            "
+                            class="h-[50px]"
+                            alt="piece image"
+                        />
+                        <img
+                            v-else
+                            src="/images/home/default-piece.png"
+                            class="h-[50px]"
+                            alt="piece image1"
+                        />
+                    </div>
+                </td>
+                <td :data-label="t('pieces.table.piece')">
                     {{ piece.title }}
                 </td>
-                <td data-label="PieceId">
+                <td :data-label="t('pieces.table.pieceNumber')">
                     {{ piece.id }}
                 </td>
-                <!-- <td class="border-b-0 lg:w-6 before:hidden">
-          <UserAvatar
-            :username="client.name"
-            class="w-24 h-24 mx-auto lg:w-6 lg:h-6"
-          />
-        </td> -->
                 <TableCheckboxCell
                     v-if="checkable"
                     @checked="checked($event, client)"

@@ -80,15 +80,9 @@ class UpdateUsersAction {
       // dd($data['oldPassword']);
       $existingUser = User::where('username', $data['newUsername'])->first();
 
-      
-      // if ($existingUser) {
-
-      //   // dd($data['newUsername']);
-      //   return ['error' => 'Provided User exist.'];
-      // } else {
         if($data['oldPassword']){
             if (!Hash::check($data['oldPassword'], $user->password)) {
-            return ['error' => 'The provided password does not match our records.'];
+            return ['pwdError' => 'The provided password does not match our records.'];
             }
               // Update the password
               $user->password = Hash::make($data['password']);
@@ -102,7 +96,7 @@ class UpdateUsersAction {
           if ($existingUser) {
 
             // dd($data['newUsername']);
-            return ['error' => 'Provided User exist.'];
+            return ['userError' => 'Provided User exist.'];
           } else {
             $user->name=$data['newUsername'];
             $user->username=$data['newUsername'];

@@ -35,6 +35,70 @@ class GetStatstices extends Api
             if($query_data == "month"){
                 $days_of_month = date('t',strtotime('today'));
                 $month_total_array = array();
+                $month_statistic_data = Service_piece_invoices::selectRaw('service_piece_id, SUM(number_of_piece) AS number_of_piece')
+                                                                ->groupBy('service_piece_id')
+                                                                ->whereYear('created_at', date('Y'))
+                                                                ->whereMonth('created_at', date('m'))
+                                                                ->get();
+
+                //Best selling services-start
+                $yearData=date('Y');
+                
+                $year_service_count = array();
+                $month_service_total_count = array();
+                $services = Service::all();
+                foreach ($services as $service) {
+                    $total_array = array();
+                    $total = 0;
+                    for ($k = 1; $k <= 12; $k++) {
+                        $n = $k-1;
+                        $from_month_data=date_format(date_create($yearData.'-'.$k.'-'.'1'),'Y-m-d');
+                        $last_day=date_format(date_create($yearData.'-12-31'),'Y-m-d');
+                        if($k==12){
+                            $service_piece_invoice_data = Service_piece_invoices::whereDate('created_at','>=', $from_month_data)
+                                                                            ->whereDate('created_at','<=', $last_day)->get();
+                        }else{
+                            $to_month_data=date_format(date_create($yearData.'-'.($k+1).'-'.'1'),'Y-m-d');
+                            $service_piece_invoice_data = Service_piece_invoices::whereDate('created_at','>=', $from_month_data)
+                                                                            ->whereDate('created_at','<', $to_month_data)->get();
+                        }
+                        $subTotal = 0;
+                        foreach ($service_piece_invoice_data as $item_data) {
+                            $service_piece_data = Service_piece::where('id',$item_data->service_piece_id)->first();   //service_piece count according to the year
+                            if($service->id == $service_piece_data->service_id){
+                                $subTotal+=1;
+                            }
+                        }
+                        array_push($total_array, $subTotal);
+                    }
+                    foreach ($month_statistic_data as $item) {
+                        for ($j = 1; $j <= $days_of_month; $j++) {
+                            $monthData=date('m');
+                            $fromDate=date_format(date_create($yearData.'-'.$monthData.'-'.$j),'Y-m-d');
+                            $month_service_piece_invoice_data = Service_piece_invoices::whereDate('created_at', $fromDate)
+                                                                                    ->where('service_piece_id',$item->service_piece_id)->get();
+                            $total_price = 0;
+
+                            foreach ($month_service_piece_invoice_data as $item_data) {
+                                $service_piece_data = Service_piece::where('id',$item_data->service_piece_id)->first();   //service_piece count according to the year
+                                if($service->id == $service_piece_data->service_id){
+                                    $total+=1;
+                                }
+                            }
+                        }
+                    }
+                    $item_array = array(
+                        'total_arr'=>$total_array,
+                        'total'=>$total,
+                        'service'=>$service->services_title,
+                    );
+                    array_push($year_service_count, $item_array);
+                    array_push($month_service_total_count, $item_array);
+                }
+                array_multisort(array_column($year_service_count, 'total'), SORT_DESC, $year_service_count);
+                array_multisort(array_column($month_service_total_count, 'total'), SORT_DESC, $month_service_total_count);
+                array_splice($year_service_count, 5);
+                //Best selling services-end
 
                 for ($j = 1; $j <= $days_of_month; $j++) {
                     $yearData=date('Y');
@@ -50,11 +114,7 @@ class GetStatstices extends Api
                     $month_total_array[$j] = $total_price;
                 }
 
-                $month_statistic_data = Service_piece_invoices::selectRaw('service_piece_id, SUM(number_of_piece) AS number_of_piece')
-                                                                ->groupBy('service_piece_id')
-                                                                ->whereYear('created_at', date('Y'))
-                                                                ->whereMonth('created_at', date('m'))
-                                                                ->get();
+                
                 $month_statistic_array = array();
 
                 foreach ($month_statistic_data as $item) {
@@ -155,6 +215,8 @@ class GetStatstices extends Api
                     'most_services' => $month_statistic_array,
                     'most_purchased_customers'=>$month_customer_array,
                     'most_serviced_items'=>$month_cloth_array,
+                    'service_count' => $year_service_count,
+                    'total_service_count' => $month_service_total_count,
                     'query' => 'month',
                 );
                 return $cards ;
@@ -162,6 +224,52 @@ class GetStatstices extends Api
             } else if ($query_data == "year"){
                 $year_total_array = array();
                 $yearData=date('Y');
+
+                //Best selling services-start
+                $year_service_count = array();
+                $year_service_total_count = array();
+                $services = Service::all();
+                foreach ($services as $service) {
+                    $total_array = array();
+                    $total = 0;
+                    for ($k = 1; $k <= 12; $k++) {
+                        $n = $k-1;
+                        $from_month_data=date_format(date_create($yearData.'-'.$k.'-'.'1'),'Y-m-d');
+                        $last_day=date_format(date_create($yearData.'-12-31'),'Y-m-d');
+                        if($k==12){
+                            $service_piece_invoice_data = Service_piece_invoices::whereDate('created_at','>=', $from_month_data)
+                                                                            ->whereDate('created_at','<=', $last_day)->get();
+                        }else{
+                            $to_month_data=date_format(date_create($yearData.'-'.($k+1).'-'.'1'),'Y-m-d');
+                            $service_piece_invoice_data = Service_piece_invoices::whereDate('created_at','>=', $from_month_data)
+                                                                            ->whereDate('created_at','<', $to_month_data)->get();
+                        }
+                        $subTotal = 0;
+                        foreach ($service_piece_invoice_data as $item_data) {
+                            $service_piece_data = Service_piece::where('id',$item_data->service_piece_id)->first();   //service_piece count according to the year
+                            if($service->id == $service_piece_data->service_id){
+                                $subTotal+=1;
+                                $total+=1;
+                            }
+                        }
+                        array_push($total_array, $subTotal);
+                    }
+                    $item_array = array(
+                        'total_arr'=>$total_array,
+                        'total'=>$total,
+                        'service'=>$service->services_title,
+                        // 'service'=>$service->first(),
+                    );
+                    array_push($year_service_count, $item_array);
+                    array_push($year_service_total_count, $item_array);
+                }
+                array_multisort(array_column($year_service_count, 'total'), SORT_DESC, $year_service_count);
+                array_multisort(array_column($year_service_total_count, 'total'), SORT_DESC, $year_service_total_count);
+                array_splice($year_service_count, 5);
+                //Best selling services-end
+
+
+                // dd($year_service_count);
                 for ($k = 1; $k <= 12; $k++) {
                     $n = $k-1;
                     $from_month_data=date_format(date_create($yearData.'-'.$k.'-'.'1'),'Y-m-d');
@@ -181,7 +289,8 @@ class GetStatstices extends Api
                         $service_piece_data=Service_piece::where('id',$item->service_piece_id)->first();
                         $total_price+=$item->number_of_piece*$service_piece_data['price'];
                     }  
-                    $year_total_array[$n]=$total_price;                 
+                    $year_total_array[$n]=$total_price;
+                                 
 
                 }
 
@@ -192,38 +301,38 @@ class GetStatstices extends Api
                 $year_statistic_array = array();
 
                 foreach ($year_statistic_data as $item) {
-                $sub_total = array();
-                for ($k=1; $k<=12; $k++) {
-                    $from_month_data=date_format(date_create($yearData.'-'.$k.'-'.'1'),'Y-m-d');
-                    $last_day=date_format(date_create($yearData.'-12-31'),'Y-m-d');
-                    if($k==12){
-                        $year_service_piece_invoice_data = Service_piece_invoices::whereDate('created_at','>=', $from_month_data)
-                                                                                    ->whereDate('created_at','<=', $last_day)
-                                                                                    ->where('service_piece_id', $item->service_piece_id)->get();
-                    }else{
-                        $to_month_data=date_format(date_create($yearData.'-'.($k+1).'-'.'1'),'Y-m-d');
-                        $year_service_piece_invoice_data = Service_piece_invoices::whereDate('created_at','>=', $from_month_data)
-                                                                                    ->whereDate('created_at','<', $to_month_data)
-                                                                                    ->where('service_piece_id', $item->service_piece_id)->get();
+                    $sub_total = array();
+                    for ($k=1; $k<=12; $k++) {
+                        $from_month_data=date_format(date_create($yearData.'-'.$k.'-'.'1'),'Y-m-d');
+                        $last_day=date_format(date_create($yearData.'-12-31'),'Y-m-d');
+                        if($k==12){
+                            $year_service_piece_invoice_data = Service_piece_invoices::whereDate('created_at','>=', $from_month_data)
+                                                                                        ->whereDate('created_at','<=', $last_day)
+                                                                                        ->where('service_piece_id', $item->service_piece_id)->get();
+                        }else{
+                            $to_month_data=date_format(date_create($yearData.'-'.($k+1).'-'.'1'),'Y-m-d');
+                            $year_service_piece_invoice_data = Service_piece_invoices::whereDate('created_at','>=', $from_month_data)
+                                                                                        ->whereDate('created_at','<', $to_month_data)
+                                                                                        ->where('service_piece_id', $item->service_piece_id)->get();
+                        }
+                        $total_price = 0;
+                        foreach ($year_service_piece_invoice_data as $item_data) {
+                            $service_piece_data = Service_piece::where('id',$item_data->service_piece_id)->first();
+                            $total_price += $item_data->number_of_piece * $service_piece_data['price'];
+                        }
+                        array_push($sub_total, $total_price);
                     }
-                    $total_price = 0;
-                    foreach ($year_service_piece_invoice_data as $item_data) {
-                        $service_piece_data = Service_piece::where('id',$item_data->service_piece_id)->first();
-                        $total_price += $item_data->number_of_piece * $service_piece_data['price'];
-                    }
-                    array_push($sub_total, $total_price);
-                }
-                $service_piece_data = Service_piece::where('id', $item->service_piece_id)->first();
-                $piece_data = Piece::where('id',$service_piece_data['piece_id'])->first();
-                $service_data = Service::where('id',$service_piece_data['service_id'])->first();
-                $item_array = array(
-                    'service_piece_id'=>$item->service_piece_id,
-                    'total'=>$item->number_of_piece*$service_piece_data['price'],
-                    'number_of_piece'=>$item->number_of_piece,
-                    'sub_total'=>$sub_total,
-                    'service_name'=>$service_data['services_title'],
-                    'piece_name'=>$piece_data['piece_title']);  
-                array_push($year_statistic_array, $item_array);
+                    $service_piece_data = Service_piece::where('id', $item->service_piece_id)->first();
+                    $piece_data = Piece::where('id',$service_piece_data['piece_id'])->first();
+                    $service_data = Service::where('id',$service_piece_data['service_id'])->first();
+                    $item_array = array(
+                        'service_piece_id'=>$item->service_piece_id,
+                        'total'=>$item->number_of_piece*$service_piece_data['price'],
+                        'number_of_piece'=>$item->number_of_piece,
+                        'sub_total'=>$sub_total,
+                        'service_name'=>$service_data['services_title'],
+                        'piece_name'=>$piece_data['piece_title']);  
+                    array_push($year_statistic_array, $item_array);
                 }
                 array_multisort(array_column($year_statistic_array, 'total'), SORT_DESC, $year_statistic_array);
                 array_splice($year_statistic_array, 3);
@@ -289,10 +398,74 @@ class GetStatstices extends Api
                     'most_services' => $year_statistic_array,
                     'most_purchased_customers' => $year_customer_array,
                     'most_serviced_items' => $year_cloth_array,
+                    'service_count' => $year_service_count,
+                    'total_service_count' => $year_service_total_count,
                     'query' => 'year',
                 );
                 return $cards ;
             } else {
+
+                $month_total_array = array();
+                $today_statistic_data = Service_piece_invoices::selectRaw('service_piece_id, SUM(number_of_piece) AS number_of_piece')
+                                                                ->groupBy('service_piece_id')
+                                                                ->whereDate('created_at', date('Y-m-d'))
+                                                                ->get();
+
+                //Best selling services-start
+                $yearData=date('Y');
+                
+                $year_service_count = array();
+                $today_service_total_count = array();
+                $services = Service::all();
+                foreach ($services as $service) {
+                    $total_array = array();
+                    $total = 0;
+                    for ($k = 1; $k <= 12; $k++) {
+                        $n = $k-1;
+                        $from_month_data=date_format(date_create($yearData.'-'.$k.'-'.'1'),'Y-m-d');
+                        $last_day=date_format(date_create($yearData.'-12-31'),'Y-m-d');
+                        if($k==12){
+                            $service_piece_invoice_data = Service_piece_invoices::whereDate('created_at','>=', $from_month_data)
+                                                                            ->whereDate('created_at','<=', $last_day)->get();
+                        }else{
+                            $to_month_data=date_format(date_create($yearData.'-'.($k+1).'-'.'1'),'Y-m-d');
+                            $service_piece_invoice_data = Service_piece_invoices::whereDate('created_at','>=', $from_month_data)
+                                                                            ->whereDate('created_at','<', $to_month_data)->get();
+                        }
+                        $subTotal = 0;
+                        foreach ($service_piece_invoice_data as $item_data) {
+                            $service_piece_data = Service_piece::where('id',$item_data->service_piece_id)->first();   //service_piece count according to the year
+                            if($service->id == $service_piece_data->service_id){
+                                $subTotal=0;
+                            }
+                        }
+                        array_push($total_array, $subTotal);
+                    }
+                    foreach ($today_statistic_data as $item) {
+                            $today_service_piece_invoice_data = Service_piece_invoices::whereDate('created_at', date('Y-m-d'))
+                                                                                    ->where('service_piece_id',$item->service_piece_id)->get();
+                            $total_price = 0;
+
+                            foreach ($today_service_piece_invoice_data as $item_data) {
+                                $service_piece_data = Service_piece::where('id',$item_data->service_piece_id)->first();   //service_piece count according to the year
+                                if($service->id == $service_piece_data->service_id){
+                                    $total+=1;
+                                }
+                            }
+                    }
+                    $item_array = array(
+                        'total'=>$total,
+                        'service'=>$service->services_title,
+                        'total_arr'=>$total_array,
+                    );
+                    array_push($year_service_count, $item_array);
+                    array_push($today_service_total_count, $item_array);
+                }
+                array_multisort(array_column($year_service_count, 'total'), SORT_DESC, $year_service_count);
+                array_multisort(array_column($today_service_total_count, 'total'), SORT_DESC, $today_service_total_count);
+                array_splice($year_service_count, 5);
+                //Best selling services-end
+
                 $today_total_array = array();
                 for($i = 0; $i <= 22; $i = $i + 2){
                     $service_piece_invoice_data = Service_piece_invoices::whereDate('created_at', date('Y-m-d'))
@@ -393,6 +566,8 @@ class GetStatstices extends Api
                     'most_services' => $statistic_array,
                     'most_purchased_customers' => $today_customer_array,
                     'most_serviced_items' => $today_cloth_array,
+                    'service_count' => $year_service_count,
+                    'total_service_count' => $today_service_total_count,
                     'query' => 'day',
                 );
                 return $cards ;

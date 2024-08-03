@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed, watchEffect } from "vue";
 import { useI18n } from "vue-i18n";
 
 import CompanyLogoIcon from "@/assets/icons/company_logo.svg";
@@ -18,7 +18,22 @@ import {
     dispatchNotification,
 } from "../../components/Notification";
 
-const { t } = useI18n();
+const { t, locale } = useI18n();
+const LOCALES = [
+    {
+        label: "EN",
+        value: "en",
+    },
+    {
+        label: "AR",
+        value: "ar",
+    },
+];
+const selectedLocale = ref(locale.value);
+
+watchEffect(() => {
+    locale.value = LOCALES.find((l) => l.value === selectedLocale.value).value;
+});
 
 const showAnimator = ref(false);
 const errorMessage = ref(null);
@@ -28,7 +43,7 @@ const username = ref("");
 const authStore = useAuthStore();
 // Using yup to generate a validation schema
 // https://vee-validate.logaretm.com/v4/guide/validation#validation-schemas-with-yup
-const schema = Yup.object().shape({
+const schema1 = Yup.object().shape({
     username: Yup.string().min(6).required(),
     name: Yup.string().min(6).required(),
     phone: Yup.string().required(),
@@ -39,11 +54,37 @@ const schema = Yup.object().shape({
         .oneOf([Yup.ref("password")], "Passwords do not match"),
 });
 
+const schema = computed(() => {
+    const { t } = useI18n();
+    return Yup.object().shape({
+        email: Yup.string()
+            .email(t("validation.email"))
+            .matches(/^.+@.+\..+$/, t("validation.email"))
+            .required(t("validation.emailRequired")),
+        username: Yup.string()
+            .min(6, t("validation.username.min"))
+            .required(t("validation.username.required")),
+        name: Yup.string()
+            .min(6, t("validation.name.min"))
+            .required(t("validation.name.required")),
+        phone: Yup.string().required(t("validation.phone.required")),
+        password: Yup.string()
+            .min(8, t("validation.password.min"))
+            .required(t("validation.password.required")),
+        password_confirmation: Yup.string()
+            .required(t("validation.password_confirmation.required"))
+            .oneOf(
+                [Yup.ref("password")],
+                t("validation.password_confirmation.notMatch")
+            ),
+    });
+});
+
 const onSubmit = (values) => {
     console.log("originURL1", window.location.host);
     originURL.value = window.location.host;
     username.value = values.username;
-    console.log('username', values.username, values)
+    console.log("username", values.username, values);
     // Submit to API
     console.log(values); // { email: 'email@gmail.com' }
     errorMessage.value = null;
@@ -76,7 +117,11 @@ const onSubmit = (values) => {
         .catch((err) => {
             showAnimator.value = false;
             console.log(err);
-            errorMessage.value = err.response?.data?.message;
+            // errorMessage.value = err.response?.data?.message;
+            errorMessage.value = t("auth.login.error");
+            setTimeout(() => {
+                errorMessage.value = null;
+            }, 1500);
         });
 };
 </script>
@@ -84,6 +129,16 @@ const onSubmit = (values) => {
 <template>
     <div class="auth-layout-wrap bg-cover fixed w-screen h-screen">
         <div class="overlayer fixed w-screen h-screen overflow-scroll">
+            <div class="flex w-full justify-end pr-24 pt-3">
+                <select
+                    v-model="selectedLocale"
+                    class="border-none outline-none focus:outline-none"
+                >
+                    <option v-for="l in LOCALES" :value="l.value">
+                        {{ l.label }}
+                    </option>
+                </select>
+            </div>
             <div class="flex justify-center items-center w-full h-full">
                 <NotificationProvider>
                     <div
@@ -93,7 +148,7 @@ const onSubmit = (values) => {
                             <div class="grid grid-cols-12">
                                 <div class="col-span-12">
                                     <Form
-                                        class="flex flex-col gap-9"
+                                        class="flex flex-col gap-5"
                                         @submit="onSubmit"
                                         :validation-schema="schema"
                                     >
@@ -101,9 +156,7 @@ const onSubmit = (values) => {
                                             class="flex items-center justify-center"
                                         >
                                             <CompanyLogoIcon />
-                                            <h1 class="logo-text ml-2">
-
-                                            </h1>
+                                            <h1 class="logo-text ml-2"></h1>
                                         </div>
                                         <div>
                                             <base-input
@@ -113,7 +166,7 @@ const onSubmit = (values) => {
                                                 :placeholder="
                                                     t('auth.login.email')
                                                 "
-                                                class="w-full mb-6 font-readex text-base font-light"
+                                                class="w-full mb-3 font-readex text-base font-light"
                                             />
                                             <base-input
                                                 input-type="text"
@@ -122,7 +175,7 @@ const onSubmit = (values) => {
                                                 :placeholder="
                                                     t('auth.signup.name')
                                                 "
-                                                class="w-full mb-6 font-readex text-base font-light"
+                                                class="w-full mb-3 font-readex text-base font-light"
                                             />
                                             <base-input
                                                 input-type="text"
@@ -131,7 +184,7 @@ const onSubmit = (values) => {
                                                 :placeholder="
                                                     t('auth.signup.username')
                                                 "
-                                                class="w-full mb-6 font-readex text-base font-light"
+                                                class="w-full mb-3 font-readex text-base font-light"
                                             />
                                             <base-input
                                                 input-type="tel"
@@ -140,7 +193,7 @@ const onSubmit = (values) => {
                                                 :placeholder="
                                                     t('auth.signup.phoneNumber')
                                                 "
-                                                class="w-full mb-6 font-readex text-base font-light"
+                                                class="w-full mb-3 font-readex text-base font-light"
                                             />
                                             <base-input
                                                 input-type="password"
@@ -149,7 +202,7 @@ const onSubmit = (values) => {
                                                 :placeholder="
                                                     t('auth.login.password')
                                                 "
-                                                class="w-full font-readex text-base font-light mb-6"
+                                                class="w-full font-readex text-base font-light mb-3"
                                             />
                                             <base-input
                                                 input-type="password"
@@ -164,7 +217,7 @@ const onSubmit = (values) => {
                                             />
                                         </div>
                                         <div v-if="errorMessage">
-                                            <p class="text-red-500 text-sm">
+                                            <p class="text-red-500 text-sm text-right">
                                                 {{ errorMessage }}
                                             </p>
                                         </div>
@@ -185,7 +238,7 @@ const onSubmit = (values) => {
                                                 </span>
                                             </button>
                                             <router-link
-                                                class="flex px-6 py-3 justify-center items-center border border-[#ECF1F4] w-full rounded-lg mb-3 cursor-pointer"
+                                                class="flex px-6 py-3 justify-center items-center border border-[#ECF1F4] w-full rounded-lg cursor-pointer"
                                                 to="/login"
                                             >
                                                 <span

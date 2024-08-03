@@ -2,7 +2,10 @@
 namespace App\Endpoints\Services;
 
 use App\Actions\Api;
+use App\Models\Invoice;
 use App\Models\Service;
+use App\Models\Service_piece;
+use App\Models\Service_piece_invoices;
 
 use Throwable;
 
@@ -49,6 +52,25 @@ class DeleteServiceAction {
     try {
       //code...
       $service = Service::find($id);
+
+      $service_pieces = Service_piece::where('service_id', $service->id)->get();
+      foreach ($service_pieces as $service_piece) {
+        $service_piece_invoices=Service_piece_invoices::where('service_piece_id', $service_piece->id)->get();
+        foreach ($service_piece_invoices as $service_piece_invoice) {
+          $service_piece_invoice->delete();
+        }
+        foreach ($service_piece_invoices as $service_piece_invoice) {
+          $invoice = Invoice::find($service_piece_invoice->invoice_id);
+          if ($invoice) {
+              $invoice->delete();
+          }
+        }
+      }
+
+      foreach ($service_pieces as $service_piece) {
+        $service_piece->delete();
+      }
+
       $service->delete();
       return $service;
      

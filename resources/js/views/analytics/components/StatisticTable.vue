@@ -32,7 +32,7 @@ const props = defineProps({
       class="flex items-center  mb-4"
       :class="dataType === 'invoices' ? 'justify-between' : 'justify-end'"
     >
-      <button v-if="dataType === 'invoices'" type="button" class="underline text-main">
+      <button  v-if="dataType === 'invoices'" type="button" class="underline text-main">
         {{ t('analytics.chart.viewAll') }}
       </button>
       <p class="font-readex text-base text-[#0D0D0D]">
@@ -49,10 +49,10 @@ const props = defineProps({
       <tbody>
         <tr v-for="(row, index) in props.tableOptions.data" :key="index">
           <td data-label="amount">
-            {{ (props.dataType === 'invoices' ? row.amount : row.amount) + ' ر.س' }} 
+            {{ props.dataType === 'invoices' ? row.amount : row.amount + t('analytics.chart.unit') }} 
           </td>
           <td data-label="invoice">
-            {{ props.dataType === 'invoices' ? row.invoiceNumber : row.name }}
+            {{ props.dataType === 'invoices' ? row.service : row.name }}
           </td>
         </tr>
       </tbody>

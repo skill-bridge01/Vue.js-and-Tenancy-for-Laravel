@@ -40,8 +40,8 @@ const emits = defineEmits({});
 const isNewModalActive = ref(false);
 const showNewModal = () => {
     document.getElementById("NewForm").reset();
-    isChecked.value=false;
-    isShown.value=false;
+    isChecked.value = false;
+    isShown.value = false;
     isNewModalActive.value = true;
 };
 
@@ -240,31 +240,26 @@ const confirm = () => {
     servicesStore
         .create(newTitle.value, isCheckedNum.value, isShownNum.value)
         .then((res) => {
-            // console.log(res);
-            // if (res) {
-            //     newTitle.value = "";
-            // }
             if (res.error) {
                 console.log("ServiceCreateError", res.error);
                 newTitle.value = "";
                 isChecked.value = false;
                 isShown.value = false;
                 document.getElementById("NewForm").reset();
-                errorMessage.value = res.error;
+                errorMessage.value = t("services.modal.existError");
                 setTimeout(() => {
                     errorMessage.value = null;
-                    
-                }, 500);
+                }, 1500);
             } else if (res.success) {
                 newTitle.value = "";
                 isChecked.value = false;
                 isShown.value = false;
                 document.getElementById("NewForm").reset();
-                successMessage.value = res.message;
+                successMessage.value = t("services.modal.create.success");
                 setTimeout(() => {
                     successMessage.value = null;
                     isNewModalActive.value = false;
-                }, 500);
+                }, 1500);
             }
         })
         .catch((err) => {
@@ -296,15 +291,26 @@ const confirmEdit = () => {
             isShownNum.value
         )
         .then((res) => {
-            console.log(res);
-            if (res) {
-                newTitle.value = "";
-                isChecked.value = false;
-                isShown.value = false;
+            console.log('res123', res);
+            if (res.data.success) {
+                successMessage.value = t("services.modal.edit.success");
+                setTimeout(() => {
+                    // document.getElementById("EditForm").reset();
+                    successMessage.value = null;
+                    editModalActive.value = false;
+                    newTitle.value = "";
+                    isChecked.value = false;
+                    isShown.value = false;
+                }, 1500);
             }
         })
         .catch((err) => {
             console.log(err);
+            errorMessage.value = t("services.modal.existError");
+            setTimeout(() => {
+                errorMessage.value = null;
+                newTitle.value = "";
+            }, 1500);
         })
         .finally(() => {
             newTitle.value = "";
@@ -352,29 +358,23 @@ const confirmDelete = () => {
                 @input="handleChangeServiceTitle"
                 :value="newTitle"
                 :placeholder="t('services.modal.create.placeholder')"
-                class="w-full mb-6 font-readex text-base font-light focus:outline-none"
+                class="w-full mt-5 mb-1 font-readex text-base font-light focus:outline-none"
             />
-            <div class="flex justify-center pt-3 items-center gap-10">
-                <!-- <BaseCheckbox label="Check" ></BaseCheckbox>
-          <BaseCheckbox label="Show"></BaseCheckbox> -->
-                <div class="flex items-center gap-2">
-                    <input type="checkbox" v-model="isChecked" />
-                    <label>Check</label>
-                </div>
-
-                <div class="flex items-center gap-2">
-                    <input type="checkbox" v-model="isShown" />
-                    <label>Show</label>
-                </div>
-                <!-- <input type="checkbox" id="checkbox1" v-model="isChecked" /> -->
-                <!-- <label for="checkbox">{{ isShown }}</label> -->
-                <!-- <TableCheckboxCell  @checked="checked($event, client)" /> -->
-            </div>
-            <div v-if="errorMessage">
+            <div v-if="errorMessage" class="text-right">
                 <p class="text-red-500 text-sm">{{ errorMessage }}</p>
             </div>
-            <div v-if="successMessage">
-                <p class="text-green-400 text-sm">{{ successMessage }}</p>
+            <div v-if="successMessage" class="text-right">
+                <p class="text-green-500 text-sm">{{ successMessage }}</p>
+            </div>
+            <div class="flex justify-center pt-3 items-center gap-10">
+                <div class="flex items-center gap-2">
+                    <input type="checkbox" v-model="isChecked" />
+                    <label>{{ t("common.check") }}</label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <input type="checkbox" v-model="isShown" />
+                    <label>{{ t("common.show") }}</label>
+                </div>
             </div>
         </Form>
     </card-box-modal>
@@ -383,10 +383,12 @@ const confirmDelete = () => {
         v-model="editModalActive"
         :title="t('services.modal.edit.title')"
         button="bg-main"
+        :button-label="t('common.update')"
         has-cancel
         @confirm="confirmEdit"
+        :showModal="true"
     >
-        <div class="border border-gray-400 rounded-lg mx-10">
+        <div class="border border-gray-400 rounded-lg mx-5">
             <input
                 type="text"
                 placeholder=""
@@ -395,30 +397,32 @@ const confirmDelete = () => {
                 @input="handleChangeServiceTitle"
             />
         </div>
+        <div v-if="errorMessage" class="text-right mx-5">
+            <p class="text-red-500 text-sm">{{ errorMessage }}</p>
+        </div>
+        <div v-if="successMessage" class="text-right mx-5">
+            <p class="text-green-500 text-sm">{{ successMessage }}</p>
+        </div>
         <div class="flex justify-center pt-3 items-center gap-10">
-            <!-- <BaseCheckbox label="Check" ></BaseCheckbox>
-          <BaseCheckbox label="Show"></BaseCheckbox> -->
             <div class="flex items-center gap-2">
                 <input type="checkbox" v-model="isChecked" />
-                <label>Check</label>
+                <label>{{ t("common.check") }}</label>
             </div>
-
             <div class="flex items-center gap-2">
-                <input type="checkbox" v-model="isShown" /> <label>Show</label>
+                <input type="checkbox" v-model="isShown" />
+                <label>{{ t("common.show") }}</label>
             </div>
-            <!-- <input type="checkbox" id="checkbox1" v-model="isChecked" /> -->
-            <!-- <label for="checkbox">{{ isShown }}</label> -->
-            <!-- <TableCheckboxCell  @checked="checked($event, client)" /> -->
         </div>
     </card-box-modal>
     <card-box-modal
         v-model="isModalDangerActive"
         :title="t('services.modal.delete.title')"
+        :button-label="t('common.delete')"
         button="bg-main"
         has-cancel
         @confirm="confirmDelete"
     >
-        <p>Are you sure?</p>
+        <p>{{ t("users.modal.delete.confirm") }}</p>
     </card-box-modal>
     <div v-if="checkedRows.length" class="p-3 bg-gray-100/50 dark:bg-slate-800">
         <span
@@ -482,25 +486,25 @@ const confirmDelete = () => {
                         />
                     </BaseButtons>
                 </td>
-                <td data-label="Created" class="whitespace-nowrap">
+                <td :data-label="t('services.table.date')" class="whitespace-nowrap">
                     <small class="text-gray-500 dark:text-slate-400">{{
                         format(new Date(service.createdAt), "dd-MM-yyyy HH:mm")
                     }}</small>
                 </td>
-                <td data-label="Title">
+                <td :data-label="t('services.table.checked')">
                     {{ service.isChecked ? "true" : "false" }}
                     <!-- {{ service.isChecked ? <input type="checkbox" checked/> : <input type="checkbox" /> }} -->
                     <!-- <input type="checkbox" {{ service.isChecked ? 'checked' : '' }} /> -->
                     <!-- <input type="checkbox" checked={service.isChecked} /> -->
                 </td>
-                <td data-label="Title">
+                <td :data-label="t('services.table.shown')">
                     {{ service.isShown ? "true" : "false" }}
                 </td>
-                <td data-label="Title">
+                <td :data-label="t('services.table.service')">
                     {{ service.title }}
                 </td>
 
-                <td data-label="PieceId">
+                <td :data-label="t('services.table.serviceNumber')">
                     {{ service.id }}
                 </td>
 

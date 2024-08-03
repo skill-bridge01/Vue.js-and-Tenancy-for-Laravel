@@ -99,7 +99,7 @@ watchEffect(() => {
                 item.label = t("users.table.actions");
                 break;
             case "createdAt":
-                item.label = t("users.table.date");
+                item.label = t("users.table.created");
                 break;
             case "email":
                 item.label = t("users.table.email");
@@ -108,7 +108,7 @@ watchEffect(() => {
                 item.label = t("users.table.username");
                 break;
             case "id":
-                item.label = t("users.table.Number");
+                item.label = t("users.table.userId");
                 break;
             default:
                 break;
@@ -116,16 +116,45 @@ watchEffect(() => {
     });
 });
 
-const schema = Yup.object().shape({
-    email: Yup.string().email(),
-    username: Yup.string().min(6).required(),
-    password: Yup.string().min(8).required(),
-    password_confirmation: Yup.string()
-        .required()
-        .oneOf([Yup.ref("password")], "Passwords do not match"),
+const schema = computed(() => {
+    const { t } = useI18n();
+    return Yup.object().shape({
+        email: Yup.string().email(t("validation.email")).matches(/^.+@.+\..+$/, t("validation.email")),
+        username: Yup.string()
+            .min(6, t("validation.username.min"))
+            .required(t("validation.username.required")),
+        password: Yup.string()
+            .min(8, t("validation.password.min"))
+            .required(t("validation.password.required")),
+        password_confirmation: Yup.string()
+            .required(t("validation.password_confirmation.required"))
+            .oneOf(
+                [Yup.ref("password")],
+                t("validation.password_confirmation.notMatch")
+            ),
+    });
 });
 
-const schema1 = Yup.object().shape({
+const schema1 = computed(() => {
+    const { t } = useI18n();
+    return Yup.object().shape({
+        // username: Yup.string().min(6, t("validation.username.min")).required(t("validation.username.required")),
+        old_password: Yup.string()
+            .min(8, t("validation.old_password.min"))
+            .required(t("validation.old_password.required")),
+        password: Yup.string()
+            .min(8, t("validation.password.min"))
+            .required(t("validation.password.required")),
+        password_confirmation: Yup.string()
+            .required(t("validation.password_confirmation.required"))
+            .oneOf(
+                [Yup.ref("password")],
+                t("validation.password_confirmation.notMatch")
+            ),
+    });
+});
+
+const schema2 = Yup.object().shape({
     // username: Yup.string().min(6).required(),
     old_password: Yup.string().min(8),
     password: Yup.string().min(8),
@@ -271,25 +300,26 @@ const confirm = () => {
                 console.log("errorExcution", res.error, res);
 
                 showAnimator.value = false;
-                errorMessage.value = res.error;
+                // errorMessage.value = res.error;
+                errorMessage.value =  t('users.api.create.error');
                 document.getElementById("NewForm").reset();
                 setTimeout(() => {
                     errorMessage.value = null;
                     newEmail.value = "";
                     newUsername.value = "";
                     newPassword.value = "";
-                }, 1000);
+                }, 2000);
             } else if (res.success) {
                 newEmail.value = "";
                 newUsername.value = "";
                 newPassword.value = "";
                 document.getElementById("NewForm").reset();
                 showAnimator.value = false;
-                successMessage.value = res.message;
+                successMessage.value = t('users.api.create.success');
                 setTimeout(() => {
                     successMessage.value = null;
                     isNewModalActive.value = false;
-                }, 1000);
+                }, 2000);
             }
         })
         .catch((err) => {
@@ -309,6 +339,7 @@ const confirm = () => {
 const confirmEdit = () => {
     console.log("ID");
     errorMessage.value = null;
+    showAnimator.value = true;
     console.log(
         "ID",
         selectedService.value.username,
@@ -329,29 +360,40 @@ const confirmEdit = () => {
             )
             .then((res) => {
                 console.log("res", res);
-                if (res.error) {
-                    console.log("errorExcution", res.error, res);
-                    errorMessage.value = res.error;
+                if (res.pwdError) {
+                    showAnimator.value = false;
+                    console.log("errorExcution", res.pwdError);
+                    errorMessage.value = t('users.api.update.pwdError');
                     setTimeout(() => {
                         errorMessage.value = null;
-                    }, 1000);
+                    }, 2000);
+                } else if (res.userError) {
+                    showAnimator.value = false;
+                    console.log("errorExcution", res.userError);
+                    errorMessage.value = t('users.api.update.userError');
+                    setTimeout(() => {
+                        errorMessage.value = null;
+                    }, 2000);
                 } else if (res.success) {
+                    showAnimator.value = false;
                     oldPassword.value = "";
                     updatedUsername.value = "";
                     newPassword.value = "";
                     newRepassword.value = "";
 
-                    successMessage.value = res.message;
+                    successMessage.value = t('users.api.update.success');
                     setTimeout(() => {
                         successMessage.value = null;
                         editModalActive.value = false;
-                    }, 1000);
+                    }, 2000);
                 }
             })
             .catch((err) => {
+                showAnimator.value = false;
                 console.log("err", err);
             })
             .finally(() => {
+                showAnimator.value = false;
                 oldPassword.value = "";
                 // updatedUsername.value = "";
                 newPassword.value = "";
@@ -362,25 +404,36 @@ const confirmEdit = () => {
             .edit1(selectedService.value.id, updatedUsername.value)
             .then((res) => {
                 console.log("res", res);
-                if (res.error) {
-                    console.log("errorExcution", res.error, res);
-                    errorMessage.value = res.error;
+                if (res.pwdError) {
+                    showAnimator.value = false;
+                    console.log("errorExcution", res.pwdError);
+                    errorMessage.value = t('users.api.update.pwdError');
                     setTimeout(() => {
                         errorMessage.value = null;
-                    }, 1000);
+                    }, 2000);
+                } else if (res.userError) {
+                    showAnimator.value = false;
+                    console.log("errorExcution", res.userError);
+                    errorMessage.value = t('users.api.update.userError');
+                    setTimeout(() => {
+                        errorMessage.value = null;
+                    }, 2000);
                 } else if (res.success) {
+                    showAnimator.value = false;
                     updatedUsername.value = "";
-                    successMessage.value = res.message;
+                    successMessage.value = t('users.api.update.success');
                     setTimeout(() => {
                         successMessage.value = null;
                         editModalActive.value = false;
-                    }, 1000);
+                    }, 2000);
                 }
             })
             .catch((err) => {
+                showAnimator.value = false;
                 console.log("err", err);
             })
             .finally(() => {
+                showAnimator.value = false;
                 updatedUsername.value = "";
             });
     }
@@ -408,7 +461,7 @@ const onSubmit = (values) => {
 <template>
     <card-box-modal
         v-model="isNewModalActive"
-        title="Creat a new user"
+        :title="t('users.modal.create.title')"
         :button-label="t('common.save')"
         button="bg-main"
         has-cancel
@@ -453,25 +506,35 @@ const onSubmit = (values) => {
                 :placeholder="t('auth.signup.confirmPassword')"
                 class="w-full font-readex text-base font-light"
             />
-            <div v-if="errorMessage">
+            <div v-if="errorMessage" class="text-right">
                 <p class="text-red-500 text-sm">{{ errorMessage }}</p>
             </div>
-            <div v-if="successMessage">
-                <p class="text-green-400 text-sm">{{ successMessage }}</p>
+            <div v-if="successMessage" class="text-right">
+                <p class="text-green-500 text-sm">{{ successMessage }}</p>
             </div>
             <div class="mt-4">
-                <BaseButtons type="justify-start">
-                    <BaseButton
-                        :label="t('common.save')"
-                        color="bg-main"
-                        type="submit"
+                <div v-if="!showAnimator">
+                    <BaseButtons type="justify-start">
+                        <BaseButton
+                            :label="t('common.save')"
+                            color="bg-main"
+                            type="submit"
+                        />
+                        <BaseButton
+                            :label="t('modal.logout.back')"
+                            color="bg-main"
+                            @click="isNewModalActive = !isNewModalActive"
+                        />
+                    </BaseButtons>
+                </div>
+                <div class="flex justify-center pt-4 pb-4" v-else>
+                    <hollow-dots-spinner
+                        :animation-duration="1000"
+                        :dot-size="15"
+                        :dots-num="3"
+                        color="#4BC49A"
                     />
-                    <BaseButton
-                        :label="t('modal.logout.back')"
-                        color="bg-main"
-                        @click="isNewModalActive = !isNewModalActive"
-                    />
-                </BaseButtons>
+                </div>
             </div>
         </Form>
     </card-box-modal>
@@ -523,7 +586,7 @@ const onSubmit = (values) => {
                 :placeholder="t('account.newPassword')"
                 class="w-full font-readex text-base font-light mb-6"
             />
-            
+
             <base-input
                 input-type="password"
                 name="password_confirmation"
@@ -533,25 +596,35 @@ const onSubmit = (values) => {
                 :placeholder="t('account.confirmPassword')"
                 class="w-full font-readex text-base font-light"
             />
-            <div v-if="errorMessage">
+            <div v-if="errorMessage" class="text-right">
                 <p class="text-red-500 text-sm">{{ errorMessage }}</p>
             </div>
-            <div v-if="successMessage">
-                <p class="text-green-400 text-sm">{{ successMessage }}</p>
+            <div v-if="successMessage" class="text-right">
+                <p class="text-green-500 text-sm">{{ successMessage }}</p>
             </div>
             <div class="mt-4">
-                <BaseButtons type="justify-start">
-                    <BaseButton
-                        :label="t('common.update')"
-                        color="bg-main"
-                        type="submit"
+                <div v-if="!showAnimator">
+                    <BaseButtons type="justify-start">
+                        <BaseButton
+                            :label="t('common.update')"
+                            color="bg-main"
+                            type="submit"
+                        />
+                        <BaseButton
+                            :label="t('modal.logout.back')"
+                            color="bg-main"
+                            @click="editModalActive = !editModalActive"
+                        />
+                    </BaseButtons>
+                </div>
+                <div class="flex justify-center pt-4 pb-4" v-else>
+                    <hollow-dots-spinner
+                        :animation-duration="1000"
+                        :dot-size="15"
+                        :dots-num="3"
+                        color="#4BC49A"
                     />
-                    <BaseButton
-                        :label="t('modal.logout.back')"
-                        color="bg-main"
-                        @click="editModalActive = !editModalActive"
-                    />
-                </BaseButtons>
+                </div>
             </div>
         </Form>
     </card-box-modal>
@@ -559,10 +632,11 @@ const onSubmit = (values) => {
         v-model="isModalDangerActive"
         :title="t('users.modal.delete.title')"
         button="bg-main"
+        :button-label="t('common.delete')"
         has-cancel
         @confirm="confirmDelete"
     >
-        <p>Are you sure?</p>
+        <p>{{ t('users.modal.delete.confirm') }}</p>
     </card-box-modal>
     <div v-if="checkedRows.length" class="p-3 bg-gray-100/50 dark:bg-slate-800">
         <span
@@ -627,19 +701,19 @@ const onSubmit = (values) => {
                         />
                     </BaseButtons>
                 </td>
-                <td data-label="Created" class="whitespace-nowrap">
+                <td :data-label="t('users.table.created')" class="whitespace-nowrap">
                     <small class="text-gray-500 dark:text-slate-400">{{
                         format(new Date(user.createdAt), "dd-MM-yyyy HH:mm")
                     }}</small>
                 </td>
-                <td data-label="Email">
+                <td :data-label="t('users.table.email')">
                     {{ user.email }}
                 </td>
-                <td data-label="Name">
+                <td :data-label="t('users.table.username')">
                     {{ user.username }}
                 </td>
 
-                <td data-label="PieceId">
+                <td :data-label="t('users.table.userId')">
                     {{ index + 1 }}
                 </td>
 

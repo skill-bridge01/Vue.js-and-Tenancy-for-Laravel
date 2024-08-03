@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string("status")->default("1");
             $table->string("payment_method")->default("cash"); // cash or card
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -38,5 +39,8 @@ return new class extends Migration
         //
         Schema::dropIfExists('service_piece_invoices');
         Schema::dropIfExists('invoices');
+        Schema::table('invoices', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

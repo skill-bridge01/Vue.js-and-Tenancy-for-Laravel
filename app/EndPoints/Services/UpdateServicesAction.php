@@ -80,7 +80,8 @@ class UpdateServicesAction {
       $service->is_checked = $data->is_checked;
       $service->is_shown = $data->is_shown;
       $service->save();
-      return $service;
+      // return $service;
+      return ['service' => $service,'success' => 1, 'message' => 'Service updated successfully.'];
      
     } catch (\Throwable $ex) {
       //throw $th;

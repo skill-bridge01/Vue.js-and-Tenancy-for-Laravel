@@ -26,6 +26,11 @@ use App\Endpoints\Users\CreateUserAction;
 use App\Endpoints\Users\DeleteUserAction;
 use App\Endpoints\Users\UpdateUsersAction;
 
+use App\Endpoints\Company\CreateCompanyInfo;
+use App\Endpoints\Company\GetCompanyInfo;
+use App\Endpoints\Company\UpdateCompanyInfo;
+
+
 use App\Endpoints\CreateInvoice;
 use App\Endpoints\CreateInvoiceWeb;
 use App\Endpoints\GetStatstices;
@@ -120,11 +125,14 @@ Route::middleware([
     // Route::get('phone-verify', 'PhoneNumberVerifyController@show')->name('phoneverification.show');
     // Route::post('phone-verify', 'PhoneNumberVerifyController@verify')->name('phoneverification.verify');
     Route::post('/phone-verify', PhoneNumberVerifyAction::class);
+    Route::post('/company', CreateCompanyInfo::class);
+    Route::get('/company', GetCompanyInfo::class);
+    Route::post('/company-edit', UpdateCompanyInfo::class);
     Route::middleware([
         'auth:sanctum'
         ])->group(function () {
             Route::post('/pieces', CreatePieceAction::class);
-            Route::put('/pieces/{id}', UpdatePieceAction::class);
+            Route::post('/pieces-edit/{id}', UpdatePieceAction::class);
             Route::delete('/pieces/{id}', DeletePieceAction::class);
             Route::get('/pieces', GetPiecesAction::class);
 
@@ -154,6 +162,8 @@ Route::middleware([
             Route::post('get-statstices', GetStatstices::class);
             Route::post('me', GetUserAction::class);
             Route::post('update-password', UpdateUserAction::class);
+            // Route::post('company-info', CreateCompanyInfo::class);
+            
         });
 
     /** Service */

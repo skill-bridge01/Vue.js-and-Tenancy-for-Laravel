@@ -37,6 +37,9 @@ export default {
                 brandRed: '#FF5757',
                 brandBorder: '#ECF1F4',
             },
+            scale: {
+                80: "80%",
+            },
         },
     },
     variants: {

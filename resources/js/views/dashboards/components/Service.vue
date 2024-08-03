@@ -51,6 +51,8 @@ const handleClick = () => {
     :selected="selectedService?.id === props.service?.id"
     :checked="props.service.is_checked > 0"
   >
+  
+
     <span class="widget-label" :class="selectedService?.id === props.service?.id ? 'text-main' : ''">{{ props.service?.services_title }}</span>
     <img
       :class="selectedService?.id === props.service?.id ? 'selected-image' : 'unselected-image'"

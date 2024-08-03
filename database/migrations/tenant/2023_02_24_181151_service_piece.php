@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('piece_id')->nullable();
             $table->float("price");
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -29,6 +30,9 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::table('service_piece', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
         //
        
     }

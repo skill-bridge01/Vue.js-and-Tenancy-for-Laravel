@@ -7,6 +7,8 @@ export const useAuthStore = defineStore('auth', {
     userEmail: null,
     userAvatar: null,
     user: null,
+    company: null,
+    selectedCompany: null,
     token: null,
     role:null,
   }),
@@ -24,6 +26,16 @@ export const useAuthStore = defineStore('auth', {
       }
     },
 
+    setSelectedCompany(payload) {
+      console.log(payload);
+      this.selectedCompany = payload;
+      // if (payload) {
+      //     this.pieceSelected = true;
+      // } else {
+      //     this.pieceSelected = false;
+      // }
+  },
+
     setToken(token) {
       if (token) {
         this.token = token
@@ -33,6 +45,20 @@ export const useAuthStore = defineStore('auth', {
         localStorage.removeItem('laundry-token')
       }
     },
+
+    fetchCompany() {
+      authService.getCompany().then(company => {
+        console.log('CompanyInfo',company)
+        if (company!=0) {
+          this.company = company
+        }
+        
+      }).catch((err) => {
+        console.log(err)
+      })
+    },
+
+
 
     fetchUser() {
       authService.getMe().then(user => {

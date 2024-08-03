@@ -1,32 +1,36 @@
-import { http } from './http'
-import router from '../router'
+import { http } from "./http";
+import router from "../router";
 
 class PieceService {
-  apiUrl = '/pieces'
-  create(title) {
-    return http.post(this.apiUrl, {
-      title
-    })
-  }
-  // getList() {
-  //   return http.get('/piece-list')
-  // }
-  getList() {
-    return http.get(this.apiUrl + "/");
-  }
-  // getList() {
-  //   return http.get('/prices')
-  // }
+    apiUrl = "/pieces";
+    create(title) {
+        return http.post(this.apiUrl, title, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        });
+    }
+    // getList() {
+    //   return http.get('/piece-list')
+    // }
+    getList() {
+        return http.get(this.apiUrl + "/");
+    }
+    // getList() {
+    //   return http.get('/prices')
+    // }
 
-  edit(pieceId, title) {
-    return http.put(this.apiUrl + '/' + pieceId, {
-      title
-    })
-  }
+    edit(pieceId, formData) {
+        return http.post("/pieces-edit/" + pieceId, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        });
+    }
 
-  delete(pieceId) {
-    return http.delete(this.apiUrl + '/' + pieceId)
-  }
+    delete(pieceId) {
+        return http.delete(this.apiUrl + "/" + pieceId);
+    }
 }
 
-export const pieceService = new PieceService()
+export const pieceService = new PieceService();

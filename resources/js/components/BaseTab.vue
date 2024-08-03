@@ -60,10 +60,11 @@ const componentClass = computed(() => {
 })
 </script>
 <template>
-  <li class="w-40">
+  <li class="w-28 sm:w-40">
     <a
       href="#"
       :class="componentClass"
+      class="text-sm sm:text-base"
       @click="handleClick"
     >
       {{ props.title }}

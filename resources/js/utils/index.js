@@ -57,14 +57,27 @@ export const getServiceDataFromStatistics = (data = [], tabIndex) => {
 };
 
 export const getTableOptionsForCustomers = (data = []) => {
-  console.log(data);
+  console.log('CustomerData',data);
   const newData = data.map((d, i) => {
     return {
       amount: parseInt(d['total']),
       ...d['customer_data'],
     }
   });
-  console.log('newdata');
+  console.log('NEWcumtomer');
   console.log(newData);
   return newData;
+}
+
+export const getTableOptionsForServices = (data1 = []) => {
+  console.log('ServiceData',data1);
+  const newData1 = data1.map((d, i) => {
+    return {
+      amount: parseInt(d['total']),
+      service_name: d['service']
+    }
+  });
+  console.log('NEWservice');
+  console.log(newData1);
+  return newData1;
 }

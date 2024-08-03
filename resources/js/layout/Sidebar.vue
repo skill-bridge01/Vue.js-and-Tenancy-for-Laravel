@@ -78,15 +78,16 @@ let handleWindowResize = () => {
         <div>
           <div class="
                 inline-flex
+                items-center
                 w-full
                 px-4
                 py-2
-                text-sm
-                font-medium
+                text-xl
+                font-bold
               " :class="sideNavOpen ? 'justify-end' : 'justify-start'">
             <div :class="sideNavOpen ? '' : 'hidden'">
               <p class="text-right">{{ user?.name }}</p>
-              <p>{{ user?.email }}</p>
+              <!-- <p>{{ user?.email }}</p> -->
             </div>
             <div :class="sideNavOpen ? 'pl-3' : ''">
               <img class="avatar rounded-full" :src="`/images/faces/1.jpg`" alt="" />

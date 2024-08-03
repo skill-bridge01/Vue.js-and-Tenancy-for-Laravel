@@ -5,16 +5,23 @@ use Stancl\Tenancy\Database\Concerns\CentralConnection;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Piece extends Model
 {
     // use HasFactory, CentralConnection;
     use HasFactory;
+    use SoftDeletes;
     public $table = 'pieces';
 
     protected $fillable = [
       'piece_title',
     ];
+
+    protected $casts = [
+      'deleted_at' => 'datetime',
+    ];
+
     public function serviceslist()
     {
       return  $this->hasMany(Service_piece::class);

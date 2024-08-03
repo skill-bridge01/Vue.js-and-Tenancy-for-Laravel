@@ -51,16 +51,41 @@ class UpdatePieceAction {
    * )
    */
 
-  public function handle($id, $pieceInfo = null) {
+  public function handle($id, $piece = null) {
 
     try {
       //code...
-      $data = $pieceInfo ? : request();
+      $data = $piece ? : request();
       $piece = Piece::find($id);
+
+      if ($data === null) {
+        // Handle the case when $request is null. Perhaps log an error or throw an exception.
+        throw new \Exception("Request is null.");
+      }
+      // dd($data);
+      
+      // $existingPiece = Piece::where('piece_title', $data['title'])->first();
+      // if ($existingPiece) {
+      //     return ['error' => 'Provided Piece is already in use.'];
+      // } else {
+        if ($data->hasFile('image')) {
+          $imagePath = $data->file('image')->store('public/uploads/piece');
+          $imagePath = str_replace('public/', '', $imagePath);
+          $piece->piece_title = $data['title'];
+          $piece->image = $imagePath;
+          $piece->save();
+          return ['piece' => $piece,'success' => 1, 'message' => 'Piece updated successfully.'];
+        } else {
+          // $imagePath = null;
+          $piece->piece_title = $data['title'];
+          $piece->save();
+          return ['piece' => $piece,'success' => 1, 'message' => 'Piece updated successfully.'];
+        }
+      // }
       // ->update(['piece_title' => $data->title]);
-      $piece->piece_title = $data->title;
-      $piece->save();
-      return $piece;
+      // $piece->piece_title = $data->title;
+      // $piece->save();
+      // return $piece;
      
     } catch (\Throwable $ex) {
       //throw $th;

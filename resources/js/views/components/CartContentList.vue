@@ -131,13 +131,14 @@ const viewInvoices = () => {
             });
     }, 1000);
 };
-const options = ref([
+// const options = ref([
+const options = computed(() => [
     {
-        label: "Card",
+        label: t('dashboard.card'),
         value: "card",
     },
     {
-        label: "Cash",
+        label: t('dashboard.cash'),
         value: "cash",
     },
 ]);
@@ -247,7 +248,7 @@ const options = ref([
                 </div>
                 <div class="py-4">
                     <base-select
-                        label="Select a payment method"
+                        :label="t('dashboard.selectPayment')"   
                         :options="options"
                         @update:selected="handleSelectedOption"
                     />

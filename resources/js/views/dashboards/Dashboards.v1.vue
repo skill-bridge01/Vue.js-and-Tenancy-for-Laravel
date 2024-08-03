@@ -148,6 +148,7 @@ const sanitizeInput = () => {
         :title="t('dashboard.addCustomer')"
         :button-label="t('common.save')"
         button="bg-main"
+        has-cancel
         @confirm="createCustomer"
         @cancel="cancelCustomerModal"
     >

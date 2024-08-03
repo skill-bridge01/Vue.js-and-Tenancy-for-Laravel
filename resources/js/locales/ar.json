@@ -1,215 +1,378 @@
 {
-  "common": {
-    "appName": "مغسلة",
-    "phoneNumber": "رقم الهاتف",
-    "save": "حفظ وإغلاق",
-    "cancel": "Cancel",
-    "update": "تحديث"
-  },
-  "sidebar": {
-    "name" : "الاسم",
-    "email" : "اسم المستخدم@gmail.com",
-    "menu": {
-      "dashboard": "لوحة التحكم",
-      "invoices": "الفواتير",
-      "analytics": "التحليلات",
-      "account": "الحساب",
-      "signout": "تسجيل الخروج",
-      "register": "تسجيل",
-      "prices": "الأسعار",
-      "pieces": "القطع",
-      "services": "الخدمات",
-      "users": "المستخدمين"
-    }
-  },
-  "modal": {
-    "logout": {
-      "title": "تسجيل الخروج",
-      "message": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
-      "back": "رجوع",
-      "signout": "تسجيل الخروج"
-    }
-  },
-  "auth": {
-    "login": {
-      "email_username": "البريد الإلكتروني أو اسم المستخدم",
-      "username": "اسم المستخدم",
-      "email": "البريد الإلكتروني",
-      "password": "كلمة المرور",
-      "signIn": "تسجيل الدخول",
-      "register": "تسجيل"
+    "common": {
+        "appName": "مغسلة",
+        "phoneNumber": "رقم الهاتف",
+        "save": "حفظ وإغلاق",
+        "edit": "يحرر",
+        "cancel": "يلغي",
+        "update": "تحديث",
+        "delete": "حذف",
+        "check": "تحقق",
+        "show": "عرض",
+        "chooseImage": "اختر صورة"
     },
-    "signup": {
-      "username": "اسم المستخدم، مثال: laundry20",
-      "phoneNumber": "رقم الهاتف",
-      "name": "الاسم",
-      "confirmPassword": "تأكيد كلمة المرور",
-      "continue": "استمرار"
-    },
-    "phoneVerify": {
-      "phone": "Phone Verify Code",
-      "confirm": "Confirm"
-    }
-  },
-  "dashboard": {
-    "pieceType": "نوع القطعة",
-    "discount": "خصم",
-    "note": "ملاحظة",
-    "placeholder":"أحمد أحمد",
-    "discard": "تجاهل",
-    "pause": "توقف مؤقت",
-    "addCustomer": "إضافة عميل",
-    "typeName": "اسم النوع",
-    "pieceCount": "عدد القطع",
-    "createInvoice": "إنشاء فاتورة",
-    "addDiscount": "إضافة خصم",
-    "searchInvoice": "بحث في الفواتير أو العملاء",
-    "chooseWidget": "اختر نوع الويدجت",
-    "currency": "ر.س",
-    "count": "عدد",
-    "serviceType": "الخدمات",
-    "companyName":"اسم الشركة"
-  },
-  "invoices": {
-    "search": "بحث",
-    "toDate":"حتى تاريخه",
-    "fromDate":"من تاريخه",
-    "invoiceNumber": "رقم الفاتورة",
-    "table": {
-      "actions": "الإجراءات",
-      "total": "المجموع",
-      "status": "الحالة",
-      "customer": "العميل",
-      "date": "التاريخ",
-      "invoiceNumber": "رقم الفاتورة"
+    "sidebar": {
+        "name": "الاسم",
+        "email": "اسم المستخدم@gmail.com",
+        "menu": {
+            "dashboard": "لوحة التحكم",
+            "invoices": "الفواتير",
+            "analytics": "التحليلات",
+            "account": "الحساب",
+            "signout": "تسجيل الخروج",
+            "register": "تسجيل",
+            "prices": "الأسعار",
+            "pieces": "القطع",
+            "services": "الخدمات",
+            "users": "المستخدمين"
+        }
     },
     "modal": {
-      "qrcode": {
-        "title": "QR code"
-      },
-      "edit": {
-        "title": "Edit invoice",
-        "update": "Update"
-      },
-      "delete": {
-        "title": "Delete invoice"
-      }
-    }
-  },
-  "prices": {
-    "create": "إنشاء سعر",
-    "table": {
-      "actions": "الإجراءات",
-      "priceNumber": "الرقم",
-      "date": "التاريخ",
-      "service": "الخدمة",
-      "piece": "القطعة",
-      "price": "السعر"
+        "logout": {
+            "title": "تسجيل الخروج",
+            "message": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+            "back": "رجوع",
+            "signout": "تسجيل الخروج"
+        }
     },
-    "modal": {
-      "create": {
-        "title": "إنشاء سعر جديد",
-        "placeholder": "السعر"
-      },
-      "edit": {
-        "title": "تعديل السعر"
-      },
-      "delete": {
-        "title": "حذف السعر"
-      }
-    }
-  },
-  "users": {
-    "create": "إنشاء مستخدم",
-    "table": {
-      "Number": "الرقم",
-      "actions": "الإجراءات",
-      "date": "التاريخ",
-      "username": "الاسم",
-      "email": "البريد الإلكتروني"
+    "auth": {
+        "login": {
+            "email_username": "البريد الإلكتروني أو اسم المستخدم",
+            "username": "اسم المستخدم",
+            "email": "البريد الإلكتروني",
+            "password": "كلمة المرور",
+            "signIn": "تسجيل الدخول",
+            "register": "تسجيل",
+            "error": "البيانات المقدمة غير صحيحة",
+            "domainError": "الرجاء إدخال المجال الصحيح"
+        },
+        "signup": {
+            "username": "اسم المستخدم، مثال: laundry20",
+            "phoneNumber": "رقم الهاتف",
+            "name": "الاسم",
+            "confirmPassword": "تأكيد كلمة المرور",
+            "continue": "استمرار"
+        },
+        "phoneVerify": {
+            "phone": "رمز التحقق من الهاتف",
+            "confirm": "يتأكد"
+        }
     },
-    "modal": {
-      "create": {
-        "title": "إنشاء مستخدم جديد"
-      },
-      "edit": {
-        "title": "تعديل المستخدم"
-      },
-      "delete": {
-        "title": "حذف المستخدم"
-      }
-    }
-  },
-  "pieces": {
-    "create": "إنشاء قطعة",
-    "table": {
-      "actions": "الإجراءات",
-      "pieceNumber": "الرقم",
-      "date": "التاريخ",
-      "piece": "القطعة"
+    "dashboard": {
+        "pieceType": "نوع القطعة",
+        "discount": "خصم",
+        "note": "ملاحظة",
+        "placeholder": "اسم الزبون",
+        "discard": "تجاهل",
+        "pause": "توقف مؤقت",
+        "addCustomer": "إضافة عميل",
+        "typeName": "اسم النوع",
+        "pieceCount": "عدد القطع",
+        "createInvoice": "إنشاء فاتورة",
+        "addDiscount": "إضافة خصم",
+        "searchInvoice": "بحث في الفواتير أو العملاء",
+        "chooseWidget": "اختر نوع الويدجت",
+        "currency": "ر.س",
+        "count": "عدد",
+        "serviceType": "الخدمات",
+        "companyName": "اسم الشركة",
+        "selectPayment": "اختر طريقة الدفع",
+        "card": "بطاقة",
+        "cash": "نقداً"
     },
-    "modal": {
-      "create": {
-        "title": "إنشاء قطعة جديدة",
-        "placeholder": "اسم القطعة"
-      },
-      "edit": {
-        "title": "تعديل القطعة"
-      },
-      "delete": {
-        "title": "حذف القطعة"
-      }
-    }
-  },
-  "services": {
-    "create": "إنشاء خدمة",
-    "table": {
-      "actions": "الإجراءات",
-      "serviceNumber": "الرقم",
-      "date": "التاريخ",
-      "service": "الخدمة",
-      "checked": "تم التحقق",
-      "shown": "ظاهر"
+    "invoices": {
+        "search": "بحث",
+        "toDate": "حتى تاريخه",
+        "fromDate": "من تاريخه",
+        "invoiceNumber": "رقم الفاتورة",
+        "table": {
+            "actions": "الإجراءات",
+            "total": "الإجمالي",
+            "status": "الحالة",
+            "customer": "العميل",
+            "date": "تاريخ الإنشاء",
+            "invoiceNumber": "رقم الفاتورة"
+        },
+        "modal": {
+            "qrcode": {
+                "title": "رمز الاستجابة السريعة"
+            },
+            "edit": {
+                "title": "تعديل الفاتورة",
+                "update": "تحديث",
+                "inProgress": "في تَقَدم",
+                "readyPickup": "جاهز للإستلام",
+                "delivered": "تم التوصيل",
+                "select": "رجاءا اختر واحدة"
+            },
+            "delete": {
+                "title": "حذف الفاتورة"
+            }
+        },
+        "pdf":{
+            "companyName":"اسم الشركة",
+            "address":"المملكة العربية السعودية - جدة - شارع",
+            "invoice":"فاتورة"
+        }
     },
-    "modal": {
-      "create": {
-        "title": "إنشاء خدمة جديدة",
-        "placeholder": "اسم الخدمة"
-      },
-      "edit": {
-        "title": "تعديل الخدمة"
-      },
-      "delete": {
-        "title": "حذف الخدمة"
-      }
-    }
-  },
-  "analytics": {
-    "tabs": {
-      "allTime": "كل الوقت",
-      "thisMonth": "هذا الشهر",
-      "today": "اليوم"
+    "prices": {
+        "create": "إنشاء سعر",
+        "table": {
+            "actions": "الإجراءات",
+            "priceNumber": "الرقم",
+            "date": "التاريخ",
+            "service": "الخدمة",
+            "piece": "القطعة",
+            "price": "السعر"
+        },
+        "modal": {
+            "existError": "القطع وزوج الخدمة المقدم قيد الاستخدام",
+            "valueError": "الرجاء إدخال القيم الصحيحة",
+            "create": {
+                "title": "إنشاء سعر جديد",
+                "placeholder": "السعر",
+                "success": "تم إنشاء القطع والزوج الخدمي بنجاح"
+            },
+            "edit": {
+                "title": "تعديل السعر",
+                "success": "تم تحديث القطع وزوج الخدمة بنجاح"
+            },
+            "delete": {
+                "title": "حذف السعر"
+            }
+        }
     },
-    "chart": {
-      "bestSellingServices": "أفضل الخدمات مبيعًا",
-      "sales": "المبيعات",
-      "mostRequestedServices": "أكثر الخدمات طلبًا",
-      "viewAll": "عرض الكل",
-      "mostPurchasedCustomers": "أكثر العملاء شراءً",
-      "totalBills": "الإجمالي",
-      "customer": "العميل",
-      "value": "القيمة",
-      "bill": "فاتورة"
+    "users": {
+        "create": "إنشاء مستخدم",
+        "table": {
+            "Number": "الرقم",
+            "userId": "معرف المستخدم",
+            "created": "تم إنشاؤه",
+            "actions": "الإجراءات",
+            "date": "التاريخ",
+            "username": "الاسم",
+            "email": "البريد الإلكتروني"
+        },
+        "modal": {
+            "create": {
+                "title": "إنشاء مستخدم جديد"
+            },
+            "edit": {
+                "title": "تعديل المستخدم"
+            },
+            "delete": {
+                "title": "حذف المستخدم",
+                "confirm": "هل أنت متأكد؟"
+            }
+        },
+        "api": {
+            "create": {
+                "success": "تم إنشاء المستخدم بنجاح.",
+                "error": "المستخدم المُقدّم موجود بالفعل."
+            },
+            "update": {
+                "success": "تم تحديث المستخدم بنجاح.",
+                "pwdError": "كلمة المرور المُقدّمة لا تتطابق مع سجلاتنا.",
+                "userError": "المستخدم المُقدّم موجود بالفعل."
+            }
+        }
+    },
+    "pieces": {
+        "create": "إنشاء قطعة",
+        "table": {
+            "actions": "الإجراءات",
+            "pieceNumber": "الرقم",
+            "date": "التاريخ",
+            "piece": "القطعة",
+            "image": "صورة"
+        },
+        "modal": {
+            "existError": "القطعة المقدمة قيد الاستخدام بالفعل.",
+            "create": {
+                "title": "إنشاء قطعة جديدة",
+                "placeholder": "اسم القطعة",
+                "success": "تم إنشاء قطعة بنجاح."
+            },
+            "edit": {
+                "title": "تعديل القطعة",
+                "success": "تم تحديث القطعه بنجاح"
+            },
+            "delete": {
+                "title": "حذف القطعة"
+            }
+        }
+    },
+    "services": {
+        "create": "إنشاء خدمة",
+        "table": {
+            "actions": "الإجراءات",
+            "serviceNumber": "الرقم",
+            "date": "التاريخ",
+            "service": "الخدمة",
+            "checked": "تم التحقق",
+            "shown": "ظاهر"
+        },
+        "modal": {
+            "existError": "الخدمة المقدمة قيد الاستخدام بالفعل",
+            "create": {
+                "title": "إنشاء خدمة جديدة",
+                "placeholder": "اسم الخدمة",
+                "success": "تم إنشاء الخدمة بنجاح"
+            },
+            "edit": {
+                "title": "تعديل الخدمة",
+                "success": "تم تحديث الخدمة بنجاح"
+            },
+            "delete": {
+                "title": "حذف الخدمة"
+            }
+        }
+    },
+    "analytics": {
+        "tabs": {
+            "allTime": "كل الوقت",
+            "thisMonth": "هذا الشهر",
+            "today": "اليوم"
+        },
+        "chart": {
+            "bestSellingServices": "أفضل الخدمات مبيعًا",
+            "sales": "المبيعات",
+            "mostRequestedServices": "أكثر الخدمات طلبًا",
+            "viewAll": "عرض الكل",
+            "mostPurchasedCustomers": "أكثر العملاء شراءً",
+            "totalBills": "الإجمالي",
+            "customer": "العميل",
+            "value": "القيمة",
+            "bill": "فاتورة",
+            "service": "خدمة",
+            "unit": "ر.س",
+            "viewLess": "عرض أقل"
+        }
+    },
+    "account": {
+        "settings": "الإعدادات",
+        "management": "إدارة الحساب",
+        "oldPassword": "كلمة المرور القديمة",
+        "newPassword": "كلمة المرور الجديدة",
+        "confirmPassword": "تأكيد كلمة المرور",
+        "email": "البريد الإلكتروني",
+        "mobile": "رقم التليفون",
+        "username": "اسم المستخدم",
+        "save": "حفظ",
+        "company": {
+            "panelTitle": "معلومة",
+            "edit": "تعديل الشركة",
+            "companyName": "اسم الشركة",
+            "companyAddress": "عنوان الشركة",
+            "companyLogo": "شعار الشركة",
+            "commercialNumber": "رقم السجل التجاري",
+            "taxNumber": "الرقم الضريبي",
+            "api": {
+                "create": "تم إنشاء الشركة بنجاح.",
+                "edit": "تم تحديث الشركة بنجاح."
+            }
+        }
+    },
+    "validation": {
+        "companyName": {
+            "required": "اسم الشركة هو حقل مطلوب"
+        },
+        "companyLogo": {
+            "required": "شعار الشركة هو حقل مطلوب"
+        },
+        "companyAddress": {
+            "required": "عنوان الشركة هو حقل مطلوب"
+        },
+        "username": {
+            "required": "اسم المستخدم مطلوب",
+            "min": "يجب ألا يقل اسم المستخدم عن 6 أحرف"
+        },
+        "nameOrEmail": {
+            "required": "اسم المستخدم أو البريد الإلكتروني هو حقل مطلوب",
+            "min": "يجب أن يكون اسم المستخدم أو البريد الإلكتروني 6 أحرف على الأقل"
+        },
+        "name": {
+            "required": "الاسم مطلوب",
+            "min": "يجب ألا يقل الاسم عن 6 أحرف"
+        },
+        "phone": {
+            "required": "رقم الهاتف مطلوب",
+            "min": "يجب ألا يقل رقم الهاتف عن 10 أحرف"
+        },
+        "old_password": {
+            "required": "كلمة المرور القديمة مطلوبة",
+            "min": "يجب ألا تقل كلمة المرور القديمة عن 8 أحرف"
+        },
+        "password": {
+            "required": "كلمة المرور مطلوبة",
+            "min": "يجب ألا تقل كلمة المرور عن 8 أحرف"
+        },
+        "password_confirmation": {
+            "required": "تأكيد كلمة المرور مطلوب",
+            "notMatch": "كلمات المرور غير متطابقة"
+        },
+        "email": "يجب أن يكون البريد الإلكتروني صالحًا",
+        "emailRequired": "إن البريد الإلكترونى حقل مطلوب"
+    },
+    "home": {
+        "nav": {
+            "logo": "اللــوقو",
+            "main": "الرئيسية ",
+            "about": "عن النظام",
+            "priceAndPackage": "الأسعار والباقات",
+            "contact": "إتصل بنا"
+        },
+        "intro": {
+            "title_easy": "نظام المصابغ الأسهل",
+            "title_fast": "والأسرع",
+            "content": "نقدم لك برنامج نقاط بيع للمغاسل يحفظ بياناتك ويعالجها بكل سهولة، مع منظومة تقنية متكاملة تدعم الفوترة الإلكترونية وتقدم الإحصائيات التي تساعدك في تجارتك.",
+            "tryBtn": "جرب معنا مجانا"
+        },
+        "about": {
+            "aboutSystem": "عن النظام",
+            "title": "بماذا يتميز نظامنا",
+            "card-one": {
+                "title": "دعم فني مجاني",
+                "content": "احصل على دعم فني مجاني من فريق مكرَّس للرد على استفساراتكم ومساعدتكم في حال واجهتم أي مشكلات؛ عبر التواصل من خلال الهاتف أو البريد الإلكتروني على مدار اليوم، وذلك لضمان حصولكم على تجربة مثالية عند استخدام نظام دفترة."
+            },
+            "card-two": {
+                "title": "واجهة سهلة الاستخدام",
+                "content": "أدِر أعمالك بسهولة مع العديد من الخصائص والأدوات المضمّنة في واجهة سهلة الاستخدام بخطوات بسيطة، إذ لا تحتاج إلى امتلاك معرفة عميقة بأنظمة تخطيط الموارد المؤسسية أو طرق المحاسبة المعقدة من أجل العمل على أي من تطبيقات النظام."
+            },
+            "card-three": {
+                "title": "تحديثات دورية مجانًا",
+                "content": "يعمل دفترة باستمرار على تطوير النظام بأكمله وتحديث تطبيقاته وميزاته لمواكبة متطلبات الأعمال بما في ذلك إضافة الخصائص والأدوات الجديدة التي من شأنها تسهيل إدارة أعمالك على نحو فعال، فيما ستحصل على كل هذه التحديثات مجانًا."
+            },
+            "card-four": {
+                "title": "الأمان والحماية",
+                "content": "SSL 256 bit مع عدة طبقات من الحماية، إلى جانب وجود الخوادم في قارتين مختلفتين مع إجراءات سلامة إضافية لمواقعها وقيود قوية على صلاحية الوصول إلى البيانات، بالإضافة إلى عمليات نسخ احتياطي دورية."
+            },
+            "card-five": {
+                "title": "تحديثات نظام كامل لتسليم",
+                "content": "دعم نظام فتح وإغلاق الصناديق علي مــستـوي المستخدم مع إصدار تقارير تفــصيلية وإجــمالية يتم من خلالها اغلاق اليومية مع الكاشير."
+            },
+            "card-six": {
+                "title": "تقارير غير محدودة",
+                "content": "يعمل نظام التقارير لدينا على إنشاء تقارير شاملة تستند إلى البيانات الموجود لاتخاذ القرارات المناسبة."
+            }
+        },
+        "package": {
+            "year": "سنة",
+            "package": "البــاقات",
+            "title": "الخطط واﻷسعار",
+            "basicPlan": "الخطة الأساسية",
+            "description": "هنا يتم وضع وص مختصر للخطة",
+            "feature": "ميزة",
+            "chooseBtn": "إختر الإحترافية"
+        },
+        "contact": {
+            "contact": "اتصل بنا",
+            "title": "تواصل معنا اليوم!",
+            "name": "الإسم",
+            "email": "الإيميل",
+            "message": "رسالة",
+            "btn": "إرســــال"
+        },
+        "footer": "جميع الحقوق محفوظة"
     }
-  },
-  "account": {
-    "settings": "الإعدادات",
-    "management": "إدارة الحساب",
-    "oldPassword": "كلمة المرور القديمة",
-    "newPassword": "كلمة المرور الجديدة",
-    "confirmPassword": "تأكيد كلمة المرور",
-    "email": "البريد الإلكتروني",
-    "mobile": "Phone number",
-    "username": "Username"
-  }
 }

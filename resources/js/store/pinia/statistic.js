@@ -13,6 +13,8 @@ export const useStatisticStore = defineStore('statistics', {
     mostPurchasedCustomerArr: [],
     mostServicedItems: [],
     mostServices: [],
+    bestServices:[],
+    totalServices:[]
   }),
 
   actions: {
@@ -47,9 +49,11 @@ export const useStatisticStore = defineStore('statistics', {
       this.mostPurchasedCustomerArr = payload['most_purchased_customers'];
       this.mostServicedItems = payload['most_serviced_items'];
       this.mostServices = payload['most_services'];
+      this.bestServices = payload['service_count'];
+      this.totalServices = payload['total_service_count'];
     },
 
-    fetch(query = 'day') {
+    fetch(query = 'year') {
       this.setLoading(true);
 
       statisticService.getStatistics(query).then((res) => {

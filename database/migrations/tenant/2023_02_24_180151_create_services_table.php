@@ -19,6 +19,7 @@ return new class extends Migration
             $table->boolean('is_checked', 255)->default(false);
             $table->boolean('is_shown', 255)->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -32,5 +33,8 @@ return new class extends Migration
         Schema::dropIfExists('service_piece');
         Schema::dropIfExists('pieces');
         Schema::dropIfExists('services');
+        Schema::table('services', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
     }
 };

@@ -74,43 +74,23 @@ class UpdatePriceAction {
     try {
       //code...
       $data = $priceData ?: request();
-      // $service = Service_piece::find($id);
-      // // ->update(['piece_title' => $data->title]);
-      // $service->service_id = $data->service_id;
-      // $service->piece_id = $data->piece_id;
-      // $service->price = $data->price;
-      // $service->save();
-      // return $service;
-
       if (!isset($data['service_id'], $data['piece_id'], $data['price'])) {
         // abort(400, "Missing required fields: service_id, piece_id, and/or price.");
-        return ['error' => 'Please input correct values'];
+        return ['valueError' => 'Please input correct values'];
       } else{
-        $service = Service_piece::find($id);
-        $service->service_id = $data->service_id;
-        $service->piece_id = $data->piece_id;
-        $service->price = $data->price;
-        $service->save();
-        return ['service' => $service,'success' => 1, 'message' => 'Price updated successfully.'];
+        // dd('error', $id, $data->service_id, $data->piece_id);
+        $existPair= Service_piece::where('id', '!=', $id)->where('service_id', $data->service_id)->where('piece_id', $data->piece_id)->first();
+        if($existPair){
+          return ['error' => 'The service and piece pair provided is already in use'];
+        } else {
+          $service = Service_piece::find($id);
+          $service->service_id = $data->service_id;
+          $service->piece_id = $data->piece_id;
+          $service->price = $data->price;
+          $service->save();
+          return ['service' => $service,'success' => 1, 'message' => 'Price updated successfully.'];
+        }
       }
-
-          
-
-      // $existingPrice = Service_piece::where('service_id', $data['service_id'])
-      //     ->where('piece_id', $data['piece_id'])
-      //     ->first();
-
-      // if ($existingPrice) {
-      //     return ['error' => 'Provided service and piece is already in use.'];
-      // } else {
-      //     $service = Service_piece::find($id);
-      //     $service->service_id = $data->service_id;
-      //     $service->piece_id = $data->piece_id;
-      //     $service->price = $data->price;
-      //     $service->save();
-      //     return ['service' => $service,'success' => 1, 'message' => 'Price updated successfully.'];
-      // }
-     
     } catch (\Throwable $ex) {
       //throw $th;
       env("APP_DEBUG")?abort(500,$ex->getMessage()):abort(500,"something went wrong.");

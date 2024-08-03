@@ -5,13 +5,19 @@ use Stancl\Tenancy\Database\Concerns\CentralConnection;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Service_piece extends Model
 {
     // use HasFactory, CentralConnection;
     use HasFactory;
-
+    use SoftDeletes;
     public $table = 'service_piece';
+
+    protected $casts = [
+        'deleted_at' => 'datetime',
+    ];
+
     public function serviceinfo()
     {
         return $this->belongsTo(Service::class,"service_id","id");  
@@ -27,4 +33,5 @@ class Service_piece extends Model
     {
       return  $this->hasMany(Service_piece_invoices::class);
     }
+    
 }

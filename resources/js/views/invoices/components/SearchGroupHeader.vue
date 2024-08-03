@@ -75,11 +75,11 @@ const handleClickClearSearch = (resetForm) => {
 
 <template>
     <Form
-        class="w-full flex justify-between items-center"
+        class="w-full md:flex justify-between items-center "
         @submit="onSubmit"
         v-slot="{ values, handleReset }"
     >
-        <div class="flex just-between items-center gap-4">
+        <div class="flex just-between items-center gap-4 md:mb-0 mb-6">
             <div class="flex items-center">
                 <search-icon-button @on-click="() => handleClick(values)">
                 </search-icon-button>
@@ -92,7 +92,7 @@ const handleClickClearSearch = (resetForm) => {
             </div>
         </div>
 
-        <div class="flex items-center gap-6 justify-between">
+        <div class="flex items-center gap-4 justify-between">
             <div>
                 <label class="flex justify-end text-sm">{{t('invoices.toDate')}}</label>
                 <base-input
@@ -100,7 +100,7 @@ const handleClickClearSearch = (resetForm) => {
                     name="to_date"
                     icon-:src="`/images/invoices/calendar_grey.svg`"
                     placeholder="إلى تاريخ"
-                    class="hidden sm:flex"
+                    class="flex"
                     :value="toDate"
                     :clear="clear"
                 />
@@ -112,7 +112,7 @@ const handleClickClearSearch = (resetForm) => {
                     name="from_date"
                     icon-:src="`/images/invoices/calendar_grey.svg`"
                     placeholder="من تاريخ"
-                    class="hidden sm:flex"
+                    class="flex"
                     :value="fromDate"
                     :clear="clear"
                 />
@@ -124,7 +124,7 @@ const handleClickClearSearch = (resetForm) => {
                 name="invoice_number"
                 icon-:src="`/images/invoices/invoice_grey.svg`"
                 
-                class="hidden sm:flex"
+                class="flex"
             />
             </div>
         </div>

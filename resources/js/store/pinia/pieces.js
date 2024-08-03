@@ -69,18 +69,19 @@ export const usePiecesStore = defineStore("piece", {
             }
         },
 
-        async edit(pieceId, title) {
+        async edit(pieceId, formData) {
             this.loading = true;
             try {
-                const res = await pieceService.edit(pieceId, title);
+                const res = await pieceService.edit(pieceId, formData);
+                console.log('res-store', res)
                 const pieceIndex = this.pieces.findIndex(
                     (p) => p.id === pieceId
                 );
-                this.pieces[pieceIndex] = res.data;
-                return true;
+                this.pieces[pieceIndex] = res.data.piece;
+                return res;
             } catch (error) {
-                this.pieceFetchError = error;
-                return error;
+                // this.pieceFetchError = error;
+                // return error;
             } finally {
                 this.loading = false;
             }

@@ -6,6 +6,7 @@ import { useCustomersStore } from '@/store/pinia/customers'
 import { useInvoicesStore } from '@/store/pinia/invoices'
 import { storeToRefs } from 'pinia';
 import printJS from "print-js";
+import { useI18n } from "vue-i18n";
 
 import {
   format,
@@ -19,7 +20,7 @@ const emits = defineEmits([
   'toggleModalActive',
   'downloadPdf'
 ])
-
+const { t } = useI18n();
 const html2Pdf = ref(null)
 const customersStore = useCustomersStore()
 const cartsStore = useCartsStore()
@@ -97,9 +98,9 @@ const downloadPdf  = () => {
         <div class="content-wrapper bg-white">
           <div class="company-header">
             <div class="company-name">
-              اسم الشركة
+              {{ t('invoices.pdf.companyName') }}
               <br>
-              المملكة العربية السعودية - جدة - شارع
+              {{ t('invoices.pdf.address') }}
               <p>+966 65489415</p>
             </div>
             <div class="company-logo">
@@ -107,7 +108,7 @@ const downloadPdf  = () => {
             </div>
           </div>
           <div class="invoice-title-wrapper">
-            فاتورة
+            {{ t('invoices.pdf.invoice') }}
             <br />
             INV-{{ selectedInvoice.dailyId }}
           </div>

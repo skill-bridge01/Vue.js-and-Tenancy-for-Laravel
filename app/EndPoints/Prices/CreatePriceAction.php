@@ -94,7 +94,7 @@ class CreatePriceAction {
         // Ensure all necessary data exists
         if (!isset($data['service_id'], $data['piece_id'], $data['price'])) {
             // abort(400, "Missing required fields: service_id, piece_id, and/or price.");
-            return ['error' => 'Please input correct values'];
+            return ['valueError' => 'Please input correct values'];
         }
 
         // Attempt to find an existing price

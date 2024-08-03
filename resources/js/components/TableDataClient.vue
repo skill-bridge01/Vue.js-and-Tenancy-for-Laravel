@@ -313,11 +313,12 @@ const confirmDelete = () => {
     <CardBoxModal
         v-model="isModalDangerActive"
         :title="t('invoices.modal.delete.title')"
+        :button-label="t('common.delete')"
         button="bg-main"
         has-cancel
         @confirm="confirmDelete"
     >
-        <p>Are you sure?</p>
+        <p>{{ t("users.modal.delete.confirm") }}</p>
     </CardBoxModal>
     <!-- <vue3-html2pdf
       :show-layout="false"
@@ -427,21 +428,21 @@ const confirmDelete = () => {
                     </BaseButtons>
                 </td>
 
-                <td data-label="Total">
+                <td :data-label="t('invoices.table.total')">
                     {{ invoice.totalPrice }}
                 </td>
-                <td data-label="Progress" class="">
+                <td :data-label="t('invoices.table.status')" class="">
                     <status-label :status="parseInt(invoice.status)" />
                 </td>
-                <td data-label="customer">
+                <td :data-label="t('invoices.table.customer')">
                     {{ invoice.customerName }}
                 </td>
-                <td data-label="Created" class="whitespace-nowrap">
+                <td :data-label="t('invoices.table.date')" class="whitespace-nowrap">
                     <small class="text-gray-500 dark:text-slate-400">{{
                         format(new Date(invoice.createdAt), "dd-MM-yyyy HH:mm")
                     }}</small>
                 </td>
-                <td data-label="InvoiceId">
+                <td :data-label="t('invoices.table.invoiceNumber')">
                     {{ invoice.id }}
                 </td>
                 <!-- <td class="border-b-0 lg:w-6 before:hidden">

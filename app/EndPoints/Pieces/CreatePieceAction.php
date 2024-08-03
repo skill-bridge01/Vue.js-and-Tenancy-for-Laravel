@@ -9,6 +9,7 @@ use Throwable;
 use Lorisleiva\Actions\Concerns\AsAction;
 use Lorisleiva\Actions\Concerns\WithAttributes;
 use Lorisleiva\Actions\ActionRequest;
+use Illuminate\Http\Request;
 
 class CreatePieceAction {
   use AsAction, WithAttributes;
@@ -44,28 +45,29 @@ class CreatePieceAction {
 
     try {
       //code...
-      // $data = $piece ? : request();
-      // $piece = new Piece();
-      // $piece->piece_title = $data['title'];
-      // $piece->save();
-      // return $piece;
-
       $data = $piece ? : request();
-      
-      $existingUser = Piece::where('piece_title', $data['title'])->first();
-      // dd($existingUser);
 
+      if ($data === null) {
+        // Handle the case when $request is null. Perhaps log an error or throw an exception.
+        throw new \Exception("Request is null.");
+      }
+      $existingUser = Piece::where('piece_title', $data['title'])->first();
       if ($existingUser) {
           return ['error' => 'Provided Piece is already in use.'];
       } else {
+        if ($data->hasFile('image')) {
+          $imagePath = $data->file('image')->store('public/uploads/piece');
+          $imagePath = str_replace('public/', '', $imagePath);
+        } else {
+          $imagePath = null;
+        }
         $piece = new Piece();
         $piece->piece_title = $data['title'];
+        $piece->image = $imagePath;
         $piece->save();
-        // event(new Registered($piece));
         return ['piece' => $piece,'success' => 1, 'message' => 'Piece created successfully.'];
       }
     } catch (\Throwable $ex) {
-      //throw $th;
       env("APP_DEBUG")?abort(500,$ex->getMessage()):abort(500,"something went wrong.");
     }
   }
